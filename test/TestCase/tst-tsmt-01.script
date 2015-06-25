@@ -1,0 +1,107 @@
+// Script:    Tst-sls-01.script
+// Author:    Arndt von Staa
+// Date:      10/fev/2007
+// Purpose:   Test symbol table
+
+== Reset all spaces
+=reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum     1
+=AllocSaveBytes   1
+
+== Create tables
+=createtab        0  10
+=createtab        2   5
+=createtab        5  300
+
+== Verify empty tables
+=verifytable      0  1  1
+=verifytable      2  1  1
+=verifytable      5  1  1
+
+== Test seach in empty table
+=searchsymbol     0  "aa"     0
+=searchsymbol     2  "bbbb"   0
+=searchsymbol     5  "cccccc" 1
+=Recover
+
+== Test insert string
+=insertsymbol     2  "aa"     0
+=insertsymbol     2  "bbbb"   0
+=insertsymbol     2  "cccccc" 0
+=searchsymbol     2  "aa"     1
+=searchsymbol     2  "bbbb"   1
+=searchsymbol     2  "cccccc" 1
+
+== Test delete symbol
+=deletesymbol     2  "aa"     1
+=deletesymbol     2  "aa"     0
+=deletesymbol     2  "wwww"   0
+
+== Test mix of insert and delete
+=deletesymbol     2  "12345"  0
+=insertsymbol     2  "12345"  0
+=searchsymbol     2  "23456"  0
+=insertsymbol     2  "12345"  1
+=searchsymbol     2  "12345"  1
+=insertsymbol     2  "12345"  1
+=deletesymbol     2  "12345"  1
+=insertsymbol     2  "12345"  0
+
+== Test insert string in another table
+=insertsymbol     0  "aaa"     0
+=insertsymbol     0  "bbbbb"   0
+=insertsymbol     0  "ccccccc" 0
+=searchsymbol     0  "aaa"     1
+=searchsymbol     0  "bbbbb"   1
+=searchsymbol     0  "ccccccc" 1
+
+== Verify structure of table with no delete performed
+=verifytable      0  1  1
+
+== Verify structure of table with delete performed
+=verifytable      2  1  1
+
+== Verify sensibility with respect to case and diacritic characters
+=searchsymbol     0  "áaa"     0
+=searchsymbol     0  "bbbbb"   1
+=searchsymbol     0  "ccçcccc" 0
+=searchsymbol     0  "bBbbb"   1
+=Recover
+
+== Verify correct comparison at the extremities
+=searchsymbol     0  "bbbbb"   1
+=searchsymbol     0  "xbbbb"   0
+=searchsymbol     0  "bbbbx"   0
+
+== Test random
+=destructtab      5
+=createtab        5  23
+=searchsymbol     5  "@ABC"           0
+=deletesymbol     5  "stuvwxy"        0
+=deletesymbol     5  "VWXYZ[\\]^_`"   0
+=insertsymbol     5  "hijklmnopqr"    0
+=searchsymbol     5  "23456789"       0
+=searchsymbol     5  "%&\'()*+,-./01" 0
+=insertsymbol     5  "?"              0
+=insertsymbol     5  "!\"#$"          0
+=insertsymbol     5  "!\"#$"          1
+=searchsymbol     5  "%&\'()*+,-./01" 0
+=searchsymbol     5  "hijklmnopqr"    1
+
+== Destruct these tables
+=destructtab      5
+=destructtab      0
+=destructtab      2
+
+== Verify leakage
+=AllocCompareNum   1
+=AllocCompareBytes 1
+
+== Test table tester destruction, must not leave allocated spaces
+=createtab        1  10
+=insertsymbol     1  "aaa"     0
+=insertsymbol     1  "bbbbb"   0
+=insertsymbol     1  "ccccccc" 0
+  

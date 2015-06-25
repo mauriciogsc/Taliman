@@ -1,0 +1,39 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      LOG  Logger
+// 
+// Generated file:         logger.str
+// Identification letters: LOG
+// Identification number:  0260
+// 
+// Repository name:      Log messages
+// Repository file name: C:\TALISMAN\TEST\BSW\LOGGER.BSW
+// 
+// Ownership
+//    Owning organization:    LES/INF/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  260
+
+// Blocos programa: Root of LOG  !Logger destructor
+
+  LOG_End                  1     m "Log end: %0"
+
+// Blocos programa: Open the sequential IO control
+
+  LOG_Header               2     m "TALISMAN Log file\n"
+  LOG_NoFileError          3     m "*****   Log will be sent to console.\n"
+
+// Blocos programa: Display the log header
+
+  LOG_Start                4     m "Log start: %0"
+
+// Blocos programa: Root of LOG  !Log part of a memory space
+
+  LOG_EmptySpace           5     m "     Empty space"
+
+//** End of string file, module: LOG  Logger

@@ -1,0 +1,30 @@
+// Script:    Tst-main-11.script
+// Author:    Arndt von Staa
+// Date:      22/jun/2012
+// Purpose:   Test basic functionality, include file
+
+
+== Declare open segment constants
+=DeclareParameter  OpenAnonym        int 1
+=DeclareParameter  OpenTemp          int 2
+=DeclareParameter  OpenCreate        int 3
+=DeclareParameter  OpenRead          int 4
+=DeclareParameter  OpenReadWrite     int 5
+
+== Declare existing parameter
+=DeclareParameter  idAssert          int   144
+=Recover
+=DeclareParameter  idEnforce         int   143
+=Recover
+
+== included line 20: Test hexadecimal with coded characters and incorrect comparand
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbC0DdeEf0"
+=Recover
+
+
+
+== included line 26: Test hexadecimal with coded characters, comparand shorter
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDd"
+
+
+// end of include file

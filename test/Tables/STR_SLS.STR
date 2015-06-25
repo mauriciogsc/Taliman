@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      SLS  Simple linked list
+// 
+// Generated file:         simplist.str
+// Identification letters: SLS
+// Identification number:  0300
+// 
+// Repository name:      Test framework support modules
+// Repository file name: D:\TALISMAN\TEST\BSW\UTILIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  300
+
+// Blocos programa: Root of SLS  !Verify list
+
+  SLS_ErrorRoot            1     m "Invalid simple list"
+
+//** End of string file, module: SLS  Simple linked list

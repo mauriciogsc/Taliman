@@ -1,0 +1,8 @@
+// test configuration file
+
+[section1]
+   attr1                = ab cd ef
+   attr2                = zzzzz
+   attr3                = "0123456789"
+
+   // Configuration file end

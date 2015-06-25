@@ -1,0 +1,9 @@
+/OUT:TalismanTestLib.lib
+/MACHINE:IX86
+bcdarit.obj  buffer.obj  configfl.obj  counters.obj  disaster.obj  
+dynspac.obj  environ.obj  exceptn.obj  global.obj  gnrctest.obj  
+int_cnt.obj  int_dsp.obj  logger.obj  message.obj  msgbcd.obj  
+msgbin.obj  msgstr.obj  msgtime.obj  randgen.obj  readtest.obj  
+simplist.obj  sioctrl.obj  sls_elem.obj  symbtab.obj  time.obj  
+tracer.obj  verifier.obj  
+

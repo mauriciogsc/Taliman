@@ -1,0 +1,24 @@
+
+
+#################### Compilacao do construto: Tst-exc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_texc.str
+      Tabela de ids:      ..\tables\str_texc.inc
+
+tst_exc.cpp
+main.cpp
+Microsoft (R) Incremental Linker Version 12.00.21005.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:Tst-exc.EXE 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+exceptn.obj tst_exc.obj bcdarit.obj breakpnt.obj counters.obj 
+disaster.obj dynspac.obj environ.obj global.obj gnrctest.obj 
+int_cnt.obj int_dsp.obj logger.obj main.obj message.obj 
+msgbin.obj msgstr.obj msgtime.obj readtest.obj simplist.obj 
+sioctrl.obj sls_elem.obj string.obj symbtab.obj time.obj 
+tracer.obj verifier.obj 

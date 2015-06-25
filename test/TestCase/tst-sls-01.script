@@ -1,0 +1,312 @@
+// Script:    Tst-sls-01.script
+// Author:    Arndt von Staa
+// Date:      01/fev/2007
+// Purpose:   Test simple list
+
+== Reset all spaces
+=reset
+
+== Declare parameters to be used
+=DeclareParameter  aaaa     string  "aaaa"
+=DeclareParameter  abcdefg  string  "abcdefg"
+
+== Preserve the number of allocated spaces
+=AllocSaveNum    1
+=AllocSaveBytes  0
+
+== Create a list
+=newlist      0 
+
+== Try setting element current with a null element
+=setelem      0  0
+
+== Test empty list
+=getnumelem   0  0
+=movefirst    0
+=movelast     0
+=moveelem     0 -1  0
+=moveelem     0  1  0
+=getelem      0  "."
+=deleteelem   0  1
+
+== Test emptying empty list
+=emptylist    0
+=getnumelem   0  0
+=movefirst    0
+=movelast     0
+=moveelem     0 -1  0
+=moveelem     0  1  0
+=getelem      0  "."
+=deleteelem   0  1
+
+== Insert an element into this list
+=insertafter  0  abcdefg
+=getnumelem   0  1
+=moveelem     0 -1  0
+=moveelem     0  1  0
+=getelem      0  abcdefg
+
+== Test movefirst with only one element
+=movefirst    0
+=getelem      0  abcdefg
+
+== Test movelast with only one element
+=movelast     0
+=getelem      0  abcdefg
+
+== Delete the list
+=destroylist  0  0
+
+== Test destroyed list 
+=getnumelem   0  0 
+=Recover
+
+== Test inexistent list 
+=getnumelem   1  0 
+=Recover
+
+== Build list with 1 element using insert before
+=newlist       1
+=insertbefore  1  aaaa
+=getnumelem    1  1 
+=getelem       1  aaaa
+
+== Build list with 2 elements using insert before
+=insertbefore  1  "cc"
+=getnumelem    1  2 
+=getelem       1  "cc"
+
+== Build list with 3 elements using insert before
+=moveelem      1  1  1
+=getelem       1  aaaa
+=insertbefore  1  "bbb"
+=getnumelem    1  3 
+=getelem       1  "bbb"
+
+== Verify list from begining to end
+=movefirst     1
+=getelem       1  "cc"
+=moveelem      1  1  1
+=getelem       1  "bbb"
+=moveelem      1  1  1
+=getelem       1  aaaa
+=moveelem      1  1  0
+
+== Verify list from end to begining 
+=movelast      1
+=getelem       1  aaaa
+=moveelem      1  -1  1
+=getelem       1  "bbb"
+=moveelem      1  -1  1
+=getelem       1  "cc"
+=moveelem      1  -1  0
+
+== Destroy the list of 3 elements
+=destroylist   1  0
+
+== Build list with 1 element using insert after
+=newlist       2
+=insertafter   2  "x"
+=getnumelem    2  1 
+=getelem       2  "x"
+
+== Build list with 2 elements using insert after
+=insertafter   2  "zzzzzz"
+=getnumelem    2  2 
+=getelem       2  "zzzzzz"
+
+== Build list with 3 elements using insert after
+=moveelem      2  -1  1
+=getelem       2  "x"
+=insertafter   2  "yyyy"
+=getnumelem    2  3 
+=getelem       2  "yyyy"
+
+== Verify list from begining to end
+=movefirst     2
+=getelem       2  "x"
+=moveelem      2  1  1
+=getelem       2  "yyyy"
+=moveelem      2  1  1
+=getelem       2  "zzzzzz"
+=moveelem      2  1  0
+
+== Verify list from end to begining 
+=movelast      2
+=getelem       2  "zzzzzz"
+=moveelem      2  -1  1
+=getelem       2  "yyyy"
+=moveelem      2  -1  1
+=getelem       2  "x"
+=moveelem      2  -1  0
+
+== Add elements to the beginning
+=movefirst     2
+=insertbefore  2  "ww"                  
+// ww x yyyy zzzzz
+=insertafter   2  "ttt"                 
+// ww ttt x yyyy zzzzzz   
+
+== Add elements to the end
+=movelast     2
+=insertafter  2  "rrrr"                 
+// ww ttt x yyyy zzzzzz rrrr
+=insertbefore 2  "sssss"                
+// ww ttt x yyyy zzzzzz sssss rrrr
+=getelem      2  "sssss"
+
+== Add elements to the middle
+=moveelem     2  -3   3
+=getelem      2  "x"
+=insertbefore 2  "qqq"
+// ww ttt qqq x yyyy zzzzzz sssss rrrr
+
+== Add another element to the middle
+=moveelem     2   2   2
+=getelem      2  "yyyy"
+=insertafter  2  "ooooooo"
+// ww ttt qqq x yyyy ooooooo zzzzzz sssss rrrr
+
+== Verify list structure
+=verify       2     1
+
+== Verify whole list
+=movefirst    2
+=getelem      2  "ww"
+=moveelem     2  1  1
+=getelem      2  "ttt"
+=moveelem     2  1  1
+=getelem      2  "qqq"
+=moveelem     2  1  1
+=getelem      2  "x"
+=moveelem     2  1  1
+=getelem      2  "yyyy"
+=moveelem     2  1  1
+=getelem      2  "ooooooo"
+=moveelem     2  1  1
+=getelem      2  "zzzzzz"
+=moveelem     2  1  1
+=getelem      2  "sssss"
+=moveelem     2  1  1
+=getelem      2  "rrrr"
+=moveelem     2  1  0
+
+== Delete first element
+=moveelem     2 -100  8
+=deleteelem   2  0
+=getelem      2  "ttt"
+// ttt qqq x yyyy ooooooo zzzzzz sssss rrrr
+
+== Delete last element 
+=moveelem     2  100  7
+=deleteelem   2  0
+=getelem      2  "sssss"
+// ttt qqq x yyyy ooooooo zzzzzz sssss 
+
+== Delete element in the middle
+=moveelem     2  -4  4
+=deleteelem   2  0
+=getelem      2  "qqq"
+// ttt qqq yyyy ooooooo zzzzzz sssss 
+
+== Delete element in the middle
+=moveelem     2  2  2
+=deleteelem   2  0
+=getelem      2  "yyyy"
+// ttt qqq yyyy zzzzzz sssss 
+
+==Delete remaining elements
+=deleteelem   2  0
+=getelem      2  "qqq"
+=deleteelem   2  0
+=getelem      2  "ttt"
+=deleteelem   2  0
+=getelem      2  "zzzzzz"
+=deleteelem   2  0
+=getelem      2  "sssss"
+=deleteelem   2  0
+
+== Delete element from empty list
+=getelem      2  "."
+=deleteelem   2  1
+
+== Destroy the empty list 
+=destroylist   2  0
+
+== Build list with 8 elements using insert after
+=newlist       2
+=insertafter   2  "1"
+=insertafter   2  "22"
+=insertafter   2  "333"
+=insertafter   2  "4444"
+=insertafter   2  "55555"
+=insertafter   2  "666666"
+=insertafter   2  "7777777"
+=insertafter   2  "88888888"
+
+== Verify contents of the list
+=getelem       2  "88888888"
+=moveelem      2  -1  1
+=getelem       2  "7777777"
+=moveelem      2  -1  1
+=getelem       2  "666666"
+=saveelem      2
+=moveelem      2  -1  1
+=getelem       2  "55555"
+=moveelem      2  -1  1
+=getelem       2  "4444"
+=moveelem      2  -1  1
+=getelem       2  "333"
+=moveelem      2  -1  1
+=getelem       2  "22"
+=moveelem      2  -1  1
+=getelem       2  "1"
+=moveelem      2  -1  0
+
+== Test set element current to a given element of the list
+=setelem       2  1
+=getelem       2  "666666"
+
+== Empty the list
+=emptylist     2
+
+== Try seting element current with non existing element
+=setelem       2  0
+
+== Verify if list is empty
+=getnumelem    2  0
+=movefirst     2
+=movelast      2
+=moveelem      2 -1  0
+=moveelem      2  1  0
+=getelem       2  "."
+=deleteelem    2  1
+
+== Destroy the list
+=destroylist   2  0
+
+== Create dummy list
+=newlist       2
+=setelem       2  0                // set curent in empty list
+=insertafter   2  "22"
+=insertafter   2  "333"
+=insertafter   2  "55555"
+=insertafter   2  "666666"
+=insertafter   2  "7777777"
+
+== Try seting element current with non existing element in this list
+=setelem       2  0
+
+== Destroy the list
+=destroylist   2  0
+
+
+== Verify leakage
+=AllocCompareNum    1
+=AllocCompareBytes  0
+
+== Create dummy list, test tester destruction, may not leave allocated dataspaces
+=newlist 3
+=insertafter   3  "1"
+
+// end test  

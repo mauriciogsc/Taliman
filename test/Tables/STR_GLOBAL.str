@@ -1,0 +1,29 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Global string declarations:      STR_Global.STR
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio 
+//    Project:                Talisman
+// 
+// Description
+//    Some messages and strings are the same for all modules.
+//    These strings are collected in this file.
+//    This file is hand edited.
+//
+////////////////////////////////////////////////////////////////////////////
+
+<Offset> 0
+
+// never delete or modify the first 8 charcters of this string!
+
+  GLOB_StringNotFound        1   m  "?!?!?!? String id %d not found."
+  GLOB_NotImplemented        2   m  "Function %s0 not yet implemented."
+  GLOB_ErrorsFound           3   m  "Errors were found."
+  GLOB_NoErrorsFound         4   m  "No errors were found."
+
+////////////////////////////////////////////////////////////////////////////
+//
+// End of global string declaration table
+//
+////////////////////////////////////////////////////////////////////////////

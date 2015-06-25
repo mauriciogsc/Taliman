@@ -1,0 +1,10 @@
+/OUT:Tst-tsmt.EXE
+/INCREMENTAL:NO
+/MACHINE:IX86
+symbtab.obj  tsymbtab.obj  tst_tsmt.obj  bcdarit.obj  breakpnt.obj  
+counters.obj  disaster.obj  dynspac.obj  environ.obj  exceptn.obj  
+global.obj  gnrctest.obj  int_cnt.obj  int_dsp.obj  logger.obj  
+main.obj  message.obj  msgbin.obj  msgstr.obj  msgtime.obj  
+randgen.obj  readtest.obj  simplist.obj  sioctrl.obj  sls_elem.obj  
+string.obj  time.obj  tracer.obj  verifier.obj  
+

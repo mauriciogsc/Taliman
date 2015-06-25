@@ -1,0 +1,1971 @@
+GERADOR DE SCRIPT DE DIRETIVAS PARA MAKE
+   LES / Informática / PUC-Rio    Versão 6.00 (c) 2005
+
+Composição do construto: tst-sls.comp
+
+   Nome do Construto:           Tst-sls
+   Diretório base:              C:\talisman\test\comp
+
+   Arquivo composição:          tst-sls.comp
+   Arquivo plataforma:          ..\..\tools\programs\ms-cpp.parm
+
+   Arquivo diretivas MAKE:      Tst-sls.make
+   Arquivo diretivas LINK:      Tst-sls.build
+   Arquivo listagem:            Tst-sls.list
+
+Módulos do construto: tst-sls.comp
+
+   str_bcd.str
+   str_cnt.str
+   str_dis.str
+   str_dsp.str
+   str_env.str
+   str_exc.str
+   str_glb.str
+   str_global.str
+   str_log.str
+   str_msg.str
+   str_sio.str
+   str_sls.str
+   str_smt.str
+   str_str.str
+   str_tim.str
+   str_tst.str
+   str_ver.str
+   string.makeup
+   simplist.cpp
+   tst_sls.cpp
+   bcdarit.cpp
+   breakpnt.cpp
+   counters.cpp
+   disaster.cpp
+   dynspac.cpp
+   environ.cpp
+   exceptn.cpp
+   global.cpp
+   gnrctest.cpp
+   int_cnt.cpp
+   int_dsp.cpp
+   logger.cpp
+   main.cpp
+   message.cpp
+   msgbin.cpp
+   msgstr.cpp
+   msgtime.cpp
+   readtest.cpp
+   sioctrl.cpp
+   sls_elem.cpp
+   string.cpp
+   symbtab.cpp
+   time.cpp
+   tracer.cpp
+   verifier.cpp
+
+      Nao abriu: str_sls.inc
+
+      Nao abriu: str_bcd.inc
+
+      Nao abriu: str_cnt.inc
+
+      Nao abriu: str_sio.inc
+
+      Nao abriu: str_dis.inc
+
+      Nao abriu: str_global.inc
+
+      Nao abriu: str_dsp.inc
+
+      Nao abriu: str_env.inc
+
+      Nao abriu: str_exc.inc
+
+      Nao abriu: str_glb.inc
+
+      Nao abriu: str_tst.inc
+
+      Nao abriu: str_log.inc
+
+      Nao abriu: str_msg.inc
+
+      Nao abriu: str_str.inc
+
+      Nao abriu: string.table
+
+      Nao abriu: str_smt.inc
+
+      Nao abriu: str_tim.inc
+
+      Nao abriu: str_ver.inc
+
+Estatísticas do construto
+
+   Estatísticas do arquivo: bcdarit.cpp
+      Total linhas:            1234
+      Linhas de código:         763
+      Linhas de comentário:     185
+      Linhas em branco:         264
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      message.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_bcd.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: bcdarit.hpp
+      Total linhas:             639
+      Linhas de código:          70
+      Linhas de comentário:     375
+      Linhas em branco:          61
+   Arquivos de inclusão de que necessita
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      environ.hpp
+      exceptn.cpp
+      exceptn.hpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      message.cpp
+      message.hpp
+      msgbin.cpp
+      msgbin.hpp
+      msgstr.cpp
+      msgstr.hpp
+      msgtime.cpp
+      msgtime.hpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+      verifier.hpp
+
+   Estatísticas do arquivo: breakpnt.cpp
+      Total linhas:              52
+      Linhas de código:           8
+      Linhas de comentário:      27
+      Linhas em branco:          12
+   Arquivos de inclusão de que necessita
+      breakpnt.hpp
+
+   Estatísticas do arquivo: breakpnt.hpp
+      Total linhas:              83
+      Linhas de código:           5
+      Linhas de comentário:      50
+      Linhas em branco:          10
+   Arquivos em que é incluído
+      breakpnt.cpp
+      gnrctest.cpp
+
+   Estatísticas do arquivo: counters.cpp
+      Total linhas:             992
+      Linhas de código:         546
+      Linhas de comentário:     208
+      Linhas em branco:         241
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      gnrctest.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_cnt.inc
+      str_sio.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: counters.hpp
+      Total linhas:             651
+      Linhas de código:          94
+      Linhas de comentário:     331
+      Linhas em branco:         105
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      simplist.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      int_cnt.cpp
+      logger.cpp
+      message.cpp
+      msgbin.cpp
+      msgstr.cpp
+      msgtime.cpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: cte_str.inc
+      Total linhas:              56
+      Linhas de código:           9
+      Linhas de comentário:      27
+      Linhas em branco:           9
+   Arquivos em que é incluído
+      gnrctest.cpp
+
+   Estatísticas do arquivo: disaster.cpp
+      Total linhas:             171
+      Linhas de código:          77
+      Linhas de comentário:      42
+      Linhas em branco:          44
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      disaster.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      gnrctest.hpp
+      logger.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_dis.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: disaster.hpp
+      Total linhas:             100
+      Linhas de código:          10
+      Linhas de comentário:      60
+      Linhas em branco:          11
+   Arquivos em que é incluído
+      disaster.cpp
+      dynspac.cpp
+      global.cpp
+      gnrctest.cpp
+
+   Estatísticas do arquivo: dynspac.cpp
+      Total linhas:             902
+      Linhas de código:         468
+      Linhas de comentário:     178
+      Linhas em branco:         253
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      disaster.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      sioctrl.hpp
+      str_dsp.inc
+      str_global.inc
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: dynspac.hpp
+      Total linhas:             312
+      Linhas de código:          23
+      Linhas de comentário:     175
+      Linhas em branco:          40
+   Arquivos de inclusão de que necessita
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      dynspac.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      int_dsp.cpp
+      logger.cpp
+      main.cpp
+      message.cpp
+      msgbin.cpp
+      msgstr.cpp
+      msgtime.cpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: environ.cpp
+      Total linhas:             271
+      Linhas de código:         136
+      Linhas de comentário:      55
+      Linhas em branco:          72
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      message.hpp
+      msgstr.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_env.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: environ.hpp
+      Total linhas:             207
+      Linhas de código:          28
+      Linhas de comentário:     102
+      Linhas em branco:          32
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      logger.cpp
+      sioctrl.cpp
+      tracer.cpp
+      tst_sls.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: exceptn.cpp
+      Total linhas:             912
+      Linhas de código:         445
+      Linhas de comentário:     210
+      Linhas em branco:         251
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      msgtime.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_exc.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tracer.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: exceptn.hpp
+      Total linhas:            1056
+      Linhas de código:         156
+      Linhas de comentário:     543
+      Linhas em branco:         165
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      main.cpp
+      message.cpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+
+   Estatísticas do arquivo: global.cpp
+      Total linhas:             347
+      Linhas de código:         137
+      Linhas de comentário:      99
+      Linhas em branco:          97
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      disaster.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_glb.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: global.hpp
+      Total linhas:             252
+      Linhas de código:          36
+      Linhas de comentário:     127
+      Linhas em branco:          42
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      environ.hpp
+      logger.hpp
+      message.hpp
+      sioctrl.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      dynspac.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      logger.cpp
+      sioctrl.cpp
+      tracer.cpp
+      tst_sls.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: gnrctest.cpp
+      Total linhas:            2195
+      Linhas de código:        1287
+      Linhas de comentário:     345
+      Linhas em branco:         616
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      breakpnt.hpp
+      counters.hpp
+      cte_str.inc
+      disaster.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      gnrctest.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      msgtime.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_sio.inc
+      str_tst.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      tracer.hpp
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: gnrctest.hpp
+      Total linhas:            1362
+      Linhas de código:         162
+      Linhas de comentário:     817
+      Linhas em branco:         139
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      exceptn.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      gnrctest.cpp
+      int_cnt.cpp
+      int_dsp.cpp
+      main.cpp
+      readtest.cpp
+      time.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+
+   Estatísticas do arquivo: int_cnt.cpp
+      Total linhas:             383
+      Linhas de código:         194
+      Linhas de comentário:      88
+      Linhas em branco:         106
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: int_dsp.cpp
+      Total linhas:             356
+      Linhas de código:         207
+      Linhas de comentário:      52
+      Linhas em branco:         101
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      dynspac.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: logger.cpp
+      Total linhas:             720
+      Linhas de código:         404
+      Linhas de comentário:     128
+      Linhas em branco:         185
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgstr.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_log.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: logger.hpp
+      Total linhas:             435
+      Linhas de código:          70
+      Linhas de comentário:     230
+      Linhas em branco:          54
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      sioctrl.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      dynspac.cpp
+      exceptn.cpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      logger.cpp
+      sioctrl.cpp
+      tracer.cpp
+      tst_sls.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: main.cpp
+      Total linhas:             438
+      Linhas de código:         277
+      Linhas de comentário:      62
+      Linhas em branco:         108
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      dynspac.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      specific-test.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      talisman_versioncontrol.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: message.cpp
+      Total linhas:             451
+      Linhas de código:         193
+      Linhas de comentário:     120
+      Linhas em branco:         139
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      message.hpp
+      msgbin.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_msg.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tracer.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: message.hpp
+      Total linhas:             470
+      Linhas de código:          43
+      Linhas de comentário:     278
+      Linhas em branco:          52
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      environ.hpp
+      exceptn.cpp
+      exceptn.hpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      message.cpp
+      msgbin.cpp
+      msgbin.hpp
+      msgstr.cpp
+      msgstr.hpp
+      msgtime.cpp
+      msgtime.hpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+      verifier.hpp
+
+   Estatísticas do arquivo: msgbin.cpp
+      Total linhas:              96
+      Linhas de código:          26
+      Linhas de comentário:      37
+      Linhas em branco:          25
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      message.hpp
+      msgbin.hpp
+      simplist.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: msgbin.hpp
+      Total linhas:             104
+      Linhas de código:          18
+      Linhas de comentário:      44
+      Linhas em branco:          22
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      dynspac.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      message.cpp
+      msgbin.cpp
+      sioctrl.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: msgstr.cpp
+      Total linhas:             149
+      Linhas de código:          45
+      Linhas de comentário:      52
+      Linhas em branco:          44
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      message.hpp
+      msgstr.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_msg.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: msgstr.hpp
+      Total linhas:             182
+      Linhas de código:          29
+      Linhas de comentário:      80
+      Linhas em branco:          32
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      counters.cpp
+      dynspac.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      logger.cpp
+      msgstr.cpp
+      sioctrl.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: msgtime.cpp
+      Total linhas:              96
+      Linhas de código:          26
+      Linhas de comentário:      37
+      Linhas em branco:          25
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      message.hpp
+      msgtime.hpp
+      simplist.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: msgtime.hpp
+      Total linhas:             130
+      Linhas de código:          23
+      Linhas de comentário:      53
+      Linhas em branco:          32
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      exceptn.cpp
+      gnrctest.cpp
+      msgtime.cpp
+      verifier.cpp
+
+   Estatísticas do arquivo: readtest.cpp
+      Total linhas:            1426
+      Linhas de código:         877
+      Linhas de comentário:     208
+      Linhas em branco:         365
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_sio.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: readtest.hpp
+      Total linhas:             743
+      Linhas de código:         110
+      Linhas de comentário:     364
+      Linhas em branco:         137
+   Arquivos de inclusão de que necessita
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      main.cpp
+      readtest.cpp
+      time.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+
+   Estatísticas do arquivo: simplist.cpp
+      Total linhas:             755
+      Linhas de código:         400
+      Linhas de comentário:     150
+      Linhas em branco:         217
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      message.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_sls.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: simplist.hpp
+      Total linhas:             486
+      Linhas de código:          82
+      Linhas de comentário:     209
+      Linhas em branco:         109
+   Arquivos de inclusão de que necessita
+      sls_elem.hpp
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      main.cpp
+      message.cpp
+      msgbin.cpp
+      msgstr.cpp
+      msgtime.cpp
+      readtest.cpp
+      readtest.hpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      symbtab.hpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+
+   Estatísticas do arquivo: sioctrl.cpp
+      Total linhas:             796
+      Linhas de código:         455
+      Linhas de comentário:     144
+      Linhas em branco:         204
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_sio.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+      verifier.hpp
+
+   Estatísticas do arquivo: sioctrl.hpp
+      Total linhas:             594
+      Linhas de código:          93
+      Linhas de comentário:     295
+      Linhas em branco:         103
+   Arquivos de inclusão de que necessita
+      string.hpp
+      talisman_constants.inc
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      dynspac.cpp
+      exceptn.cpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      readtest.cpp
+      readtest.hpp
+      sioctrl.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+
+   Estatísticas do arquivo: sls_elem.cpp
+      Total linhas:              80
+      Linhas de código:          15
+      Linhas de comentário:      37
+      Linhas em branco:          20
+   Arquivos de inclusão de que necessita
+      sls_elem.hpp
+      talisman_constants.inc
+
+   Estatísticas do arquivo: sls_elem.hpp
+      Total linhas:             124
+      Linhas de código:          14
+      Linhas de comentário:      65
+      Linhas em branco:          20
+   Arquivos de inclusão de que necessita
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      main.cpp
+      message.cpp
+      msgbin.cpp
+      msgstr.cpp
+      msgtime.cpp
+      readtest.cpp
+      readtest.hpp
+      simplist.cpp
+      simplist.hpp
+      sioctrl.cpp
+      sls_elem.cpp
+      string.cpp
+      symbtab.cpp
+      symbtab.hpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+
+   Estatísticas do arquivo: specific-test.hpp
+      Total linhas:               3
+      Linhas de código:           0
+      Linhas de comentário:       3
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      main.cpp
+
+   Estatísticas do arquivo: str_bcd.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      bcdarit.cpp
+
+   Estatísticas do arquivo: str_bcd.str
+      Total linhas:              38
+      Linhas de código:           5
+      Linhas de comentário:      17
+      Linhas em branco:          11
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_cfg.str
+      Total linhas:              52
+      Linhas de código:          10
+      Linhas de comentário:      20
+      Linhas em branco:          17
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_cnt.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      counters.cpp
+
+   Estatísticas do arquivo: str_cnt.str
+      Total linhas:              34
+      Linhas de código:           4
+      Linhas de comentário:      16
+      Linhas em branco:           9
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_dis.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      disaster.cpp
+
+   Estatísticas do arquivo: str_dis.str
+      Total linhas:              38
+      Linhas de código:           8
+      Linhas de comentário:      16
+      Linhas em branco:           9
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_dsp.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      dynspac.cpp
+
+   Estatísticas do arquivo: str_dsp.str
+      Total linhas:              26
+      Linhas de código:           2
+      Linhas de comentário:      14
+      Linhas em branco:           5
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_env.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      environ.cpp
+
+   Estatísticas do arquivo: str_env.str
+      Total linhas:              34
+      Linhas de código:           4
+      Linhas de comentário:      16
+      Linhas em branco:           9
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_exc.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      exceptn.cpp
+
+   Estatísticas do arquivo: str_exc.str
+      Total linhas:              74
+      Linhas de código:          17
+      Linhas de comentário:      25
+      Linhas em branco:          27
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_glb.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      global.cpp
+
+   Estatísticas do arquivo: str_glb.str
+      Total linhas:              30
+      Linhas de código:           3
+      Linhas de comentário:      15
+      Linhas em branco:           7
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_global.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      dynspac.cpp
+      string.cpp
+
+   Estatísticas do arquivo: str_global.str
+      Total linhas:              29
+      Linhas de código:           5
+      Linhas de comentário:      14
+      Linhas em branco:           4
+
+   Estatísticas do arquivo: str_log.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      logger.cpp
+
+   Estatísticas do arquivo: str_log.str
+      Total linhas:              39
+      Linhas de código:           6
+      Linhas de comentário:      17
+      Linhas em branco:          11
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_msg.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      message.cpp
+      msgstr.cpp
+
+   Estatísticas do arquivo: str_msg.str
+      Total linhas:              47
+      Linhas de código:           8
+      Linhas de comentário:      19
+      Linhas em branco:          15
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_sio.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      counters.cpp
+      gnrctest.cpp
+      readtest.cpp
+      sioctrl.cpp
+
+   Estatísticas do arquivo: str_sio.str
+      Total linhas:              51
+      Linhas de código:           9
+      Linhas de comentário:      20
+      Linhas em branco:          17
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_sls.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      simplist.cpp
+
+   Estatísticas do arquivo: str_sls.str
+      Total linhas:              26
+      Linhas de código:           2
+      Linhas de comentário:      14
+      Linhas em branco:           5
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_smt.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      symbtab.cpp
+
+   Estatísticas do arquivo: str_smt.str
+      Total linhas:              26
+      Linhas de código:           2
+      Linhas de comentário:      14
+      Linhas em branco:           5
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_str.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      string.cpp
+
+   Estatísticas do arquivo: str_str.str
+      Total linhas:              34
+      Linhas de código:           4
+      Linhas de comentário:      16
+      Linhas em branco:           9
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_texc.str
+      Total linhas:              47
+      Linhas de código:           8
+      Linhas de comentário:      19
+      Linhas em branco:          15
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_tim.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      time.cpp
+
+   Estatísticas do arquivo: str_tim.str
+      Total linhas:              32
+      Linhas de código:           5
+      Linhas de comentário:      15
+      Linhas em branco:           7
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_tmsg.str
+      Total linhas:              35
+      Linhas de código:          11
+      Linhas de comentário:      14
+      Linhas em branco:           5
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_tst.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      gnrctest.cpp
+
+   Estatísticas do arquivo: str_tst.str
+      Total linhas:              52
+      Linhas de código:          10
+      Linhas de comentário:      20
+      Linhas em branco:          17
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: str_ver.inc
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      verifier.cpp
+
+   Estatísticas do arquivo: str_ver.str
+      Total linhas:              47
+      Linhas de código:          14
+      Linhas de comentário:      17
+      Linhas em branco:          11
+   Arquivos em que é incluído
+      string.makeup
+
+   Estatísticas do arquivo: string.cpp
+      Total linhas:            1211
+      Linhas de código:         688
+      Linhas de comentário:     243
+      Linhas em branco:         275
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      message.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_global.inc
+      str_str.inc
+      string.hpp
+      string.table
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: string.hpp
+      Total linhas:             810
+      Linhas de código:          91
+      Linhas de comentário:     466
+      Linhas em branco:          85
+   Arquivos de inclusão de que necessita
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      environ.hpp
+      exceptn.cpp
+      exceptn.hpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      message.cpp
+      message.hpp
+      msgbin.cpp
+      msgbin.hpp
+      msgstr.cpp
+      msgstr.hpp
+      msgtime.cpp
+      msgtime.hpp
+      readtest.cpp
+      readtest.hpp
+      simplist.cpp
+      sioctrl.cpp
+      sioctrl.hpp
+      string.cpp
+      symbtab.cpp
+      symbtab.hpp
+      time.cpp
+      time.hpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+      verifier.hpp
+
+   Estatísticas do arquivo: string.makeup
+      Total linhas:              24
+      Linhas de código:          19
+      Linhas de comentário:       4
+      Linhas em branco:           1
+   Arquivos de inclusão de que necessita
+      str_bcd.str
+      str_cfg.str
+      str_cnt.str
+      str_dis.str
+      str_dsp.str
+      str_env.str
+      str_exc.str
+      str_glb.str
+      str_log.str
+      str_msg.str
+      str_sio.str
+      str_sls.str
+      str_smt.str
+      str_str.str
+      str_texc.str
+      str_tim.str
+      str_tmsg.str
+      str_tst.str
+      str_ver.str
+
+   Estatísticas do arquivo: string.table
+      Total linhas:               0
+      Linhas de código:           0
+      Linhas de comentário:       0
+      Linhas em branco:           0
+   Arquivos em que é incluído
+      string.cpp
+
+   Estatísticas do arquivo: symbtab.cpp
+      Total linhas:             315
+      Linhas de código:         137
+      Linhas de comentário:      86
+      Linhas em branco:          85
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      dynspac.hpp
+      exceptn.hpp
+      message.hpp
+      simplist.hpp
+      sls_elem.hpp
+      str_smt.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: symbtab.hpp
+      Total linhas:             394
+      Linhas de código:          55
+      Linhas de comentário:     197
+      Linhas em branco:          73
+   Arquivos de inclusão de que necessita
+      simplist.hpp
+      sls_elem.hpp
+      string.hpp
+      talisman_constants.inc
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      environ.cpp
+      exceptn.cpp
+      global.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      main.cpp
+      message.cpp
+      msgbin.cpp
+      msgstr.cpp
+      msgtime.cpp
+      readtest.cpp
+      readtest.hpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+
+   Estatísticas do arquivo: talisman_constants.inc
+      Total linhas:             224
+      Linhas de código:          78
+      Linhas de comentário:      95
+      Linhas em branco:          55
+   Arquivos em que é incluído
+      bcdarit.cpp
+      bcdarit.hpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      dynspac.cpp
+      dynspac.hpp
+      environ.cpp
+      environ.hpp
+      exceptn.cpp
+      exceptn.hpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      message.cpp
+      message.hpp
+      msgbin.cpp
+      msgbin.hpp
+      msgstr.cpp
+      msgstr.hpp
+      msgtime.cpp
+      msgtime.hpp
+      readtest.cpp
+      readtest.hpp
+      simplist.cpp
+      simplist.hpp
+      sioctrl.cpp
+      sioctrl.hpp
+      sls_elem.cpp
+      sls_elem.hpp
+      string.cpp
+      string.hpp
+      symbtab.cpp
+      symbtab.hpp
+      time.cpp
+      time.hpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+      verifier.hpp
+
+   Estatísticas do arquivo: talisman_versioncontrol.inc
+      Total linhas:              64
+      Linhas de código:           7
+      Linhas de comentário:      38
+      Linhas em branco:          10
+   Arquivos em que é incluído
+      main.cpp
+
+   Estatísticas do arquivo: time.cpp
+      Total linhas:             283
+      Linhas de código:         138
+      Linhas de comentário:      58
+      Linhas em branco:          79
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_tim.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      tst_rtst.hpp
+      tst_tim.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: time.hpp
+      Total linhas:             167
+      Linhas de código:          13
+      Linhas de comentário:      88
+      Linhas em branco:          26
+   Arquivos de inclusão de que necessita
+      string.hpp
+      talisman_constants.inc
+   Arquivos em que é incluído
+      counters.cpp
+      global.cpp
+      gnrctest.cpp
+      logger.cpp
+      msgtime.cpp
+      time.cpp
+      tst_tim.hpp
+
+   Estatísticas do arquivo: tracer.cpp
+      Total linhas:             251
+      Linhas de código:         120
+      Linhas de comentário:      56
+      Linhas em branco:          67
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tracer.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: tracer.hpp
+      Total linhas:             196
+      Linhas de código:          16
+      Linhas de comentário:     115
+      Linhas em branco:          22
+   Arquivos em que é incluído
+      exceptn.cpp
+      gnrctest.cpp
+      message.cpp
+      tracer.cpp
+
+   Estatísticas do arquivo: tst_rtst.hpp
+      Total linhas:              83
+      Linhas de código:          12
+      Linhas de comentário:      40
+      Linhas em branco:          21
+   Arquivos em que é incluído
+      counters.cpp
+      disaster.cpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      main.cpp
+      readtest.cpp
+      readtest.hpp
+      time.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+
+   Estatísticas do arquivo: tst_sls.cpp
+      Total linhas:             828
+      Linhas de código:         416
+      Linhas de comentário:     181
+      Linhas em branco:         239
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      gnrctest.hpp
+      logger.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      tst_sls.hpp
+      typeidmessageitem.inc
+
+   Estatísticas do arquivo: tst_sls.hpp
+      Total linhas:             239
+      Linhas de código:          47
+      Linhas de comentário:      94
+      Linhas em branco:          59
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      tst_rtst.hpp
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      tst_sls.cpp
+
+   Estatísticas do arquivo: tst_tim.hpp
+      Total linhas:             204
+      Linhas de código:          39
+      Linhas de comentário:      95
+      Linhas em branco:          33
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      exceptn.hpp
+      gnrctest.hpp
+      message.hpp
+      readtest.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      time.hpp
+      tst_rtst.hpp
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      time.cpp
+
+   Estatísticas do arquivo: typeidmessageitem.inc
+      Total linhas:              67
+      Linhas de código:          15
+      Linhas de comentário:      33
+      Linhas em branco:           8
+   Arquivos em que é incluído
+      bcdarit.cpp
+      counters.cpp
+      counters.hpp
+      disaster.cpp
+      dynspac.cpp
+      environ.cpp
+      environ.hpp
+      exceptn.cpp
+      exceptn.hpp
+      global.cpp
+      global.hpp
+      gnrctest.cpp
+      gnrctest.hpp
+      int_cnt.cpp
+      int_dsp.cpp
+      logger.cpp
+      logger.hpp
+      main.cpp
+      message.cpp
+      message.hpp
+      msgbin.cpp
+      msgbin.hpp
+      msgstr.cpp
+      msgstr.hpp
+      msgtime.cpp
+      msgtime.hpp
+      readtest.cpp
+      simplist.cpp
+      sioctrl.cpp
+      string.cpp
+      symbtab.cpp
+      time.cpp
+      tracer.cpp
+      tst_sls.cpp
+      tst_sls.hpp
+      tst_tim.hpp
+      verifier.cpp
+      verifier.hpp
+
+   Estatísticas do arquivo: verifier.cpp
+      Total linhas:             262
+      Linhas de código:         159
+      Linhas de comentário:      44
+      Linhas em branco:          57
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      counters.hpp
+      dynspac.hpp
+      environ.hpp
+      exceptn.hpp
+      global.hpp
+      logger.hpp
+      message.hpp
+      msgbin.hpp
+      msgstr.hpp
+      msgtime.hpp
+      simplist.hpp
+      sioctrl.hpp
+      sls_elem.hpp
+      str_ver.inc
+      string.hpp
+      symbtab.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+      verifier.hpp
+
+   Estatísticas do arquivo: verifier.hpp
+      Total linhas:             216
+      Linhas de código:          22
+      Linhas de comentário:     120
+      Linhas em branco:          36
+   Arquivos de inclusão de que necessita
+      bcdarit.hpp
+      message.hpp
+      string.hpp
+      talisman_constants.inc
+      typeidmessageitem.inc
+   Arquivos em que é incluído
+      sioctrl.cpp
+      verifier.cpp
+
+Totais por tipo de arquivo
+
+  Tipo: table    Path: ..\tables
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: inc      Path: ..\tables;..\..\Global\Consts
+         Total linhas do tipo:       411
+         Linhas de código:           109
+         Linhas de comentário:       193
+         Linhas em branco:            82
+         Arquivos deste tipo:          4
+
+  Tipo: hpp      Path: ..\sources
+         Total linhas do tipo:     10242
+         Linhas de código:          1361
+         Linhas de comentário:      5416
+         Linhas em branco:          1521
+         Arquivos deste tipo:         27
+
+  Tipo: ferram   Path: ..\..\tools\programs
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: obj      Path: ..\Obj
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: err      Path: ..\sources
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: DEFAULT  Path: ..\sources
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: makeup   Path: ..\tables
+         Total linhas do tipo:        24
+         Linhas de código:            19
+         Linhas de comentário:         4
+         Linhas em branco:             1
+         Arquivos deste tipo:          1
+
+  Tipo: str      Path: ..\tables
+         Total linhas do tipo:       791
+         Linhas de código:           137
+         Linhas de comentário:       338
+         Linhas em branco:           215
+         Arquivos deste tipo:         20
+
+  Tipo: cpp      Path: ..\sources
+         Total linhas do tipo:     15972
+         Linhas de código:          8644
+         Linhas de comentário:      3132
+         Linhas em branco:          4191
+         Arquivos deste tipo:         27
+
+Totais para todo o construto Tst-sls
+
+   Total linhas:             27440
+   Linhas de código:         10270
+   Linhas de comentário:      9083
+   Linhas em branco:          6010
+   Arquivos processados:        79
+
+>>> Ocorreram erros ao gerar.
+

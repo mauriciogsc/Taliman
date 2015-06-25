@@ -1,0 +1,93 @@
+// Script:    Tst-env-01.script
+// Author:    Arndt von Staa
+// Date:      04/dec/2011
+// Purpose:   Test environment variables
+
+
+//
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// This script requires a environment variable to be set
+// On a command line execute:   SET TALISMAN= /config:talisman
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+
+== Declarations
+=DeclareParameter  idEnv1  int  1
+=DeclareParameter  idEnv2  int  2
+=DeclareParameter  idEnv3  int  3
+
+== Reset all spaces
+=Reset
+=AllocSaveNum        1
+
+== Test create a new parameter list
+=NewEnvironment      idEnv1
+
+== Test delete empty parameter list
+=DeleteEnvironment   idEnv1
+=AllocCompareNum     1
+
+== Test create another new parameter list
+=NewEnvironment      idEnv2
+
+== Test build environment with default name
+=BuildEnvironment    idEnv2  "."
+
+== Test display name
+=GetVariableName     idEnv2  "."
+
+== Test display name
+=GetEnvironmentString  idEnv2  "."
+
+== Test compare name
+=GetVariableName     idEnv2  "TALISMAN"
+
+== Test compare envirnment parameter string
+=GetEnvironmentString  idEnv2  "-config:talisman"
+
+== Test compare environment parameter item
+=GetParameter  idEnv2  "-config:" "talisman"
+
+== Test get nonexisting parameter item
+=GetParameter  idEnv2  "-cnfig:" "Talisman"
+=Recover
+
+== Test compare environment parameter item, case sensitivity
+=GetParameter  idEnv2  "-config:" "TaLISMAN"
+=Recover
+
+== Test get nonexisting parameter item, case sensitivity
+=GetParameter  idEnv2  "-Config:" "Talisman"
+=Recover
+
+== Test set empty
+=SetEmpty            idEnv2
+
+== Test display contents of empty environment
+=GetVariableName     idEnv2  "."
+=GetEnvironmentString  idEnv2  "."
+
+== Test delete empty parameter list
+=DeleteEnvironment   idEnv2
+
+== Open a third environment using an inexisting name
+=NewEnvironment      idEnv3
+=BuildEnvironment    idEnv3  "Something"
+=Recover
+
+== Try to build with an existing name
+=BuildEnvironment    idEnv3  "TALISTEST"
+
+== Verify if correct
+=GetEnvironmentString  idEnv3  "-abc: x y z -x: 123"
+
+== Test getting first parameter
+=GetParameter  idEnv3  "-abc:" "x y z"
+
+== Test getting second parameter
+=GetParameter  idEnv3  "-x:" "123"
+
+== Verify leakage
+=Reset
+=AllocCompareNum  1
+  

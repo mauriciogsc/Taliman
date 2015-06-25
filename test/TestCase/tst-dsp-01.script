@@ -1,0 +1,66 @@
+// Script:    Tst-dsp-01.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test dynamic space control module
+// Generates a DISASTER message due to purposeful data space corruption
+
+== Get number of spaces
+=AllocSaveNum       1
+=AllocGetNum        0
+=AllocGetBytes      0
+
+== Create spaces
+=New     1   "abcdefgh"
+=New     2   "xyz"
+=New     3   "defgh"
+
+== Verify all allocated spaces
+=AllocVerify  1  .true
+
+== Verify memory leakage - there are 3 new spaces that have not been deallocated
+=AllocCompareNum    1
+=Recover
+
+== Display spaces by reference, only headers
+=AllocSetTerse   .true
+=DisplaySpace    1
+=DisplaySpace    2
+=DisplaySpace    3
+
+== Display spaces by id
+=AllocSetTerse   .false
+=AllocListSpaces   51
+=AllocListSpaces   52
+=AllocListSpaces   53
+
+== Display not existing space id
+=AllocListSpaces   61
+
+== Corrupt underflow control in space 1
+=CorruptSpace    1  -1  '#'
+=DisplaySpace    1
+
+== Test pointer verifier. Space 2 is OK, space 1 has been corrupted
+=VerifyPointer   2  1  .t
+=VerifyPointer   1  1  .t
+=Recover
+
+== Corrupt overflow control in space 3
+=CorruptSpace    3  6  '$'
+=DisplaySpace    3
+
+== Test pointer verifier. Space 2 is OK, space 3 has been corrupted
+=VerifyPointer   2  1  .t
+=VerifyPointer   3  1  .f
+
+== Test verify list
+=AllocVerify     1  .false 
+
+== Delete correct data space
+=Delete          2
+
+== Delete corrupted dataspace, should cancel
+=AllocSetTerse   .false
+=Delete          1
+// Should never reach this point
+

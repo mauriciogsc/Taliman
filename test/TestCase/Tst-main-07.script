@@ -1,0 +1,17 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      07/dez/2006
+// Purpose:   Test basic functionality
+
+// Test unrecognized exception throw, not catched due to wrong recovery command
+
+//
+// ==========>>> Must stop with 4 errors and disaster
+//
+
+== Test incorrect program error exception catcher
+=excsystem  
+=ExceptionProgram   2 183 'c'
+
+// Should never reach this point
+

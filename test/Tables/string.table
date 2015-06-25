@@ -1,0 +1,322 @@
+#ifndef _string_mem_table_
+#define _string_mem_table_
+
+// !!!!!!!!!! Generated file. Do not edit !!!!!!!!!!!!! 
+
+///////////////////////////////////////////////////////////////////////////////
+// 
+// $AT Generated memory resident string table
+//
+// Generated file:       ..\tables\string.table
+//
+// Project:              Talisman
+// Owning organization:  LES/DI/PUC-Rio
+//
+// String specification files used:
+//
+//      - STR_BCD.str
+//      - STR_CFG.str
+//      - STR_CNT.str
+//      - STR_DIS.str
+//      - STR_DSP.str
+//      - STR_ENV.str
+//      - STR_EXC.str
+//      - STR_GLB.str
+//      - STR_GLOBAL.STR
+//      - STR_LOG.str
+//      - STR_MSG.str
+//      - STR_SIO.str
+//      - STR_SLS.str
+//      - STR_SMT.str
+//      - STR_STR.str
+//      - STR_TEXC.str
+//      - STR_TIM.str
+//      - STR_TMSG.str
+//      - STR_TST.str
+//      - STR_VER.str
+//
+///////////////////////////////////////////////////////////////////////////////
+
+const int NUM_STR_MEM =  117 ;
+
+// String search table descriptor
+
+   struct tpTableElement
+   {
+      int  idStr           ; // string access key - id
+      int  lenStr          ; // strlen of the string
+      int  inxStrTxt       ; // char vector containing the string
+      int  inxStrTxtOrg    ; // offset within the char vector
+   } ;
+
+// Search table 
+//     A string is searched by means of its id.
+//     Every element refers to a string array and an offset within 
+//     this array where the zero terminated string starts.   
+
+   static tpTableElement vtStrMem[ NUM_STR_MEM ] =
+   {
+      {        1 ,    31 ,     0 ,     0 } , // "?!?!?!? String id %d not found."
+      {        2 ,    33 ,     0 ,    32 } , // "Function %s0 not yet implemented."
+      {        3 ,    18 ,     0 ,    66 } , // "Errors were found."
+      {        4 ,    21 ,     0 ,    85 } , // "No errors were found."
+      {       41 ,    39 ,     0 ,   107 } , // "Test has been cancelled prior to ending"
+      {       42 ,    49 ,     0 ,   147 } , // "\n!!! --------------------\n!!!  Test ended\n     %0"
+      {       43 ,    30 ,     0 ,   197 } , // "     Test ending condition: %0"
+      {       44 ,     4 ,     0 ,   228 } , // " %0 "
+      {       45 ,    31 ,     0 ,   233 } , // "!!! Start test, script file: %0"
+      {       46 ,    54 ,     0 ,   265 } , // "!!! **************************************************"
+      {       47 ,    43 ,     0 ,   320 } , // "\n######  Unexpected program exception !!!!!"
+      {       48 ,    42 ,     0 ,   364 } , // "\n######  Unexpected system exception !!!!!"
+      {       49 ,    32 ,     0 ,   407 } , // "!!! End of test, script file: %0"
+      {       81 ,    32 ,     0 ,   440 } , // "Tried to delete illegal pointer."
+      {      101 ,    60 ,     0 ,   473 } , // "Accumulated counter file has already been defined:\n       %0"
+      {      102 ,    25 ,     0 ,   534 } , // "Invalid counter structure"
+      {      103 ,     7 ,     0 ,   560 } , // "     %0"
+      {      121 ,    26 ,     0 ,   568 } , // "Talisman ran out of memory"
+      {      122 ,    38 ,     0 ,   595 } , // "Attempting to use closed event logger."
+      {      141 ,    46 ,     0 ,   634 } , // "---ERROR LOG: Line: %1  File: %0  Detail: %2%3"
+      {      142 ,    17 ,     0 ,   681 } , // "\n         Cause: "
+      {      143 ,    22 ,     0 ,   699 } , // "Failing expression: %1"
+      {      144 ,    22 ,     0 ,   722 } , // "Failing expression: %1"
+      {      145 ,    40 ,     0 ,   745 } , // "Unidentified program exception occurred."
+      {      146 ,    15 ,     0 ,   786 } , // "Empty file name"
+      {      147 ,    12 ,     0 ,   802 } , // "Unknown file"
+      {      148 ,    57 ,     0 ,   815 } , // "\n====== %16 exception %15 thrown in line: %17  file: %18\n"
+      {      149 ,    14 ,     0 ,   873 } , // "Exception: %0 "
+      {      150 ,    28 ,     0 ,   888 } , // "            >>> id help: %0\n"
+      {      151 ,    56 ,     0 ,   917 } , // "%3: %4\n        Exception thrown in Line: %17  File: %18\n"
+      {      152 ,     5 ,     0 ,   974 } , // "USAGE"
+      {      153 ,     8 ,     0 ,   980 } , // "PLATFORM"
+      {      154 ,     7 ,     0 ,   989 } , // "PROGRAM"
+      {      155 ,     7 ,     0 ,   997 } , // "ENFORCE"
+      {      156 ,     9 ,     0 ,  1005 } , // "ASSERTION"
+      {      161 ,    26 ,     1 ,     0 } , // "Disaster of unknown cause."
+      {      162 ,    28 ,     1 ,    27 } , // "Program is being terminated."
+      {      163 ,    61 ,     1 ,    56 } , // "\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+      {      164 ,    21 ,     1 ,   118 } , // "\n\n>>>DISASTER: %s !!!"
+      {      165 ,    33 ,     1 ,   140 } , // "\n      At Line: %d  In module: %s"
+      {      166 ,    33 ,     1 ,   174 } , // "\n>>>DISASTER: Starting roll back."
+      {      167 ,    68 ,     1 ,   208 } , // "\n\n>>>DISASTER: Roll back completed. Program will be canceled now !!!"
+      {      181 ,    29 ,     1 ,   277 } , // "??? Message id %19 not found."
+      {      182 ,     6 ,     1 ,   307 } , // " Item["
+      {      183 ,     3 ,     1 ,   314 } , // "]: "
+      {      184 ,    31 ,     1 ,   318 } , // "??? Too many fields. Id: %d ???"
+      {      185 ,    15 ,     1 ,   350 } , // "??? d: !%d ??? "
+      {      186 ,    15 ,     1 ,   366 } , // "??? f: !%d ??? "
+      {      187 ,    15 ,     1 ,   382 } , // "??? c: !%c ??? "
+      {      241 ,    29 ,     1 ,   398 } , // "Parameter base does not exist"
+      {      242 ,    43 ,     1 ,   428 } , // "Parameter base strings not implemented yet."
+      {      243 ,    31 ,     1 ,   472 } , // "Unknown string table domain: %X"
+      {      261 ,    11 ,     1 ,   504 } , // "Log end: %0"
+      {      262 ,    18 ,     1 ,   516 } , // "TALISMAN Log file\n"
+      {      263 ,    37 ,     1 ,   535 } , // "*****   Log will be sent to console.\n"
+      {      264 ,    13 ,     1 ,   573 } , // "Log start: %0"
+      {      265 ,    16 ,     1 ,   587 } , // "     Empty space"
+      {      281 ,    11 ,     1 ,   604 } , // "copy source"
+      {      282 ,    16 ,     1 ,   616 } , // "copy destination"
+      {      283 ,    10 ,     1 ,   633 } , // "comparison"
+      {      284 ,    88 ,     1 ,   644 } , // "File compare found unequal lines near line: %0\n          File A: %1\n          File B: %2"
+      {      285 ,    86 ,     1 ,   733 } , // "File compare found files of different length\n          File A: %0\n          File B: %1"
+      {      286 ,    26 ,     1 ,   820 } , // "Could not open %0 file: %1"
+      {      287 ,    37 ,     1 ,   847 } , // "I/O error while reading from file: %0"
+      {      288 ,    35 ,     1 ,   885 } , // "I/O error while writing to file: %0"
+      {      301 ,    19 ,     1 ,   921 } , // "Invalid simple list"
+      {      321 ,    20 ,     1 ,   941 } , // "Invalid symbol table"
+      {      361 ,    26 ,     1 ,   962 } , // "Overflow in BCD conversion"
+      {      362 ,    42 ,     2 ,     0 } , // "Attempt to convert an illegal ASCII number"
+      {      363 ,    42 ,     2 ,    43 } , // "Loss of data while assigning a BCD number."
+      {      364 ,    25 ,     2 ,    86 } , // "BCD overflow while adding"
+      {      381 ,    27 ,     2 ,   112 } , // "Configuration list is empty"
+      {      382 ,    33 ,     2 ,   140 } , // "Configuration list exists already"
+      {      383 ,   105 ,     2 ,   174 } , // "Could not read configuration parameters.\n          Missing parameter %0 in the main environment variable."
+      {      384 ,    33 ,     2 ,   280 } , // "Could not open configuration file"
+      {      385 ,    29 ,     2 ,   314 } , // "Illegal section name. Line %1"
+      {      386 ,    35 ,     2 ,   344 } , // "Section already exists: %0. Line %1"
+      {      387 ,    40 ,     2 ,   380 } , // "No section has been defined yet. Line %1"
+      {      388 ,    50 ,     2 ,   421 } , // "Parameter %0 exists already in section %2. Line %1"
+      {      389 ,    40 ,     2 ,   472 } , // "Configuration line syntax error. Line %1"
+      {      393 ,    31 ,     2 ,   513 } , // "Environment variable in use: %0"
+      {      394 ,    35 ,     2 ,   545 } , // "Environment variable is too big: %0"
+      {      395 ,    43 ,     2 ,   581 } , // "Environment variable \"%0\" has not been set."
+      {      621 ,    15 ,     2 ,   625 } , // ">>> ERROR:   %0"
+      {      622 ,    15 ,     2 ,   641 } , // ">>> FAILURE: %0"
+      {      623 ,    15 ,     2 ,   657 } , // "*** WARNING: %0"
+      {      624 ,    15 ,     2 ,   673 } , // "!!! INFO:    %0"
+      {      625 ,    15 ,     2 ,   689 } , // "--- VERIFY:  %0"
+      {      626 ,    25 ,     2 ,   705 } , // ">>> ILLEGAL TYPE: %1 - %0"
+      {      627 ,    30 ,     2 ,   731 } , // "       See help %0 for details"
+      {      628 ,    30 ,     2 ,   762 } , // "At %0 verification started. %1"
+      {      629 ,    11 ,     2 ,   793 } , // "Verify: %0."
+      {      630 ,    29 ,     2 ,   805 } , // "At %0 verification ended. %1."
+      {      631 ,    20 ,     2 ,   835 } , // "No errors were found"
+      {      632 ,    17 ,     2 ,   856 } , // "Errors were found"
+      {      633 ,    15 ,     2 ,   874 } , // "%2 errors found"
+      {      641 ,    17 ,     2 ,   890 } , // "%d:%02d:%02d.%03d"
+      {      642 ,    12 ,     2 ,   908 } , // "%d:%02d.%03d"
+      {      643 ,     7 ,     2 ,   921 } , // "%d.%03d"
+      {      644 ,    28 ,     2 ,   929 } , // "%4d/%02d/%02d-%02d:%02d:%02d"
+      {    30141 ,    36 ,     2 ,   958 } , // "**** Test header %0 *** follower ***"
+      {    30142 ,    10 ,     2 ,   995 } , // "+++ %0 +++"
+      {    30143 ,     8 ,     2 ,  1006 } , // "is: >%0<"
+      {    30144 ,    15 ,     3 ,     0 } , // "Logging detail "
+      {    30145 ,    35 ,     3 ,    16 } , // "idType: %1  idGroup: %2  idHelp: %3"
+      {    30146 ,    24 ,     3 ,    52 } , // "--- Exception caught: %0"
+      {    30147 ,    20 ,     3 ,    77 } , // "Thrown while testing"
+      {    30181 ,    13 ,     3 ,    98 } , // "Test 0 fields"
+      {    30182 ,    24 ,     3 ,   112 } , // "%0Test 1 field beginning"
+      {    30183 ,    20 ,     3 ,   137 } , // "Test 1 field%0middle"
+      {    30184 ,    18 ,     3 ,   158 } , // "Test 1 field end%0"
+      {    30185 ,    28 ,     3 ,   177 } , // "%0%13 Test 2 field beginning"
+      {    30186 ,    28 ,     3 ,   206 } , // "Test 2 %0%13 field %0 middle"
+      {    30187 ,    22 ,     3 ,   235 } , // "Test 2 field end %0%13"
+      {    30188 ,    26 ,     3 ,   258 } , // "%0.Test 3 %13.4 field %1.."
+      {    30189 ,     2 ,     3 ,   285 } , // "%0"
+      {    30190 ,     8 ,     3 ,   288 }   // "A string"
+   } ; // End of search table
+
+// String arrays
+//  Arrays contain one or more zero terminanted strings
+//  Each array is at most 1023 bytes long
+
+   static char Stringao_0[ ] = 
+      "?!?!?!? String id %d not found.\0"
+      "Function %s0 not yet implemented.\0"
+      "Errors were found.\0"
+      "No errors were found.\0"
+      "Test has been cancelled prior to ending\0"
+      "\n!!! --------------------\n!!!  Test ended\n     %0\0"
+      "     Test ending condition: %0\0"
+      " %0 \0"
+      "!!! Start test, script file: %0\0"
+      "!!! **************************************************\0"
+      "\n######  Unexpected program exception !!!!!\0"
+      "\n######  Unexpected system exception !!!!!\0"
+      "!!! End of test, script file: %0\0"
+      "Tried to delete illegal pointer.\0"
+      "Accumulated counter file has already been defined:\n       %0\0"
+      "Invalid counter structure\0"
+      "     %0\0"
+      "Talisman ran out of memory\0"
+      "Attempting to use closed event logger.\0"
+      "---ERROR LOG: Line: %1  File: %0  Detail: %2%3\0"
+      "\n         Cause: \0"
+      "Failing expression: %1\0"
+      "Failing expression: %1\0"
+      "Unidentified program exception occurred.\0"
+      "Empty file name\0"
+      "Unknown file\0"
+      "\n====== %16 exception %15 thrown in line: %17  file: %18\n\0"
+      "Exception: %0 \0"
+      "            >>> id help: %0\n\0"
+      "%3: %4\n        Exception thrown in Line: %17  File: %18\n\0"
+      "USAGE\0"
+      "PLATFORM\0"
+      "PROGRAM\0"
+      "ENFORCE\0"
+      "ASSERTION\0"
+   ; /* End of string array 0 */
+
+   static char Stringao_1[ ] = 
+      "Disaster of unknown cause.\0"
+      "Program is being terminated.\0"
+      "\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\0"
+      "\n\n>>>DISASTER: %s !!!\0"
+      "\n      At Line: %d  In module: %s\0"
+      "\n>>>DISASTER: Starting roll back.\0"
+      "\n\n>>>DISASTER: Roll back completed. Program will be canceled now !!!\0"
+      "??? Message id %19 not found.\0"
+      " Item[\0"
+      "]: \0"
+      "??? Too many fields. Id: %d ???\0"
+      "??? d: !%d ??? \0"
+      "??? f: !%d ??? \0"
+      "??? c: !%c ??? \0"
+      "Parameter base does not exist\0"
+      "Parameter base strings not implemented yet.\0"
+      "Unknown string table domain: %X\0"
+      "Log end: %0\0"
+      "TALISMAN Log file\n\0"
+      "*****   Log will be sent to console.\n\0"
+      "Log start: %0\0"
+      "     Empty space\0"
+      "copy source\0"
+      "copy destination\0"
+      "comparison\0"
+      "File compare found unequal lines near line: %0\n          File A: %1\n          File B: %2\0"
+      "File compare found files of different length\n          File A: %0\n          File B: %1\0"
+      "Could not open %0 file: %1\0"
+      "I/O error while reading from file: %0\0"
+      "I/O error while writing to file: %0\0"
+      "Invalid simple list\0"
+      "Invalid symbol table\0"
+      "Overflow in BCD conversion\0"
+   ; /* End of string array 1 */
+
+   static char Stringao_2[ ] = 
+      "Attempt to convert an illegal ASCII number\0"
+      "Loss of data while assigning a BCD number.\0"
+      "BCD overflow while adding\0"
+      "Configuration list is empty\0"
+      "Configuration list exists already\0"
+      "Could not read configuration parameters.\n          Missing parameter %0 in the main environment variable.\0"
+      "Could not open configuration file\0"
+      "Illegal section name. Line %1\0"
+      "Section already exists: %0. Line %1\0"
+      "No section has been defined yet. Line %1\0"
+      "Parameter %0 exists already in section %2. Line %1\0"
+      "Configuration line syntax error. Line %1\0"
+      "Environment variable in use: %0\0"
+      "Environment variable is too big: %0\0"
+      "Environment variable \"%0\" has not been set.\0"
+      ">>> ERROR:   %0\0"
+      ">>> FAILURE: %0\0"
+      "*** WARNING: %0\0"
+      "!!! INFO:    %0\0"
+      "--- VERIFY:  %0\0"
+      ">>> ILLEGAL TYPE: %1 - %0\0"
+      "       See help %0 for details\0"
+      "At %0 verification started. %1\0"
+      "Verify: %0.\0"
+      "At %0 verification ended. %1.\0"
+      "No errors were found\0"
+      "Errors were found\0"
+      "%2 errors found\0"
+      "%d:%02d:%02d.%03d\0"
+      "%d:%02d.%03d\0"
+      "%d.%03d\0"
+      "%4d/%02d/%02d-%02d:%02d:%02d\0"
+      "**** Test header %0 *** follower ***\0"
+      "+++ %0 +++\0"
+      "is: >%0<\0"
+   ; /* End of string array 2 */
+
+   static char Stringao_3[ ] = 
+      "Logging detail \0"
+      "idType: %1  idGroup: %2  idHelp: %3\0"
+      "--- Exception caught: %0\0"
+      "Thrown while testing\0"
+      "Test 0 fields\0"
+      "%0Test 1 field beginning\0"
+      "Test 1 field%0middle\0"
+      "Test 1 field end%0\0"
+      "%0%13 Test 2 field beginning\0"
+      "Test 2 %0%13 field %0 middle\0"
+      "Test 2 field end %0%13\0"
+      "%0.Test 3 %13.4 field %1..\0"
+      "%0\0"
+      "A string\0"
+   ; // End of string array 3
+
+// Vector of references to string arrays
+
+   static char * vtpStrTxt[ 4 ] = 
+   {
+      Stringao_0 , Stringao_1 , Stringao_2 , Stringao_3
+   } ;
+
+#endif
+
+///////////////////////////////////////////////////////////////////////////////
+// End of memory resident string table
+///////////////////////////////////////////////////////////////////////////////

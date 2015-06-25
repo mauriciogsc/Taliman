@@ -1,0 +1,86 @@
+// Script:    Tst-cfg-01.script
+// Author:    Arndt von Staa
+// Date:      18/dec/2007
+// Purpose:   Test configuration list file
+
+
+//
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// This script requires a environment variable to be set
+// On a command line execute:   SET TALISMAN= /config:talisman
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+
+== Reset all spaces
+=Reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum     1
+
+== Test create a new parameter list
+=NewParamList     1
+
+== Read a configuration file
+=BuildList        1  "..\\testcase\\tst-cfg-01.cnfg" "cnfg" .t
+
+== Write a configuration file 
+=WriteList        1  "..\\testcase\\zzz.tmp" "." .t
+
+== Compare parameters
+=GetParameter     1  "section1"  "attr1"   "ab cd ef"
+=GetParameter     1  "section1"  "attr2"   "zzzzz"
+=GetParameter     1  "section1"  "attr3"   "\"0123456789\""
+
+== Test destroy an existing parameter list
+=DeleteParamList  1
+
+//
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// At this point the script requires a environment variable 
+// On the command line execute:   SET TALISMAN= /config:talisman
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+== Try another config file
+=NewParamList     2
+=BuildList        2  "." "."  .t
+
+== Compare existing parameters
+=GetParameter     2  "Platform"  "NumFrames"  "100"
+=GetParameter     2  "FileExtensions"  "Segment"   "segment"
+=GetParameter     2  "FileExtensions"  "Text"      "text"
+=GetParameter     2  "Platform"  "TemporarySegment"  "temporary.tmp"
+=GetParameter     2  "FileExtensions"  "Segment"   "segment"
+=GetParameter     2  "FileExtensions"  "Text"      "text"
+=GetParameter     2  "Platform"  "EventLog"   "talisman.log"
+
+== Compare non existing parameters
+=GetParameter     2  "platform"  "NumFrames"  "100"
+=Recover
+=GetParameter     2  "FileExtensions"  "segment"   "segment"
+=Recover
+=GetParameter     2  "FileExtensions"  "aText"      "text"
+=Recover
+=GetParameter     2  "aPlatform"  "TemporarySegment"  "temporary.tmp"
+=Recover
+=GetParameter     2  "Platform "  "NumFrames"  "100"
+=Recover
+=GetParameter     2  "Platform "  "Text"  "text1"
+=Recover
+
+== Compare untrimmed names
+=GetParameter     2  "FileExtensions"  "Segment "   "segment"
+=GetParameter     2  "FileExtensions"  " Segment"   "segment"
+=GetParameter     2  "FileExtensions"  " Segment "  "segment"
+=GetParameter     2  "FileExtensions"  "Segment"    "segment "
+=Recover
+
+== Change a variable and write the file
+=SetParameter     2  "FileExtensions"  "Text"      " xxxxxxxxxxxxxxxxxx new text  " .t
+=WriteList        2  "xxx" "bak" .t
+=CompareFile      "xxx.bak" "z" "test.cnfg" "z" .t
+
+== Verify leakage
+=Reset
+
+=AllocCompareNum  1
+  

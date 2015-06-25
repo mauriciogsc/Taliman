@@ -1,0 +1,250 @@
+// Script:    Tst-sls-01.script
+// Author:    Arndt von Staa
+// Date:      09/abr/2007
+// Purpose:   Test sequencial IO control
+
+
+== Declare parameters to be used
+=DeclareParameter   logNULL  int   1
+=DeclareParameter   logUse   int   2
+=DeclareParameter   logfilenamea string "logfile.bak" 
+=DeclareParameter   logfilenameb string "otherlogfile.bak" 
+=DeclareParameter   logfilenamec string "limitedstring.bak"
+
+== Reset all spaces
+=Reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum    1
+
+== Create empty log
+=NewLogger  logNULL
+
+== Get empty log name
+=GetLoggerName  logNULL  "???"
+
+== Destroy empty log
+=DestructLogger logNULL
+=GetLoggerName  logNULL  "xx"
+=Recover
+
+== Create a new logger with an illegal file name
+=NewLogger      logNULL  
+=OpenLogger     logNULL  "Error log" "x:\\zzzzzzzzzzzzzzzz\\log"
+=GetLoggerName  logNULL  "Error log"
+=LogCharString  logNULL  "?????? Error log line sent to console."
+=DestructLogger logNULL
+
+== Create a new logger sending log to the console
+=NewLogger      logUse
+=OpenLogger     logUse  "Console log" ""
+=GetLoggerName  logUse  "Console log"
+=LogCharString  logUse  "------ Console log line 1."
+=LogString      logUse  "------ Console log line 2."
+=LogCharString  logUse  "------ Console log line 3."
+=DestructLogger logUse  
+
+== Create a new logger
+=NewLogger      logUse
+=OpenLogger     logUse  "No line Log" logfilenamea
+=GetLoggerName  logUse  "No line Log"
+
+== Close logger with no lines logged
+=DestructLogger logUse
+
+== Create a new logger
+=NewLogger      logUse
+=OpenLogger     logUse  "Some Log" logfilenameb
+=GetLoggerName  logUse  "Some Log"
+
+== Log lines
+=LogCharString      logUse  "!!! **************************************************"
+=LogString          logUse  "!!! Start test script file: tst-log-01.script"
+=LogCharString      logUse  ""
+=LogString          logUse  "// Script:    Tst-log-01.script"
+=LogCharString      logUse  "// Author:    Arndt von Staa"
+=LogString          logUse  "// Date:      26/may/2007"
+=LogCharString      logUse  "// Purpose:   Test logger"
+=AppendString       logUse  "Appended string" ;
+=LogCharString      logUse  "- - - - 0  0 -"
+=LogDataSpace       logUse  40   0  0 
+=LogCharString      logUse  "- - - - 1  1 -"
+=LogDataSpace       logUse  40   1  1  
+=LogString          logUse  "- - - -16  2 -"
+=LogDataSpace       logUse  40  16  2 
+=LogString          logUse  "- - - -17  3 -"
+=LogDataSpace       logUse  40  17  3 
+=LogString          logUse  "- - - -32  4 -"
+=LogDataSpace       logUse  40  32  4 
+=LogString          logUse  "- - - -33  5 -"
+=LogDataSpace       logUse  40  33  5 
+=LogCharString      logUse  "- - - 300 186-"
+=LogDataSpace       logUse 300 186  0
+=LogCharString      logUse  "- - - 300 186 64 10 -"
+=LogDataSpaceNum    logUse 300  64  0  10
+=LogCharString      logUse  "- - - 300 10   9  0  10 -"
+=LogDataSpacePart   logUse 300  10  9  0  10
+=LogCharString      logUse  "- - - 300 11   9  0  10 -"
+=LogDataSpacePart   logUse 300  11  9  0  10
+=LogCharString      logUse  "- - - 300 22  43  0  10 -"
+=LogDataSpacePart   logUse 300  43 22  0  10
+
+
+
+//                      &inxObj , &dimSpace , &sizSpace , &offset , &orgSpace &numBytes 
+
+
+== Close logger with several lines logged
+=DestructLogger logUse
+
+== Open an unknown file
+=OpenCompareFile   "x.x"
+=Recover
+
+== Test empty log file
+=OpenCompareFile   logfilenamea
+=CompareLogLine  "TALISMAN Log file"
+=CompareLogLine  ""
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log start: No line Log"
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log end: No line Log"
+=CompareLogLine  ""
+=Recover
+=CloseCompareFile
+
+== Open the generated log file
+=OpenCompareFile   logfilenameb
+
+=CompareLogLine  "TALISMAN Log file"
+=CompareLogLine  ""
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log start: Some Log"
+=CompareLogLine  "!!! **************************************************"
+=CompareLogLine  "!!! Start test script file: tst-log-01.script"
+=CompareLogLine  ""
+=CompareLogLine  "// Script:    Tst-log-01.script"
+=CompareLogLine  "// Author:    Arndt von Staa"
+=CompareLogLine  "// Date:      26/may/2007"
+=CompareLogLine  "// Purpose:   Test logger||Appended string"
+=CompareLogLine  "- - - - 0  0 -"
+=CompareLogLine  "     Empty space"
+=CompareLogLine  "- - - - 1  1 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  42                                               B"              
+=CompareLogLine  "- - - -16  2 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52  CDEFGHIJKLMNOPQR"
+=CompareLogLine  "- - - -17  3 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53  DEFGHIJKLMNOPQRS"
+=CompareLogLine  "   1  54                                               T"
+=CompareLogLine  "- - - -32  4 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54  EFGHIJKLMNOPQRST"
+=CompareLogLine  "   1  55 56 57 58 59 5A 30 31 32 33 34 35 36 37 38 39  UVWXYZ0123456789"
+=CompareLogLine  "- - - -33  5 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55  FGHIJKLMNOPQRSTU"
+=CompareLogLine  "   1  56 57 58 59 5A 30 31 32 33 34 35 36 37 38 39 61  VWXYZ0123456789a"
+=CompareLogLine  "   2  62                                               b"
+=CompareLogLine  "- - - 300 186-"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF"
+=CompareLogLine  "   0  41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50  ABCDEFGHIJKLMNOP"
+=CompareLogLine  "   1  51 52 53 54 55 56 57 58 59 5A 30 31 32 33 34 35  QRSTUVWXYZ012345"
+=CompareLogLine  "   2  36 37 38 39 61 62 63 64 65 66 67 68 69 6A 6B 6C  6789abcdefghijkl"
+=CompareLogLine  "   3  6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 41 42  mnopqrstuvwxyzAB"
+=CompareLogLine  "   4  43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52  CDEFGHIJKLMNOPQR"
+=CompareLogLine  "   5  53 54 55 56 57 58 59 5A 30 31 32 33 34 35 36 37  STUVWXYZ01234567"
+=CompareLogLine  "   6  38 39 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E  89abcdefghijklmn"
+=CompareLogLine  "   7  6F 70 71 72 73 74 75 76 77 78 79 7A 41 42 43 44  opqrstuvwxyzABCD"
+=CompareLogLine  "   8  45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54  EFGHIJKLMNOPQRST"
+=CompareLogLine  "   9  55 56 57 58 59 5A 30 31 32 33 34 35 36 37 38 39  UVWXYZ0123456789"
+=CompareLogLine  "  10  61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70  abcdefghijklmnop"
+=CompareLogLine  "  11  71 72 73 74 75 76 77 78 79 7A                    qrstuvwxyz"
+=CompareLogLine  "- - - 300 186 64 10 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09  0123456789"
+=CompareLogLine  "   0  41 42 43 44 45 46 47 48 49 4A  ABCDEFGHIJ"
+=CompareLogLine  "   1  4B 4C 4D 4E 4F 50 51 52 53 54  KLMNOPQRST"
+=CompareLogLine  "   2  55 56 57 58 59 5A 30 31 32 33  UVWXYZ0123"
+=CompareLogLine  "   3  34 35 36 37 38 39 61 62 63 64  456789abcd"
+=CompareLogLine  "   4  65 66 67 68 69 6A 6B 6C 6D 6E  efghijklmn"
+=CompareLogLine  "   5  6F 70 71 72 73 74 75 76 77 78  opqrstuvwx"
+=CompareLogLine  "   6  79 7A 41 42                    yzAB"
+=CompareLogLine  "- - - 300 10   9  0  10 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09  0123456789"
+=CompareLogLine  "   0                             4A           J"
+=CompareLogLine  "- - - 300 11   9  0  10 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09  0123456789"
+=CompareLogLine  "   0                             4A           J"
+=CompareLogLine  "   1  4B                             K"
+=CompareLogLine  "- - - 300 22  43  0  10 -"
+=CompareLogLine  "      00 01 02 03 04 05 06 07 08 09  0123456789"
+=CompareLogLine  "   2        57 58 59 5A 30 31 32 33    WXYZ0123"
+=CompareLogLine  "   3  34 35 36 37 38 39 61 62 63 64  456789abcd"
+=CompareLogLine  "   4  65 66 67                       efg"
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log end: Some Log"
+=CompareLogLine  ""
+=Recover
+
+== Close the generated log file
+=CloseCompareFile
+
+== Create a new logger sending log to the console
+=NewLogger      logUse
+=OpenLogger     logUse  "Console log" ""
+=GetLoggerName  logUse  "Console log"
+=LogCharString  logUse  "------ Console log line 1."
+=LogLimit       logUse  "abcdefghi"               11
+=LogLimit       logUse  "abcdefghi"               10
+=LogLimit       logUse  "abcdefghi"                9
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"  30   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"  23   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"  22   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"  21   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"  20   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"   5   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1f"   4   
+=DestructLogger logUse  
+
+== Open the generated log file
+=NewLogger      logUse
+=OpenLogger     logUse  "Some Log" logfilenamec
+=LogCharString  logUse  "------ Console log line 1."
+=LogLimit       logUse  "abcdefghi"               11
+=LogLimit       logUse  "abcdefghi"               10
+=LogLimit       logUse  "abcdefghi"                9
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"  30   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"  23   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"  22   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"  21   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"  20   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"   5   
+=LogLimit       logUse  "\x00\x01abcdefghij\x1F"   4   
+=DestructLogger logUse  
+
+== Open the generated log file
+=OpenCompareFile   logfilenamec
+
+=CompareLogLine  "TALISMAN Log file"
+=CompareLogLine  ""
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log start: Some Log"
+=CompareLogLine  "------ Console log line 1."
+=CompareLogLine  ">abcdefghi<"              
+=CompareLogLine  ">abcdefghi<"              
+=CompareLogLine  ">abcde...<"              
+=CompareLogLine  ">\\x00\\x01abcdefghij\\x1F<"
+=CompareLogLine  ">\\x00\\x01abcdefghij\\x1F<"
+=CompareLogLine  ">\\x00\\x01abcdefghij...<"
+=CompareLogLine  ">\\x00\\x01abcdefghi...<"
+=CompareLogLine  ">\\x00\\x01abcdefgh...<"
+=CompareLogLine  ">...<"
+=CompareLogLine  ">...<"
+=CompareLogLine  "@@@@@@@@@@@@@@@@@@@ : Log end: Some Log"
+=CompareLogLine  ""                         // test end of file
+=Recover
+
+== Close the generated log file
+=CloseCompareFile
+
+== Verify leakage
+=Reset
+=AllocCompareNum    1
+

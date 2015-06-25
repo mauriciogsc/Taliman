@@ -1,0 +1,122 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      07/dez/2006
+// Purpose:   Test basic functionality
+
+// Test hexadecimal comparison
+
+== Test hexadecimal
+=comparehex   "AaBb"  "41614262"
+
+== Test hexadecimal fail
+=comparehex   "AaBb"  "41614261"
+=Recover
+
+== Comparehex next group
+=comparehex   "QqRr"  "51715272"
+
+== Compare some special characters
+=comparehex   " !\"?"  "2021223F"
+
+== Compare some digits
+=comparehex   "0123"  "30313233"
+
+== Test hexadecimal with special characters
+=comparehex   "\n\r\t"  "0A0D09"
+
+== Test hexadecimal with coded characters
+=comparehex   "\x00\x01\x02\x03" "00010203"
+
+== Test hexadecimal with coded characters controling trailing zero
+=comparehex   "\x00\x01\x02\x03" "0001020300"
+
+// The next test might fail since it uses residual characters to compare 
+// If you are unlucky, the garbage in memory could be equal to the "expected" garbage \x77
+== Test hexadecimal with coded characters controling trailing zero and overflow character
+=comparehex   "\x00\x01\x02\x03" "000102030077"
+=Recover
+
+== Test hexadecimal with coded characters
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDdeEfF"
+
+== Test hexadecimal with coded characters and incorrect comparand
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDdeEfg"
+=Recover
+
+== Test hexadecimal with coded characters and incorrect comparand
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "0AbbCcDdeEff"
+=Recover
+
+== Test hexadecimal with coded characters and incorrect comparand
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDdeEf0"
+=Recover
+
+== Test hexadecimal with coded characters and incorrect comparand
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbC0DdeEf0"
+=Recover
+
+== Test hexadecimal with coded characters, comparand shorter
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDd"
+
+== Test parameter list that ends correctly
+=parameterlist
++Parameter1
+
++parameter2
+// comment
++parameter3 
++ParameterListEnd
+
+== Test parameter list that ends incorrectly
+=parameterlist
++Parameter1
+
++parameter2
+// comment
++parameter3 
+
+== incorrect end
+
+=FailureReset  1
+
+== Test empty parameter list
+=parameterlist
++ParameterListEnd
+
+== Test parameter list containing incorrect commands
+=parameterlist
++Parameter1
+=parameter2
+
+=FailureReset  1
+=NewLine
+
+== Test mutant with id mutant set to initial value
+// must not display mutant
+=testmutant     
+
+== Set mutant
+=SetIdMutant   13
+
+== Test hexadecimal with coded characters and incorrect comparand
+// must display mutant 13
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDdeEf0"    
+=Recover
+
+== Test mutant with an id mutant set to 13
+// must display mutant 13
+=testmutant         
+=Recover
+
+== Set mutant
+=SetIdMutant    0
+
+== Test hexadecimal with coded characters and incorrect comparand
+// must not display mutant
+=comparehex   "\xaA\xbB\xCc\xDd\xEE\xff" "AAbbCcDdeEf0" 
+=Recover
+
+== Test mutant with id mutant set to 0
+// must not display mutant
+=testmutant 
+

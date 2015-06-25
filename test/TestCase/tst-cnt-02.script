@@ -1,0 +1,41 @@
+// Test counters
+
+== Open counter module counter definition file
+=CounterReadDeclaration   "int_cnt.cnt"
+=CounterStart
+
+== List all counters
+=CounterDisplay
+
+== Count commands that will not be executed
+=CounterCount     "Handle: Copy accumulated counters file"
+=CounterCount     "Handle: Read counter name declarations"
+=CounterCount     "Handle: Reset all counters"
+
+== Get accumulator file
+=CounterDeleteAccumFile    "testaccum.bak"
+=CounterReadAccumFile      "testaccum.bak"
+
+== Get count
+=CounterGetCount     "Handle: Copy accumulated counters file"    1
+
+== Get number of counters
+=CounterGetNum        13
+
+== Start counting again
+=CounterStart
+
+== Stop counting
+=CounterStop
+
+== Restart counting
+=CounterStart
+
+== Reset counter, does nothing
+=CounterResetCounter     "Handle: Copy accumulated counters file"    
+=CounterGetCount         "Handle: Copy accumulated counters file"    0
+=CounterCount            "Handle: Copy accumulated counters file"
+
+== Verify zero counters
+=CounterVerifyZero     0
+

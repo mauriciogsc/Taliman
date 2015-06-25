@@ -1,0 +1,97 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: Generate Dynamic Talisman Test Library
+
+[Diretorios]
+
+Nome        =  TalismanTestDll
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[MacrosAntes]
+FglobalLib = ..\..\global\lib
+
+[Modulos]
+
+
+str_bcd.str     g
+str_cnt.str     g
+str_dis.str     g
+str_dsp.str     g
+str_exc.str     g
+str_glb.str     g
+str_global.str  g
+str_log.str     g
+str_msg.str     g
+str_sio.str     g
+str_sls.str     g
+str_smt.str     g
+str_str.str     g
+str_tim.str     g
+str_tst.str     g
+str_ver.str     g
+
+string.makeup   g
+
+BCDArit
+Breakpnt
+Buffer
+ConfigFl
+Counters
+Disaster
+Dynspac
+Exceptn
+Global
+Environ
+GnrcTest
+Int_Cnt 
+Int_DSP
+Logger
+Message
+MsgBCD
+Msgbin
+Msgstr
+MsgTime
+RandGen
+ReadTest
+Simplist
+Sioctrl
+Sls_Elem
+String
+SymbTab
+Time
+Tracer
+Verifier
+
+[LimpaMais]
+   del $(Fobj)\*.obj
+
+[Link]
+    cd $(Fobj)
+    DUMPBIN  /SYMBOLS   *.obj  /OUT:dllsymbols.txt 
+    $(Fferram)\grdllexp  /edllsymbols.txt /stalismantestdll
+    del    dllsymbols.txt
+    del    talismantestdll.lib
+    del    talismantestdll.dll
+    del    $(FglobalLib)\talismantestdll.lib
+    del    $(FglobalLib)\talismantestdll.dll
+    LINK $(L) @$(NOME).build >> $(Ferr)\$(NOME).err
+    copy   talismantestdll.lib  $(FglobalLib)
+    copy   talismantestdll.dll  $(FglobalLib)
+
+[BuildInicio]
+/OUT:TalismanTestDll.dll
+/MACHINE:IX86
+/DEF:TalismanTestDll.def
+/DLL
+
+[Fim]

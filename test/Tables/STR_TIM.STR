@@ -1,0 +1,32 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      TIM  Time
+// 
+// Generated file:         time.str
+// Identification letters: TIM
+// Identification number:  0640
+// 
+// Repository name:      Test framework support modules
+// Repository file name: Z:\TALISMAN\TEST\BSW\UTILIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  640
+
+// Blocos programa: Root of TIM  &Display elapsed time in millis
+
+  TIM_FormatElapsHour      1     m  "%d:%02d:%02d.%03d"
+  TIM_FormatElapsMin       2     m  "%d:%02d.%03d"
+  TIM_FormatElapsSec       3     m  "%d.%03d"
+
+// Blocos programa: Root of TIM  -Display formatted time
+
+  TIM_FormatTime           4     m "%4d/%02d/%02d-%02d:%02d:%02d"
+
+//** End of string file, module: TIM  Time

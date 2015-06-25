@@ -1,0 +1,81 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: test character array buffer
+
+[Diretorios]
+
+Nome        =  Tst-buf
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[Modulos]
+str_bcd.str     g
+str_cnt.str     g
+str_dis.str     g
+str_dsp.str     g
+str_exc.str     g
+str_glb.str     g
+str_global.str  g
+str_log.str     g
+str_msg.str     g
+str_sio.str     g
+str_sls.str     g
+str_smt.str     g
+str_str.str     g
+str_tim.str     g
+str_tst.str     g
+str_ver.str     g
+
+string.makeup   g
+
+Buffer
+tst_buf 
+
+BCDArit
+breakpnt
+Counters
+Disaster
+Dynspac
+Environ
+Exceptn
+Global
+GnrcTest
+Int_Cnt         
+Int_DSP
+Logger
+Main
+Message
+Msgbin
+Msgstr
+MsgTime
+ReadTest
+Simplist
+Sioctrl
+Sls_Elem
+String
+SymbTab
+Time
+Tracer
+Verifier
+
+# SPECTEST must contain the name of the module containing the specific test class 
+# It will be used to generate an include file
+
+[MacrosApos]
+SPECTEST    = tst_buf      
+
+[BuildInicio]
+/OUT:Tst-buf.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[Fim]

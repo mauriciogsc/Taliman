@@ -1,0 +1,32 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Counter name file of module: ICNT Coverage control generic test command interpreter
+// 
+// Generated file:              INT_CNT.cnt
+// 
+// Repository file name:        Z:\TALISMAN\TEST\BSW\COUNTER.BSW
+// 
+// Ownership
+//    Owning organization:      LES/DI/PUC-Rio
+//    Project:                  Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+
+ICNT &Interpret passage counter commands
+Handle: Delete accumulated counters file
+Handle: Copy accumulated counters file
+Handle: Read accumulated counters file
+Handle: Read counter name declarations
+Handle: reset counter
+Handle: Get count
+Handle: Get number of counters
+Handle: Reset all counters
+Handle: start counting
+Handle: stop counting
+Handle: verify zero
+Handle: display counters
+
+//** End of counter name file, module: ICNT Coverage control generic test command interpreter

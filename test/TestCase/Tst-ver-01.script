@@ -1,0 +1,33 @@
+// Script:    Tst-ver-01.script
+// Author:    Arndt von Staa
+// Date:      25/jul/2013
+// Purpose:   Test verification message module
+
+== Display simple message
+=DisplayMessage  0  -1
+=DisplayMessage  1   0
+=DisplayMessage  2  -1
+=DisplayMessage  3   1
+=DisplayMessage  4  44
+=DisplayMessage  5  555
+
+== Display string message
+=DisplayString   5  "a"  7
+=DisplayString   4  "bb"  -2
+=DisplayString   3  "ccc"  5
+=DisplayString   2  "dddd"  -2
+=DisplayString   1  "eeeee"  3
+=DisplayString   0  "ffffff"  -3
+
+== Display verification start
+=VerificationStart   "abcde"
+=VerificationStart   "."
+
+== Display verification section
+=VerificationSection  "xyz"
+
+== Display verification end
+=VerificationEnd     0
+=VerificationEnd     -1
+=VerificationEnd    100
+

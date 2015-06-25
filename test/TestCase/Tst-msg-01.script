@@ -1,0 +1,425 @@
+// Script:    Test-msg-01.script
+// Author:    Arndt von Staa
+// Date:      03/jun/2007
+// Purpose:   Test messages, failure generating commands
+
+== Declare parameters
+=DeclareParameter   MsgA   int 1
+=DeclareParameter   MsgB   int 2
+=DeclareParameter   MsgC   int 3
+=DeclareParameter   MsgD   int 4
+=DeclareParameter   MSG_1_0Fields       int  1   // "Test 0 fields"
+=DeclareParameter   MSG_2_1FieldBeg     int  2   // "%0Test 1 field beginning"
+=DeclareParameter   MSG_3_1FieldMid     int  3   // "Test 1 field%0middle"
+=DeclareParameter   MSG_4_1FieldEnd     int  4   // "Test 1 field end%0"
+=DeclareParameter   MSG_5_2FieldsBeg    int  5   // "%0%13 Test 2 field beginning"
+=DeclareParameter   MSG_6_2FieldsMid    int  6   // "Test 2 %0%13 field %0 middle"
+=DeclareParameter   MSG_7_2FieldsEnd    int  7   // "Test 2 field end %0%13"
+=DeclareParameter   MSG_8_3Fields       int  8   // "%0.Test 3 %13.4 field %1.."
+=DeclareParameter   MSG_9_1Field        int  9   // "%0"
+=DeclareParameter   charvaluefield      int  1
+=DeclareParameter   stringpointerfield  int  2
+=DeclareParameter   stringvaluefield    int  3
+=DeclareParameter   stringarrayfield    int  4
+
+== save the number of data spaces
+=StartClock      1
+=Reset
+=AllocSaveNum    1
+
+== message with no parameters
+=NewMessage      MsgA    MSG_1_0Fields
+
+== Assemble message with 0 fields
+=AssembleMessage MsgA    "Test 0 fields"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== message with field at the beginning
+=NewMessage      MsgA    MSG_2_1FieldBeg
+
+== assemble message with no parameter given
+=AssembleMessage MsgA    "??? d: !0 ??? Test 1 field beginning"
+
+== insert field and assemble message
+=AddStringItem   MsgA    0  charvaluefield  "abcdef "
+=AssembleMessage MsgA    "abcdef Test 1 field beginning"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with one field in the middle
+=NewMessage      MsgB    MSG_3_1FieldMid
+=AssembleMessage MsgB    "Test 1 field??? d: !0 ??? middle"
+
+== Insert item and test
+=AddStringItem   MsgB    0  stringpointerfield  " abcdef "
+=AssembleMessage MsgB    "Test 1 field abcdef middle"
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Message with one field in the middle substituted by a string containing field at the beginnig
+=NewMessage      MsgB    MSG_3_1FieldMid
+=AddStringItem   MsgB    0  stringpointerfield  "%5 inserted "
+=AddStringItem   MsgB    5  stringpointerfield  " field"
+=AssembleMessage MsgB    "Test 1 field field inserted middle"
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Message several items containing fields
+=NewMessage      MsgB    MSG_3_1FieldMid
+=AddStringItem   MsgB    6  stringpointerfield  " abc"
+=AddStringItem   MsgB    5  stringpointerfield  " field%6"
+=AddStringItem   MsgB    0  stringpointerfield  "%5 inserted "
+=AssembleMessage MsgB    "Test 1 field field abc inserted middle"
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with one field at the end
+=NewMessage      MsgB    MSG_4_1FieldEnd
+=AssembleMessage MsgB    "Test 1 field end??? d: !0 ??? "
+
+== Insert item and test
+=AddStringItem   MsgB    0  stringvaluefield  " abcdef "
+=AssembleMessage MsgB    "Test 1 field end abcdef "
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with two fields at the beginning
+=NewMessage      MsgB    MSG_5_2FieldsBeg
+=AssembleMessage MsgB    "??? d: !0 ??? ??? d: !13 ???  Test 2 field beginning"
+
+== Insert item and test
+=AddStringItem   MsgB    13  stringvaluefield  " abcdef "
+=AssembleMessage MsgB    "??? d: !0 ???  abcdef  Test 2 field beginning"
+
+== Insert item and test
+=AddStringItem   MsgB    0  stringpointerfield  " xyz "
+=AssembleMessage MsgB    " xyz  abcdef  Test 2 field beginning"
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with two fields in the middle
+=NewMessage      MsgB    MSG_6_2FieldsMid 
+=AddStringItem   MsgB    13  stringvaluefield  " abcdef "
+=AddStringItem   MsgB    0  stringpointerfield  " xyz "
+=AssembleMessage MsgB    "Test 2  xyz  abcdef  field  xyz  middle"
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with two fields at the end
+=NewMessage      MsgB    MSG_7_2FieldsEnd
+=AssembleMessage MsgB    "Test 2 field end ??? d: !0 ??? ??? d: !13 ??? "
+
+== Insert item and test
+=AddStringItem   MsgB    0  charvaluefield  " abcdef "
+=AssembleMessage MsgB    "Test 2 field end  abcdef ??? d: !13 ??? "
+
+== Insert item and test
+=AddStringItem   MsgB    13 stringpointerfield  " xyz "
+=AssembleMessage MsgB    "Test 2 field end  abcdef  xyz "
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with three fields
+=NewMessage      MsgB    MSG_8_3Fields
+=AddStringItem   MsgB    13 charvaluefield      "abcdef"
+=AddStringItem   MsgB    0  stringpointerfield  "xyz "
+=AddStringItem   MsgB    1  stringvaluefield    "hijklmn"
+=AssembleMessage MsgB    "xyz Test 3 abcdef4 field hijklmn."
+
+== Test message items
+=GetItemTypeId   MsgB    13  3
+=GetItem         MsgB    13  "abcdef"
+=GetItem         MsgB     1  "hijklmn"
+=GetItem         MsgB     0  "xyz "
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message with three fields and control characters in fields
+=NewMessage      MsgB    MSG_8_3Fields
+=AddStringItem   MsgB    13 stringarrayfield      "\x0Dabcdef"
+=AddStringItem   MsgB    0  stringarrayfield      "  xyz "
+=AddStringItem   MsgB    1  stringarrayfield      "hijklmn\x00\x01"
+=AssembleMessage MsgB    "  xyz Test 3 \x0Dabcdef4 field hijklmn\x00\x01."
+
+== Test message items
+=GetItemTypeId   MsgB    13  3
+=GetItem         MsgB    13  "\x0Dabcdef"
+=GetItem         MsgB     1  "hijklmn\x00\x01"
+=GetItem         MsgB     0  "  xyz "
+
+== destroy message
+=DestroyMessage  MsgB
+
+== Test message inserting string given by valid id
+=NewMessage      MsgC    MSG_3_1FieldMid
+=AddIdStringItem MsgC    0    155
+=AssembleMessage MsgC    "Test 1 fieldENFORCEmiddle"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message inserting string given by valid id
+=NewMessage      MsgC    MSG_3_1FieldMid
+=AddIdStringItem MsgC    0    10
+=AssembleMessage MsgC    "Test 1 field?!?!?!? String id 10 not found.middle"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with only one field invalid argument
+=NewMessage      MsgC    MSG_9_1Field
+=AddStringItem   MsgC    1  stringvaluefield    "hijklmn"
+=AssembleMessage MsgC    "??? d: !0 ??? "
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with only one field
+=NewMessage      MsgC    MSG_9_1Field
+=AddStringItem   MsgC    0  stringvaluefield    "hijklmn"
+=AssembleMessage MsgC    "hijklmn"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with only one null string field
+=NewMessage      MsgC    MSG_9_1Field
+=AddStringItem   MsgC    0  stringvaluefield    "."
+=AssembleMessage MsgC    ""
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with illegal string id and no items
+=NewMessage      MsgA    1111
+=AssembleMessage MsgA    "??? Message id 1111 not found."
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with illegal string id and one item
+=NewMessage      MsgA    22222
+=AddStringItem   MsgA    1  stringvaluefield    "abc"
+=AssembleMessage MsgA    "??? Message id 22222 not found. Item[1]: abc"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with illegal string id and two items
+=NewMessage      MsgA    54321
+=AddStringItem   MsgA    5  stringvaluefield    "##vwxyz"
+=AddIntegerItem  MsgA    2  12345
+=AssembleMessage MsgA    "??? Message id 54321 not found. Item[2]: 12345 Item[5]: ##vwxyz"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with illegal field id
+=NewMessage      MsgA    MSG_9_1Field
+=AddStringItem   MsgA    0  stringvaluefield    "Illegal field id %20"
+=AssembleMessage MsgA    "Illegal field id ??? f: !20 ??? "
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with %% 
+=NewMessage      MsgA    MSG_9_1Field
+=AddStringItem   MsgA    0  stringvaluefield    "%1 starts with character %%2"
+=AddStringItem   MsgA    1  stringvaluefield    "%%2"
+=AssembleMessage MsgA    "%2 starts with character %2"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with ilegal character after % 
+=NewMessage      MsgA    MSG_9_1Field
+=AddStringItem   MsgA    0  stringvaluefield    "Illegal char %c"
+=AssembleMessage MsgA    "Illegal char ??? c: !c ??? c"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with integer value
+=NewMessage      MsgC    MSG_9_1Field
+=AddIntegerItem  MsgC    0  12345
+=AssembleMessage MsgC    "12345"
+
+== Verify BCD type
+=GetItemTypeId   MsgC    0  1
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with negative integer value
+=NewMessage      MsgC    MSG_9_1Field
+=AddIntegerItem  MsgC    0  -1
+=AssembleMessage MsgC    "-1"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with 2 digit (1 byte) positive BCD number
+=NewMessage      MsgC    MSG_9_1Field
+=AddBCDItem      MsgC    0  "\x11"
+=AssembleMessage MsgC    "1"
+
+== Verify BCD type
+=GetItemTypeId   MsgC    0  2
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with 4 digit (2 bytes) positive BCD number
+=NewMessage      MsgC    MSG_9_1Field
+=AddBCDItem      MsgC    0  "\x27\x90"
+=AssembleMessage MsgC    "790"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with 6 digit (3 bytes) positive BCD number
+=NewMessage      MsgC    MSG_9_1Field
+=AddBCDItem      MsgC    0  "\x36\x78\x90"
+=AssembleMessage MsgC    "67890"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with 8 digit (4 bytes) positive BCD number
+=NewMessage      MsgC    MSG_9_1Field
+=AddBCDItem      MsgC    0  "\x44\x56\x78\x90"
+=AssembleMessage MsgC    "4567890"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with 10 digit (5 bytes) positive BCD number
+=NewMessage      MsgC    MSG_9_1Field
+=AddBCDItem      MsgC    0  "\x52\x34\x56\x78\x90"
+=AssembleMessage MsgC    "234567890"
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with negative 2 digit BCD number
+=NewMessage      MsgA    MSG_9_1Field
+=AddBCDItem      MsgA    0  "\x91"
+=AssembleMessage MsgA    "-1"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with negative 4 digit BCD number
+=NewMessage      MsgA    MSG_9_1Field
+=AddBCDItem      MsgA    0  "\xA0\x01"
+=AssembleMessage MsgA    "-1"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with negative 6 digit BCD number
+=NewMessage      MsgA    MSG_9_1Field
+=AddBCDItem      MsgA    0  "\xB0\x00\x01"
+=AssembleMessage MsgA    "-1"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test message with negative 8 digit BCD number
+=NewMessage      MsgA    MSG_9_1Field
+=AddBCDItem      MsgA    0  "\xC0\x00\x00\x01"
+=AssembleMessage MsgA    "-1"
+
+== destroy message
+=DestroyMessage  MsgA
+
+== Test get message id and replace message id
+=NewMessage       MsgB    MSG_3_1FieldMid
+=GetMessageId     MsgB    MSG_3_1FieldMid
+=AddStringItem    MsgB    0  stringpointerfield  " abcdef "
+=AssembleMessage  MsgB    "Test 1 field abcdef middle"
+
+== Replace item and test
+=ReplaceMessageId MsgB    MSG_4_1FieldEnd
+=AssembleMessage  MsgB    "Test 1 field end abcdef "
+
+== destroy message
+=DestroyMessage   MsgB
+
+== Test replace incorrect message id
+=NewMessage       MsgB    MSG_3_1FieldMid
+=AddStringItem    MsgB    5  stringpointerfield  "abcdef"
+=ReplaceMessageId MsgB    12
+=AssembleMessage  MsgB    "??? Message id 12 not found. Item[5]: abcdef"
+
+== destroy message
+=DestroyMessage   MsgB
+
+== Test message with current time
+=NewMessage      MsgC    MSG_9_1Field
+=AddTimeItem     MsgC    0  .t
+=AssembleMessage MsgC    "xxx"
+=Recover
+
+== Verify time type
+=GetItemTypeId   MsgC    0  4
+
+== Verify type of inexisting item
+=GetItemTypeId   MsgC    14  0
+
+== Verify get inexisting item
+=GetItem         MsgC    14  "."
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with one illegal field index
+=NewMessage      MsgC    MSG_9_1Field
+=AddStringItem   MsgC    20  stringvaluefield    "hijklmn"
+=ExceptionProgram       2 143  'c'
+=AssembleMessage MsgC    "??? d: !0 ??? "
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with current time
+=NewMessage      MsgC    MSG_9_1Field
+=AddTimeItem     MsgC    0  .t
+=AssembleMessage MsgC    "xxx"
+=Recover
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with session start time
+=NewMessage      MsgC    MSG_9_1Field
+=AddTimeItem     MsgC    0  .f
+=AssembleMessage MsgC    "xxx"
+=Recover
+
+== destroy message
+=DestroyMessage  MsgC
+
+== Test message with recurring field
+=NewMessage      MsgC    MSG_3_1FieldMid
+=AddStringItem   MsgC    0  stringpointerfield  "%0a"
+=AssembleMessage MsgC    "Test 1 field??? Too many fields. Id: 0 ???aaaaaaaaaaaaaaaaaaaaaaaaaaaaaamiddle"
+
+== Clear all spaces
+=Reset
+
+== Verify memory leakage
+=DisplayElapsedTime  0
+=AllocCompareNum     1
+

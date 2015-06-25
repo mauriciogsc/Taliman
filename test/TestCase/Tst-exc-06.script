@@ -1,0 +1,29 @@
+// Script:    Tst-main-06.script
+// Author:    Arndt von Staa
+// Date:      02/dec/2011
+// Purpose:   Test basic functionality
+
+// Test throw, do not handle due to wrong exception recovery command
+
+//
+// ==========>>> Must stop with 5 errors and disaster
+//
+
+== Declarations
+=DeclareParameter  idAssert    int   154
+=DeclareParameter  idEnforce   int   153
+=DeclareParameter  typeAssert  int     1
+=DeclareParameter  typeEnforce int     2
+=DeclareParameter  typeError   int     3
+=DeclareParameter  typeFailure int     4
+=DeclareParameter  tstMessage  int   30147
+
+=DeclareParameter  selectError   int     1
+=DeclareParameter  selectFailure int     2
+
+== Test incorrect catcher, both type and message id are wrong
+=Throw              selectFailure   0  -1  "test"
+=ExceptionProgram   typeError    30146  'c'
+// Should never reach this point
+
+

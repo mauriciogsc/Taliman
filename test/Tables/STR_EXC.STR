@@ -1,0 +1,74 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      EXC  Talisman exception handling
+// 
+// Generated file:         Exceptn.str
+// Identification letters: EXC
+// Identification number:  0140
+// 
+// Repository name:      Exception handling
+// Repository file name: Z:\TALISMAN\TEST\BSW\EXCEPTN.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  140
+
+// Blocos programa: Root of EXC  &Log errors
+
+  EXC_ErrorLog             1     m   "---ERROR LOG: Line: %1  File: %0  Detail: %2%3"
+  EXC_ErrorLogDetail       2     m "\n         Cause: "
+
+// Blocos programa: Root of EXC  &Verify enforce
+
+  EXC_ThrowEnforce         3     m "Failing expression: %1"
+
+// Blocos programa: Root of EXC  &Verify assertion
+
+  EXC_ThrowAssertion       4     m "Failing expression: %1"
+
+// Blocos programa: Save exception data
+
+  EXC_ErrorNoMessage       5     m "Unidentified program exception occurred."
+  EXC_EmptyFileName        6     m "Empty file name"
+  EXC_UnknownName          7     m "Unknown file"
+
+// Blocos programa: Log throw message when the exception is thrown
+
+  EXC_StartException       8     m "\n====== %16 exception %15 thrown in line: %17  file: %18\n"
+
+// Blocos programa: Root of EXC  !Display the exception
+
+  EXC_EmptyString          9     m "Exception: %0 "
+  EXC_idHelp               10    m "            >>> id help: %0\n"
+
+// Blocos programa: Root of EXC  !Get the pointer to the exception messsage
+
+  EXC_PatternPlace         11    m "%3: %4\n        Exception thrown in Line: %17  File: %18\n"
+
+// Blocos programa: Root of EXCU Get usage type name
+
+  EXC_NameUsage            12    m "USAGE"
+
+// Blocos programa: Root of EXCL Get platform exception type name
+
+  EXC_NamePlatform         13    m "PLATFORM"
+
+// Blocos programa: Root of EXCP Get program type name
+
+  EXC_NameProgram          14    m "PROGRAM"
+
+// Blocos programa: Root of EXCB Get enforce type name
+
+  EXC_NameEnforce          15    m "ENFORCE"
+
+// Blocos programa: Root of EXCA Get assertion type name
+
+  EXC_NameAssertion        16    m "ASSERTION"
+
+//** End of string file, module: EXC  Talisman exception handling

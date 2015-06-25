@@ -1,0 +1,177 @@
+// Script:    Tst-sls-01.script
+// Author:    Arndt von Staa
+// Date:      09/abr/2007
+// Purpose:   Test sequencial IO control
+
+
+== Declare parameters to be used
+=DeclareParameter  sioNULL    int   1
+=DeclareParameter  sioUse     int   2
+=DeclareParameter  sioWrite   int   3
+=DeclareParameter  false      bool .f
+=DeclareParameter  true       bool .t
+=DeclareParameter  read       int   1
+=DeclareParameter  write      int   2
+=DeclareParameter  append     int   4
+=DeclareParameter  OK         int   0
+=DeclareParameter  ErrorOpen  int   2
+
+== Reset all spaces
+=Reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum    1
+
+== Test c  reate an empty control
+=NewSIO           sioNULL
+
+== Test illegal access to pointer in empty control
+=GetBufferPointer sioNULL true
+
+== Try to reuse the index
+=NewSIO           sioNULL
+=Recover
+
+== Verify empty control
+=VerifySIO        sioNULL true
+
+== Destroy empty control
+=DestroySIO       sioNULL
+
+== Test open a file
+=NewSIO           sioUse
+=OpenFile         sioUse  "..\\testcase\\tst-sio-01"  "test"  "???" read  OK
+
+== Verify read file
+=VerifySIO        sioUse true
+
+== Test read the file
+=ReadLine         sioUse true  "a"
+=ReadLine         sioUse true  "ab"
+=ReadLine         sioUse true  "abcd"
+=ReadLine         sioUse true  "x"
+
+== Destroy control
+=DestroySIO       sioUse
+
+== Open inexistent file
+=NewSIO           sioUse
+=OpenFile         sioUse  "..\\testcase\\tst-sio-xx"  "test"  "inexistent" read  ErrorOpen
+
+== Verify if inexistent file exists
+=ExistsFile       "..\\testcase\\tst-sio-xx"    "test"  .false
+=ExistsFile       "..\\testcase\\tst-sio"       "."     .false
+
+== Verify if existing file exists
+=ExistsFile       "..\\testcase\\tst-sio-01"       "test"  .true
+=ExistsFile       "..\\testcase\\tst-sio-01.test"  "."     .true
+
+== Open existing file
+=OpenFile         sioUse  "..\\testcase\\tst-sio-01"  "test"  "existing" read  OK
+
+== Verify read file
+=VerifySIO        sioUse true
+
+== Read the file testing line count, line size, GetBufferPointer and untrimmed read
+=GetBufferPointer sioUse  .false
+=GetLineCount     sioUse  0
+=ReadLine         sioUse  false  "a\x0A"
+=GetLineSize      sioUse  2
+=GetLineCount     sioUse  1
+=ReadLine         sioUse  false  "ab\x0A"
+=GetLineSize      sioUse  3
+=GetLineCount     sioUse  2
+=ReadLine         sioUse  false  "abcd\x0A"
+=GetBufferValue   sioUse "abcd\x0A"
+=GetLineSize      sioUse  5
+=GetLineCount     sioUse  3
+=ReadLine         sioUse  false  "x"       // is the last line with no newline!
+=GetLineCount     sioUse  4
+=GetLineSize      sioUse  1
+
+== Test get the file name
+=GetFileName      sioUse  "..\\testcase\\tst-sio-01.test"  
+
+== Destroy control
+=DestroySIO       sioUse
+
+== Test write a file
+=NewSIO           sioWrite
+=OpenFile         sioWrite  "..\\testcase\\written.bak" ""  "Write 1" write OK
+=WriteString      sioWrite  "a"   false     // newline precedes the line to be written
+=WriteString      sioWrite  "a"   true
+=WriteString      sioWrite  "b"   false
+=WriteCharString  sioWrite  "ab"  true
+=WriteCharString  sioWrite  "cd"  false
+=WriteCharString  sioWrite  "x"   true
+=DestroySIO       sioWrite
+
+== Verify the written file
+=NewSIO           sioUse
+=OpenFile         sioUse  "..\\testcase\\written.bak"  "test"  "Read 1" read OK
+=ReadLine         sioUse true  "a"
+=ReadLine         sioUse true  "ab"
+=GetBufferValue   sioUse "ab"
+=ReadLine         sioUse true  "abcd"
+=ReadLine         sioUse true  "x"
+=DestroySIO       sioUse
+
+== Test compare file
+=CompareFile      "tst-sio-01.test" "xxx"  "..\\testcase\\written" "bak" true
+
+== Test append line to file
+=NewSIO           sioWrite
+=OpenFile         sioWrite  "..\\testcase\\written" "bak" "Append" append OK
+=WriteCharString  sioWrite  "xxxx"   true
+=WriteCharString  sioWrite  ""   true
+=DestroySIO       sioWrite
+
+== Test compare unequal files, wrong length
+=CompareFile      "..\\testcase\\tst-sio-01.test" ""  "..\\testcase\\written" "bak" false
+
+== Create wrong file
+=NewSIO           sioWrite
+=OpenFile         sioWrite  "..\\testcase\\written.bak" "???" "???" write OK
+=WriteString      sioWrite  "a"      false
+=WriteString      sioWrite  "a"      true
+=WriteCharString  sioWrite  "xxxx"   false
+=WriteCharString  sioWrite  ""       true
+=DestroySIO       sioWrite
+
+== Test compare unequal file, unequal lines
+=CompareFile      "..\\testcase\\tst-sio-01.test" ""  "..\\testcase\\written" "bak" false
+
+== Test Copy file
+=CopyFile         "..\\testcase\\tst-sio-01.test" ""  "..\\testcase\\written.bak" "" .t
+=CompareFile      "tst-sio-01.test" ""  "written" "bak" true
+
+== Test copy file with blanks in name
+=CopyFile      "..\\testcase\\tst-sio-01.test" ""  "..\\testcase\\ w r i t t e n .bak" "error" .t 
+=CompareFile      "tst-sio-01.test" ""  " w r i t t e n " "bak" true
+
+== Test delete existing file
+=DeleteFile    "..\\testcase\\ w r i t t e n " "bak" .true
+=DeleteFile    "..\\testcase\\ w r i t t e n .bak" "???" .true
+=Recover
+
+== Test delete non existing file
+=DeleteFile    "..\\testcase\\ w r i t t e n .bak" "???" .false
+
+== Test copy file with incorrect name
+=CopyFile      "..\\testcase\\tst-sio-01.xxx" ""  "..\\testcase\\ w r.bak" "error" .f 
+
+== Test extension extractor
+=GetFileType      "abcd.abc"        "abc"
+=GetFileType      "abcd.abc.xy   "  "xy"
+=GetFileType      "abcd."           "."
+=GetFileType      "abcd"            ""
+=GetFileType      "abcd"            "x"
+=Recover
+=GetFileType      "abcd.x"          ""
+=Recover
+
+== Verify leakage
+=Reset
+=AllocCompareNum    1
+
+  

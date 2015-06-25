@@ -1,0 +1,52 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      CFG  Configuration file handler
+// 
+// Generated file:         CONFIGFL.str
+// Identification letters: CFG
+// Identification number:  0380
+// 
+// Repository name:      Test framework support modules
+// Repository file name: C:\TALISMAN\TEST\BSW\UTILIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  380
+
+// Blocos programa: Open output configuration file
+
+  CFG_ErrorEmpty           1     m "Configuration list is empty"
+
+// Blocos programa: Control if may read a file
+
+  CFG_ErrorNotEmpty        2     m "Configuration list exists already"
+
+// Blocos programa: Get file configuration list name
+
+  CFG_ErrorNoEnviron       3     m "Could not read configuration parameters.\n          Missing parameter %0 in the main environment variable."
+
+// Blocos programa: Open configuration file
+
+  CFG_ErrorConfigFile      4     m "Could not open configuration file"
+
+// Blocos programa: Insert Section definition line
+
+  CFG_ErrorSecName         5     m "Illegal section name. Line %1"
+  CFG_ErrorDuplSec         6     m "Section already exists: %0. Line %1"
+
+// Blocos programa: Insert parameter definition line
+
+  CFG_ErrorNoSection       7     m "No section has been defined yet. Line %1"
+  CFG_ErrorDuplParm        8     m "Parameter %0 exists already in section %2. Line %1"
+
+// Blocos programa: Invalid configuration line
+
+  CFG_ErrorSyntax          9     m "Configuration line syntax error. Line %1"
+
+//** End of string file, module: CFG  Configuration file handler

@@ -1,0 +1,123 @@
+// Script:    Tst-cnt-01.script
+// Author:    Arndt von Staa
+// Date:      10/mar/2007
+// Purpose:   Test counter
+
+== Start measuring time
+=StartClock  1
+
+== Try to read non existing file
+=CounterReadDeclaration   "somefile"
+=Recover
+
+== Read existing file
+=CounterReadDeclaration   "TestCounters"
+=CounterGetNum            6
+
+== Read existing file again
+=CounterReadDeclaration   "TestCounters"
+=Recover
+=FailureReset             5
+
+== Verify contents
+=CounterGetNum            6
+=CounterGetCount       "abcd 123"  0
+=CounterGetCount       "1234"     -2
+=CounterGetCount       "zpto"     -1
+=CounterGetCount       "cdef ???"  1
+=CounterGetCount       "xpto"     -1
+=CounterGetCount       "a b c d"   0
+
+== Verify counters
+=CounterVerifyZero       2
+=FailureReset            2
+
+== Count opcional counter
+=CounterStart
+=CounterGlobalCount    "xpto"
+=CounterGetCount       "xpto"      1
+=CounterStop
+
+== List all counters
+=CounterDisplay
+
+== Reset all counters
+=CounterResetAll
+
+== Verify counters
+=CounterVerifyZero       4
+=FailureReset            4
+
+== Verify contents
+=CounterGetCount       "a b c d"   0
+=CounterGetCount       "abcd 123"  0
+=CounterGetCount       "1234"     -2
+=CounterGetCount       "cdef ???"  0
+=CounterGetCount       "zpto"     -1
+=CounterGetCount       "xpto"      0
+
+== Read accumulator file with one wrong counter name
+=CounterDeleteAccumFile    "testaccum.bak"
+=CounterCopyAccumFile      "testaccum.bak"  "testaccum.accum" 
+=CounterReadAccumFile      "testaccum.bak"
+=Recover
+
+== Read another accumulator file
+=CounterReadAccumFile      "dummy.bak"
+=Recover
+
+== Verify contents
+=CounterGetCount       "a b c d"   0
+=CounterGetCount       "cdef ???"  5
+=CounterGetCount       "abcd 123" 12
+=CounterGetCount       "1234"     -2
+=CounterGetCount       "zpto"     -1
+=CounterGetCount       "xpto"      0
+
+== Display zero counters
+=CounterVerifyZero      -1
+
+== Count with DoCount default false
+=CounterGlobalCount    "cdef ???"
+=CounterGetCount       "cdef ???"  5
+=CounterGlobalCount    "1234"
+=CounterGetCount       "1234"     -2
+
+== Count with DoCount true
+=CounterStart
+=CounterGlobalCount    "cdef ???"
+=CounterGetCount       "cdef ???"  6
+=CounterGlobalCount    "1234"
+=CounterGetCount       "1234"     -2
+=FailureReset            1
+
+== Count with DoCount false
+=CounterStop
+=CounterGlobalCount    "cdef ???"
+=CounterGetCount       "cdef ???"  6
+=CounterGlobalCount    "1234"
+=CounterGetCount       "1234"     -2
+
+== Reset forbidden counter
+=CounterStart
+=CounterResetCounter   "1234" 
+=Recover
+=CounterGetCount       "1234"     -2
+
+== Reset optional counter
+=CounterResetCounter   "zpto"     
+=CounterGetCount       "zpto"     -1
+
+== Reset normal counter
+=CounterResetCounter   "cdef ???"     
+=CounterGetCount       "cdef ???"  0
+
+== List all counters
+=CounterDisplay
+
+== Verify counters
+=CounterVerifyZero       3
+=FailureReset            3
+
+== End measuring time
+=DisplayElapsedTime      1

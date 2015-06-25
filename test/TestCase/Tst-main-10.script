@@ -1,0 +1,36 @@
+// Script:    Tst-main-10.script
+// Author:    Arndt von Staa
+// Date:      22/jun/2012
+// Purpose:   Test basic functionality: #include
+
+== Test hexadecimal, assure a valid test case
+=comparehex   "AaBb"  "41614262"
+
+== Declare exception handling constants
+=DeclareParameter  idAssert          int   144
+=DeclareParameter  idEnforce         int   143
+
+=DeclareParameter  typeAssert        int     1
+=DeclareParameter  typeEnforce       int     2
+=DeclareParameter  typeUsage         int     3
+=DeclareParameter  typePlatform      int     4
+=DeclareParameter  typeProgram       int     5
+
+// include an existing file
+
+#include  "tst-main-11.script"
+
+== base file 23: Test hexadecimal fail, assure a valid test case
+=comparehex   "ABCDEF"  "414243444546"
+
+== Declare existing parameters
+=DeclareParameter  typeEnforce       int     2
+=Recover
+=DeclareParameter  typeUsage         int     3
+=Recover
+=DeclareParameter  OpenCreate        int     3
+=Recover
+=DeclareParameter  OpenRead          int     4
+=Recover
+
+

@@ -1,0 +1,36 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      07/dez/2006
+// Purpose:   Test basic functionality
+
+// Test script file with test cases containing misplaced recovery commands
+
+// Start
+
+== Test misplaced recovry
+=Recover
+
+== Test misplaced program exception catcher
+=ExceptionProgram
+
+== Test misplaced system exception catcher
+=ExceptionSystem
+
+== Test misplaced recovery, with recovery
+=Recover
+=Recover
+
+== Test misplaced program exception catcher, with recovery
+=ExceptionProgram
+=Recover
+
+== Test misplaced system exception catcher, with recovery
+=ExceptionSystem
+=Recover
+
+== Test failure reset
+=FailureReset  9
+
+//
+// ==========>>> Must display testOK
+//

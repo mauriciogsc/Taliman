@@ -1,0 +1,33 @@
+// Script:    Tst-main-03.script
+// Author:    Arndt von Staa
+// Date:      02/dec/2011
+// Purpose:   Test basic functionality
+
+// Test throw, incorrectly catch due to exception type error
+
+//
+// ==========>>> Must stop with 5 errors and disaster
+//
+
+== Declarations
+=DeclareParameter  idAssert     int    154
+=DeclareParameter  idEnforce    int    153
+=DeclareParameter  typeAssert   int      1
+=DeclareParameter  typeEnforce  int      2
+=DeclareParameter  typeError    int      3
+=DeclareParameter  typePlatform int      4
+=DeclareParameter  typeFailure  int      5
+=DeclareParameter  tstMessage   int   30147
+
+=DeclareParameter  selectError   int     1
+=DeclareParameter  selectFailure int     2
+
+
+
+== Test incorrect exception catcher, wrong type
+=Throw              selectFailure  0  -1  "test"
+=ExceptionProgram   typeError    tstMessage  'c'
+
+ 
+// Should never reach this point
+

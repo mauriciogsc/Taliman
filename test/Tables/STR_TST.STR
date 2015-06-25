@@ -1,0 +1,52 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      TST  Generic tester
+// 
+// Generated file:         GnrcTest.str
+// Identification letters: TST
+// Identification number:  0040
+// 
+// Repository name:      Talisman test framework test drivers
+// Repository file name: Z:\TALISMAN\TEST\BSW\MAIN.BSW
+// 
+// Ownership
+//    Owning organization:    LES/INF/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  40
+
+// Blocos programa: Process the script file
+
+  TST_ErrorNotPerformed    1     m "Test has been cancelled prior to ending"
+
+// Blocos programa: Display test script statistics
+
+  TST_EndStat              2     m "\n!!! --------------------\n!!!  Test ended\n     %0"
+  TST_EndCond              3     m "     Test ending condition: %0"
+
+// Blocos programa: Read statistics from existing file
+
+  TST_EmptyString          4     m " %0 "
+
+// Blocos programa: Display test start
+
+  TST_Start                5     m "!!! Start test, script file: %0"
+  TST_Separator            6     m "!!! **************************************************"
+
+// Blocos programa: Handle run-time exceptions
+
+  TST_ProgramException     7     m "\n######  Unexpected program exception !!!!!"
+
+// Blocos programa: Handle system exceptions
+
+  TST_SysException         8     m "\n######  Unexpected system exception !!!!!"
+
+// Blocos programa: Display test end
+
+  TST_End                  9     m   "!!! End of test, script file: %0"
+
+//** End of string file, module: TST  Generic tester

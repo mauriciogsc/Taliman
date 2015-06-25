@@ -1,0 +1,31 @@
+// Parameter test file
+=cmd  name1 _name _               
+=cmd  'A' '\065' '\X41' '\o101'   
+=xx yyy 'z'
+'
+'a b
+'\
+'\x
+'\41
+1  -0  -1234567890
+21.0  -31.0  41.0 51. 61 .1
+100  50  10
+.true .t .false .f x
+"a"  "a\65\""  ""  "abcdefghijklmnopqrstuvwxyz"
+=declareparm    astring  string  "a\65\""
+astring
+=declareparm    aint     int   13
+aint
+=declareparm    adouble  double  13.25
+adouble
+=declareparm    abool    bool    .true
+abool
+=declareparm    achar    char    'x'
+achar
+"abc  \0 cde"
+   "abcdefghijklmnopqrstuvwxyz"
+   aint "abc" astring  achar abool adouble
+=acmd    aint "abc" astring achar abool adouble
+
+=acmd    13 "abc" // comment
+//

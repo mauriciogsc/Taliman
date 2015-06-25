@@ -1,0 +1,88 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: no executable, use only to gather size statistics
+
+[Diretorios]
+
+Nome        =  Statistics
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[Modulos]
+str_bcd.str     g
+str_cnt.str     g
+str_dsp.str     g
+str_dis.str     g
+str_exc.str     g
+str_glb.str     g
+str_global.str  g
+str_log.str     g
+str_msg.str     g
+str_sio.str     g
+str_sls.str     g
+str_smt.str     g
+str_str.str     g
+str_tim.str     g
+str_tst.str     g
+string.makeup   g
+Main
+BCDArit
+breakpnt
+Counters
+Disaster
+Dynspac
+Exceptn
+Global
+GnrcTest
+Int_Cnt         
+Int_DSP
+Logger
+Message
+MsgBCD
+Msgbin
+Msgstr
+MsgTime
+RandGen
+ReadTest
+Simplist
+Sioctrl
+Sls_Elem
+String
+SymbTab
+Time
+Tracer
+tst_bcd
+tst_cnt
+tst_dis
+tst_dsp
+tst_log
+tst_msg
+tst_rdt
+tst_rnd
+tst_sio
+tst_sls
+tst_smt
+tst_str
+tst_tst
+
+# SPECTEST must contain the name of the module containing the specific test class 
+# It will be used to generate an include file
+
+[MacrosApos]
+SPECTEST    = tst_???      
+
+[BuildInicio]
+/OUT:???.EXE
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[Fim]

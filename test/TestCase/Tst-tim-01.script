@@ -1,0 +1,105 @@
+// Script:    Tst-cfg-01.script
+// Author:    Arndt von Staa
+// Date:      26/set/2013
+// Purpose:   Test time functions
+
+== Reset all spaces
+=Reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum     1
+
+== Initialize time module
+=Initialize
+
+== Get start up time
+=GetStartUpTime
+
+== Wait some time
+=Wait   1000
+
+== Initialize and display, should be different
+=Reset
+=Initialize
+=GetStartUpTime
+
+== Get current time
+=GetCurrentTime 
+
+== Save current clock 
+=SaveClock        3
+
+== Get elapsed time, current time has not been changed
+=GetElapsedTime   3  0
+
+== Display initialized - wrong - time
+=SetCurrent       1
+=GetCurrentTime   1 "-1/-1/-1--1:-1:-1"
+
+== Set a base comparison time in clok 4
+=SetTime          1   2000 1 2 13 40 50 780 
+=SetCurrent       1
+=SaveClock        4
+=GetClockTime     4
+=CompareClockTime 4   "2000/01/02-13:40:50"
+
+== Set a differing current time, differs only millisecs
+=SetTime          2   2000 1 2 13 40 50 900 
+=SetCurrent       2
+=GetCurrentTime   2
+=SaveClock        3
+=CompareClockTime 3   "2000/01/02-13:40:50"
+
+== Get elapsed time
+=GetElapsedTime      4  120
+=DisplayElapsedTime  4  "0.120"
+
+== Set a differing current time crossing sec boundary within same sec
+=SetTime             2   2000 1 2 13 40 51 580 
+=SetCurrent          2
+=GetElapsedTime      4   800
+=DisplayElapsedTime  4  "0.800"
+
+== Set a differing current time crossing sec boundary within next sec
+=SetTime             2   2000 1 2 13 40 52 180 
+=SetCurrent          2   
+=GetElapsedTime      4   1400
+=DisplayElapsedTime  4  "1.400"
+
+== Set a differing current time crossing sec boundary within same min
+=SetTime          2   2000 1 2  13 41 49 885 
+=SetCurrent       2   
+=GetElapsedTime   4   59105
+=DisplayElapsedTime  4  "59.105"
+
+== Set a differing current time crossing sec boundary within next min
+=SetTime          2   2000 1 2  13 42 39 185 
+=SetCurrent       2   
+=GetElapsedTime   4   108405
+=DisplayElapsedTime  4  "1:48.405"
+
+== Set a differing current time crossing all boundaries with carry
+=SetTime             2   2000 1 3 13 40 50 779 
+=SetCurrent          2   
+=DisplayElapsedTime  4  "23:59:59.999"
+
+== Set a differing current time an exact day
+=SetTime             2   2000 1 3 13 40 50 780 
+=SetCurrent          2   
+=DisplayElapsedTime  4  "24:00:00.000"
+
+== Set 2 days difference
+=SetTime             2   2000 1 4 13 40 50 780 
+=SetCurrent          2   
+=DisplayElapsedTime  4  "48:00:00.000"
+
+== Set 2 days difference, missing 2 millis
+=SetTime             2   2000 1 4 13 40 50 778 
+=SetCurrent          2   
+=DisplayElapsedTime  4  "47:59:59.998"
+
+== Verify leakage
+=Reset
+
+=AllocCompareNum  1
+  

@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      SMT  Memory resident symbol table
+// 
+// Generated file:         SymbTab.str
+// Identification letters: SMT
+// Identification number:  0320
+// 
+// Repository name:      Test framework support modules
+// Repository file name: D:\TALISMAN\TEST\BSW\UTILIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  320
+
+// Blocos programa: Root of SMT  !Verify symbol table structure
+
+  SMT_ErrorRoot            1     m "Invalid symbol table"
+
+//** End of string file, module: SMT  Memory resident symbol table

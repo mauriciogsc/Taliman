@@ -1,0 +1,51 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      SIO Sequential IO control
+// 
+// Generated file:         SIOCTRL.str
+// Identification letters: SIO
+// Identification number:  0280
+// 
+// Repository name:      IO Utilities
+// Repository file name: C:\TALISMAN\TEST\BSW\SIOCTRL.BSW
+// 
+// Ownership
+//    Owning organization:    LES/INF/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  280
+
+// Blocos programa: Open files to copy
+
+  SIO_PrefixCopySource     1     m "copy source"
+  SIO_PrefixCopyDest       2     m "copy destination"
+
+// Blocos programa: Open files to compare
+
+  SIO_PrefixCompare        3     m "comparison"
+
+// Blocos programa: Compare the files
+
+  SIO_ErrorCompare         4     m "File compare found unequal lines near line: %0\n          File A: %1\n          File B: %2"
+
+// Blocos programa: Close the files to compare
+
+  SIO_ErrorLength          5     m "File compare found files of different length\n          File A: %0\n          File B: %1"
+
+// Blocos programa: Control opening of files
+
+  SIO_ErrorFileOpen        6     m "Could not open %0 file: %1"
+
+// Blocos programa: Read the line
+
+  SIO_ErrorRead            7     m "I/O error while reading from file: %0"
+
+// Blocos programa: Root of SIO  $Do write
+
+  SIO_ErrorWrite           8     m "I/O error while writing to file: %0"
+
+//** End of string file, module: SIO Sequential IO control

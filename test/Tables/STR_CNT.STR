@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      CNT  Coverage control
+// 
+// Generated file:         counters.str
+// Identification letters: cnt
+// Identification number:  0100
+// 
+// Repository name:      Code coverage control support
+// Repository file name: D:\TALISMAN\TEST\BSW\COUNTER.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  100
+
+// Blocos programa: Root of CNT  !Read accumulated counter file
+
+  CNT_ErrorDuplAccum       1     m "Accumulated counter file has already been defined:\n       %0"
+
+// Blocos programa: Root of CNT  !Verify counter data structure
+
+  CNT_VerifierError        2     m "Invalid counter structure"
+
+// Blocos programa: Start the counter file
+
+  CNT_ErrorOpenFile        3     m "     %0"
+
+//** End of string file, module: CNT  Coverage control

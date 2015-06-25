@@ -1,0 +1,30 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      GLB Global anchors
+// 
+// Generated file:         GLOBAL.str
+// Identification letters: GLB
+// Identification number:  0120
+// 
+// Repository name:      Global anchors
+// Repository file name: Z:\TALISMAN\TEST\BSW\GLOBAL.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  120
+
+// Blocos programa: Root of GLB  &Handle memory overflow
+
+  GLB_InsufficientMemory   1     m "Talisman ran out of memory"
+
+// Blocos programa: Root of GLB  !Get event logger
+
+  GLB_NoEventLogger        2     m "Attempting to use closed event logger."
+
+//** End of string file, module: GLB Global anchors

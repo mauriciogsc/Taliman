@@ -1,0 +1,59 @@
+# arquivo de diretivas padrão para plataforma MS - Visual C/C++ 6.0
+# e estrutura de diretórios Talisman
+
+[Comandos]
+cpp => obj
+    CL $(O) $(CDB) $(DEFS) /Fo$(Fobj)\  $(Fcpp)\$(@B).cpp >> $(Ferr)\$(NOME).err
+
+str => inc
+    $(Fferram)\GENSTRID  /D$(Fstr)  /E$(Fstr)\$(@B).str /T$(Finc)\$(@B).inc >> $(Ferr)\$(NOME).err
+
+makeup => table
+    $(Fferram)\GENSTRTB  /D$(Ftable)  /L$(Ftable)\$(@B).makeup   /T$(Ftable)\$(@B).table >> $(Ferr)\$(NOME).err
+
+[MacrosGerais]
+#
+# Nas linhas de comando do compilador use
+#     $(O)  para compilar m¢dulo normal
+#     $(OD) para compilar m¢dulo para codeview
+# Na linha de comando do ligador use
+#     $(L)  para ligar normal
+#     $(LD) para ligar com codeview
+#
+
+O       = /Gs /D_CRT_SECURE_NO_DEPRECATE
+OD      = /Gs /Zi /Od /D_CRT_SECURE_NO_DEPRECATE
+L       =
+LD      = /DEBUG /DEBUGTYPE:CV
+
+CDB     = /D_DEBUG
+
+OPT     = /c /J /W4 /EHa /GA /GF /GR /Zp /nologo
+
+!IFDEF PRD
+O       = /Ox  /D_CRT_SECURE_NO_DEPRECATE
+CDB     =
+!ENDIF
+
+INCLUDE     = $(INCLUDE);$(Pinc)
+
+# Definições de variáveis com o propósito de dar erro se não declaradas em xxx.comp
+
+SPECTEST    = dummy_test
+
+# PAGETYPE    = x
+# ELEMTYPE    = x
+#   IF EXIST $(Ferr)\$(NOME).err   DEL $(Ferr)\$(NOME).err
+
+[Limpa]
+   $(Fferram)\CompileBanner /c$(NOME)
+   $(Fferram)\GenerateFile ..\sources\specific-test.hpp  "#include \"$(SPECTEST).hpp\""
+   $(Fferram)\CompileBanner /c$(NOME)  > $(Ferr)\$(NOME).err
+   SET CL=$(OPT)
+
+[DefaultLink]
+   SET CL=
+   CD  $(Fobj)
+   LINK  $(L)  @$(NOME).build >> $(Ferr)\$(NOME).err
+
+[Fim]

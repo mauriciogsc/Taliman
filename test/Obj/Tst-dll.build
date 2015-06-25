@@ -1,0 +1,6 @@
+/OUT:Tst-dll.EXE
+/INCREMENTAL:NO
+/MACHINE:IX86
+main.obj  breakpnt.obj  string.obj  tst_str.obj  
+..\..\Global\Lib\talismantestdll.lib
+

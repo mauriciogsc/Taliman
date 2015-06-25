@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      DSP  Dynamic data space control
+// 
+// Generated file:         DYNSPAC.str
+// Identification letters: DSP
+// Identification number:  0080
+// 
+// Repository name:      Dynamic data space control
+// Repository file name: Z:\TALISMAN\TEST\BSW\DYNSPAC.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  80
+
+// Blocos programa: Assure integrity of the data space
+
+  DSP_ErrorDelete          1     m "Tried to delete illegal pointer."
+
+//** End of string file, module: DSP  Dynamic data space control

@@ -1,0 +1,18 @@
+// Script:    Test-dis-01.script
+// Author:    Arndt von Staa
+// Date:      21/set/2002
+// Purpose:   Test DISASTER
+
+== save the number of allocated data spaces
+=AllocSaveSize    1
+
+== disaster with known message:  "Insuficient memory"
+=disaster      181 4
+
+// Must not reach this point
+
+== disaster with unknown message
+=disaster      11111111 0
+
+== verify memory leak
+=AllocCompareSize    1

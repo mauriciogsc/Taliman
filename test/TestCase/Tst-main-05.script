@@ -1,0 +1,29 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test basic functionality
+
+// Test script file with test case containing only control and illegal commands
+
+// Start
+
+== Test control commands containing illegal command
+=StartVerbose
+=Breakpoint
+=Breakpoint    12345
+=xxxxxxxxxxx
+
+== Test empty test case
+
+== Attempt to recover from unknown comand, does not recover
+=xxxxxxxxxxx
+=Recover
+=yyyyyyyyyyy
+
+== Test failure reset
+=StopVerbose
+=FailureReset  5
+
+//
+// ==========>>> Must display test OK
+//

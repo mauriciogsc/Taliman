@@ -1,0 +1,38 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      DIS  Disaster
+// 
+// Generated file:         disaster.str
+// Identification letters: DIS
+// Identification number:  0160
+// 
+// Repository name:      Exception handling
+// Repository file name: D:\TALISMAN\TEST\BSW\EXCEPTN.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  160
+
+// Blocos programa: Alert user about which disaster and where it hapened
+
+  DIS_UnknownCause         1     m "Disaster of unknown cause."
+  DIS_Terminating          2     m "Program is being terminated."
+  DIS_SeparatorLine        3     m "\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+  DIS_PreambleMsg          4     m "\n\n>>>DISASTER: %s !!!"
+  DIS_Where                5     m   "\n      At Line: %d  In module: %s"
+
+// Blocos programa: Perform persistent data structure recovery
+
+  DIS_RollBack             6     m "\n>>>DISASTER: Starting roll back."
+
+// Blocos programa: Inform about recovery success
+
+  DIS_TerminatedOK         7     m "\n\n>>>DISASTER: Roll back completed. Program will be canceled now !!!"
+
+//** End of string file, module: DIS  Disaster

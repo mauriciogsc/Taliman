@@ -1,0 +1,10 @@
+/OUT:Tst-rdt.EXE
+/INCREMENTAL:NO
+/MACHINE:IX86
+readtest.obj  tst_rdt.obj  bcdarit.obj  breakpnt.obj  counters.obj  
+disaster.obj  dynspac.obj  environ.obj  exceptn.obj  global.obj  
+gnrctest.obj  int_cnt.obj  int_dsp.obj  logger.obj  main.obj  
+message.obj  msgbin.obj  msgstr.obj  msgtime.obj  simplist.obj  
+sioctrl.obj  sls_elem.obj  string.obj  symbtab.obj  time.obj  
+tracer.obj  verifier.obj  
+

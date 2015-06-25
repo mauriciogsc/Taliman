@@ -1,0 +1,41 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: tst-dll - test string using dynamic link library dll 
+
+[Diretorios]
+
+Nome        =  Tst-dll
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[Modulos]
+Main
+breakpnt
+string
+tst_str 
+
+# SPECTEST must contain the name of the module containing the specific test class 
+# It will be used to generate an include file
+
+[MacrosApos]
+SPECTEST    = tst_str      
+
+[BuildInicio]
+/OUT:Tst-dll.EXE
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\Global\Lib\talismantestdll.lib
+
+
+[Fim]

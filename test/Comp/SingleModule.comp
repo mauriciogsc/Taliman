@@ -1,0 +1,30 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: single
+
+[Diretorios]
+
+Nome        =  Single
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[Modulos]
+Global  
+tst_log 
+
+# SPECTEST must contain the name of the module containing the specific test class 
+# It will be used to generate an include file
+
+[MacrosApos]
+SPECTEST    = tst_log      
+
+[Fim]

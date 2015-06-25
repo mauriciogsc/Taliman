@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      MSG  Message handlers
+// 
+// Generated file:         Message.str
+// Identification letters: MSG
+// Identification number:  0180
+// 
+// Repository name:      Message access, formatting and handling
+// Repository file name: Z:\TALISMAN\TEST\BSW\MESSAGE.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  180
+
+// Blocos programa: Assemble with error message string
+
+  MSG_ErrorIdNotFound      1     m  "??? Message id %19 not found."
+
+// Blocos programa: Append items to nonexisting message
+
+  MSG_Separator            2     m " Item["
+  MSG_SeparatorEnd         3     m "]: "
+
+// Blocos programa: Handle too many fields
+
+  MSG_TooManyFields        4     m "??? Too many fields. Id: %d ???"
+
+// Blocos programa: Replace field by item string
+
+  MSG_ErrorNoData          5     m "??? d: !%d ??? "
+
+// Blocos programa: Handle illegal field index
+
+  MSG_ErrorIllegalIndex    6     m "??? f: !%d ??? "
+
+// Blocos programa: Handle unknown field code
+
+  MSG_ErrorFieldCode       7     m "??? c: !%c ??? "
+
+//** End of string file, module: MSG  Message handlers

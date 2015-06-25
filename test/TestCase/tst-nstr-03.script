@@ -1,0 +1,787 @@
+// Script:    Tst-str-01.script
+// Author:    Arndt von Staa
+// Date:      28/ago/2007
+// Purpose:   Test string, construct and assign operations
+
+== Declare constants
+=DeclareParameter  Str1  int  1
+=DeclareParameter  Str2  int  2
+=DeclareParameter  Str3  int  3
+=DeclareParameter  Str4  int  4
+=DeclareParameter  Str9  int  9
+
+=DeclareParameter  pt    int  1
+=DeclareParameter  val   int  2
+
+=DeclareParameter  Less    int  0
+=DeclareParameter  Equal   int  1
+=DeclareParameter  Greater int  2
+
+== Define counter files counters
+=CounterReadDeclaration   "..\\Sources\\nstring.cnt"
+=CounterReadAccumFile     "..\\Sources\\nstring.count"  // usa e registra arquivo de acumulaÁ„o
+
+== save the number of allocated data spaces
+=Reset
+=AllocSaveNum   3
+=AllocSaveBytes 1
+
+== Start counting passages
+=CounterStart
+
+== Construct empty pointed string
+=NewEmptyPtString   Str1
+=GetLength          Str1  pt  0
+=GetString          Str1  pt  ""
+=VerifyString       Str1  pt .true
+=DestroyString      Str1
+
+== Construct empty value string
+=NewEmptyValString  Str1
+=GetLength          Str1  val 0
+=GetString          Str1  val ""
+=VerifyString       Str1  val .true
+
+== Construct a zero terminated char pointed string
+=NewZeroPtString    Str2      "a"
+=GetLength          Str2  pt  1
+=GetString          Str2  pt  "a"
+=VerifyString       Str2  pt  .true
+=DestroyString      Str2
+
+== Construct a zero terminated char value string
+=NewZeroValString   Str2      "a"
+=GetLength          Str2  val 1
+=GetString          Str2  val "a"
+=VerifyString       Str2  val .true
+
+== Construct zero length zero terminated pointed string
+=NewZeroPtString    Str3      ""
+=GetLength          Str3  pt  0
+=GetString          Str3  pt  ""
+=DestroyString      Str3
+
+== Construct zero length zero terminated value string
+=NewZeroValString   Str3      ""
+=GetLength          Str3  val 0
+=GetString          Str3  val ""
+
+== Construct a pointed string of a given length, base longer
+=Reset
+=AllocCompareBytes 1
+=NewCharPtString    Str4      "abcdefghijk"  5
+=GetLength          Str4  pt  5
+=GetString          Str4  pt  "abcde"
+=DestroyString      Str4
+
+== Construct a value string of a given length, base longer
+=Reset
+=AllocCompareBytes 1
+=NewCharValString   Str4      "1234567890"  5
+=GetLength          Str4  val 5
+=GetString          Str4  val "12345"
+
+== Construct a pointed string of a given length, base equal
+=Reset
+=AllocCompareBytes 1
+=NewCharPtString    Str4      "123456789\0"  10
+=GetLength          Str4  pt  10
+=GetString          Str4  pt  "123456789"  
+=DestroyString      Str4
+
+== Construct a value string of a given length, base equal
+=Reset
+=AllocCompareBytes 1
+=NewCharValString   Str4      "12345\0x"  7
+=GetLength          Str4  val 7
+=GetString          Str4  val "12345\0x"
+
+== Construct a pointed string of a given length, base shorter
+=Reset
+=AllocCompareBytes 1
+=NewCharPtString    Str4      "12345"  7
+=GetLength          Str4  pt  7
+=GetString          Str4  pt  "12345\0?" // ? is the buffer fill char
+
+== Construct a value string of a given length, base shorter
+=Reset
+=AllocCompareBytes 1
+=NewCharValString   Str4      "abcde"  8
+=GetLength          Str4  val 8
+=GetString          Str4  val "abcde\0??"
+
+== Construct a pointed string of a given length, containing char zero
+=Reset
+=AllocCompareBytes 1
+=NewCharPtString    Str1      "12345\0x67890"  12
+=GetLength          Str1  pt  12
+=GetString          Str1  pt  "12345\0x67890"
+
+== Construct a value string of a given length, containing char zero
+=Reset
+=AllocCompareBytes 1
+=NewCharValString   Str1      "12345\0x67890"  12
+=GetLength          Str1  val 12
+=GetString          Str1  val "12345\0x67890"
+
+== Construct a pointed string identified by means of an id
+=NewIdPtString      Str2      1
+=GetLength          Str2  pt  23
+=GetString          Str2  pt  "String id %1 not found."
+=DestroyString      Str2
+
+== Construct a value string identified by means of an id
+=Reset
+=AllocCompareBytes 1
+=NewIdValString     Str2      1
+=GetLength          Str2  val 23
+=GetString          Str2  val "String id %1 not found."
+
+== Construct a value string identified by means of a non existing id
+=Reset
+=AllocCompareBytes 1
+=NewIdValString     Str2      7
+=GetLength          Str2  val 28
+=GetString          Str2  val "Error undefined string id: 7"
+
+== Construct sample strings
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "A"
+=NewZeroPtString    Str2  "BC"
+
+=NewZeroValString   Str1  "mmm"
+=NewZeroValString   Str2  "nnnooo"
+
+== Clone a pointed string from a pointed string
+=NewPtPtString      Str3  Str1
+=GetLength          Str3  pt  1
+=GetString          Str3  pt  "A"
+
+== Clone a pointed string from a value string
+=NewPtValString     Str4  Str1
+=GetLength          Str4  pt  3
+=GetString          Str4  pt  "mmm"
+
+== Clone a value string from a pointed string
+=NewValPtString     Str3  Str2
+=GetLength          Str3  val 2
+=GetString          Str3  val "BC"
+
+== Clone a value string from a value string
+=NewValValString    Str4  Str2
+=GetLength          Str4  val 6
+=GetString          Str4  val "nnnooo"
+
+== Compare sample strings
+=GetString          Str1 pt  "A"
+=GetString          Str2 pt  "BC"
+=GetString          Str3 pt  "A"
+=GetString          Str4 pt  "mmm"
+
+=GetString          Str1 val "mmm"
+=GetString          Str2 val "nnnooo"
+=GetString          Str3 val "BC"
+=GetString          Str4 val "nnnooo"
+
+== Assign a value string to a value string
+=AssignValString    Str2  Str3
+=GetLength          Str2  val 2
+=GetString          Str2  val "BC"
+
+== Assign a pointed string to a value string
+=AssignValPtString  Str2  Str1
+=GetLength          Str2  val 1
+=GetString          Str2  val "A"
+=GetString          Str1  pt  "A"
+
+== Assign a zero string to a value string
+=AssignZeroString   Str2  "abcdef"
+=GetLength          Str2  val 6
+=GetString          Str2  val "abcdef"
+
+== Append a value string to a pointed string
+=AssignZeroString   Str1  "abcdefghi"
+=DestroyString      Str2
+=NewZeroPtString    Str2  "jklmn"
+=AppendValString    Str2  pt  Str1
+=GetLength          Str2  pt  14
+=GetString          Str2  pt  "jklmnabcdefghi"
+
+== Append a value string to a value string
+=AssignZeroString   Str1  "abcdefghi"
+=AssignZeroString   Str2  "jklmn"
+=AppendValString    Str2  val Str1
+=GetLength          Str2  val 14
+=GetString          Str2  val "jklmnabcdefghi"
+
+== Append a null value string to a null pointed string
+=AssignZeroString   Str1  ""
+=DestroyString      Str2
+=NewZeroPtString    Str2  ""
+=AppendValString    Str2  pt  Str1
+=GetLength          Str2  pt  0
+=GetString          Str2  pt  ""
+
+== Append a null value string to a null value string
+=AssignZeroString   Str3  ""
+=AssignZeroString   Str4  ""
+=AppendValString    Str4  val Str1
+=GetLength          Str4  val 0
+=GetString          Str4  val ""
+
+== Append an empty value string to a null pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str2  ""
+=AppendValString    Str2  pt  Str9
+=GetLength          Str2  pt  0
+=GetString          Str2  pt  ""
+
+== Append an empty value string to a null value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str2  ""
+=AppendValString    Str2  val Str9
+=GetLength          Str2  val 0
+=GetString          Str2  val ""
+
+== Append a pointed string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "1234567890"
+=NewZeroPtString    Str2  "jklmn"
+=AppendPtString     Str2  pt  Str1
+=GetLength          Str2  pt  15
+=GetString          Str2  pt  "jklmn1234567890"
+
+== Append a pointed string to a value string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "1234567890"
+=AssignZeroString   Str2  "abcde"
+=AppendPtString     Str2  val Str1
+=GetLength          Str2  val 15
+=GetString          Str2  val "abcde1234567890"
+
+== Append a NULL pointed string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str2  "123456"
+=AppendPtString     Str2  pt  Str9
+=GetLength          Str2  pt  6
+=GetString          Str2  pt  "123456"
+
+== Append a NULL pointed string to a value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str3  "abcde"
+=AppendPtString     Str3  val Str9
+=GetLength          Str3  val 5
+=GetString          Str3  val "abcde"
+
+== Append a zero string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "1234567890"
+=AppendZeroString   Str1  pt  "xpto"
+=GetLength          Str1  pt  14
+=GetString          Str1  pt  "1234567890xpto"
+
+== Append a zero string to a value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str2  "abcde"
+=AppendZeroString   Str2  val "xptu"
+=GetLength          Str2  val 9
+=GetString          Str2  val "abcdexptu"
+
+== Append a NULL zero string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str2  "1234"
+=AppendZeroString   Str2  pt  "."
+=GetLength          Str2  pt  4
+=GetString          Str2  pt  "1234"
+
+== Append a NULL zero string to a value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str1  "abcd"
+=AppendZeroString   Str1  val "."
+=GetLength          Str1  val 4
+=GetString          Str1  val "abcd"
+
+== Append a char string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str3  "1234567890"
+=AppendCharString   Str3  pt  "xp\0to"
+=GetLength          Str3  pt  15
+=GetString          Str3  pt  "1234567890xp\0to"
+
+== Append a char string to a value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str2  "abcde"
+=AppendCharString   Str2  val "xpt\0u"
+=GetLength          Str2  val 10
+=GetString          Str2  val "abcdexpt\0u"
+
+== Append a NULL char string to a pointed string
+=Reset
+=AllocCompareBytes 1
+=NewCharPtString    Str1  "12\0x4"  5
+=AppendCharString   Str1  pt  "."
+=GetLength          Str1  pt  5
+=GetString          Str1  pt  "12\0x4"   
+
+== Append a NULL char string to a value string
+=Reset
+=AllocCompareBytes 1
+=AssignZeroString   Str2  "abcd"
+=AppendCharString   Str2  val "."
+=GetLength          Str2  val 4
+=GetString          Str2  val "abcd"
+
+== Trim nothing in empty string
+=Reset
+=NewZeroPtString    Str1    ""
+=TrimString         Str1  6 ""  
+=VerifyString       Str1  1 .true
+
+== Trim nothing in short non empty string
+=Reset
+=NewZeroPtString    Str1    "a"
+=TrimString         Str1  6 "a"  
+=VerifyString       Str1  1 .true
+
+== Trim nothing in long non empty string
+=Reset
+=NewZeroPtString    Str1    "abcd"
+=TrimString         Str1  6 "abcd"  
+=VerifyString       Str1  1 .true
+
+== Trim beggining in blank string
+=Reset
+=NewZeroPtString    Str1    " \t \t "
+=TrimString         Str1  2 ""  
+=VerifyString       Str1  1 .true
+
+== Trim beginning in short non empty string
+=Reset
+=NewZeroPtString    Str1    "  a  "
+=TrimString         Str1  2 "a  "  
+=VerifyString       Str1  1 .true
+
+== Trim beginning in long non empty string
+=Reset
+=NewZeroPtString    Str1    " \t abcd \t"
+=TrimString         Str1  2 "abcd \t"  
+=VerifyString       Str1  1 .true
+
+== Trim beginning in strange string
+=Reset
+=NewZeroPtString    Str1    " \t       \t\t abcd \t"
+=TrimString         Str1  2 "abcd \t"  
+=VerifyString       Str1  1 .true
+
+== Trim trailing in blank string
+=Reset
+=NewZeroPtString    Str1    " \t \t "
+=TrimString         Str1  4 ""  
+=VerifyString       Str1  1 .true
+
+== Trim trailing in short non empty string
+=Reset
+=NewZeroPtString    Str1    "  a  "
+=TrimString         Str1  4 "  a"  
+=VerifyString       Str1  1 .true
+
+== Trim trailing in long non empty string
+=Reset
+=NewZeroPtString    Str1    " \t abcd \t"
+=TrimString         Str1  4 " \t abcd"  
+=VerifyString       Str1  1 .true
+
+== Trim trailing in strange string
+=Reset
+=NewZeroPtString    Str1    " \t       \t\t abcd \t"
+=TrimString         Str1  4 " \t       \t\t abcd"  
+=VerifyString       Str1  1 .true
+
+== Trim both in blank string
+=Reset
+=NewZeroPtString    Str1    " \t \t "
+=TrimString         Str1  6 ""  
+=VerifyString       Str1  1 .true
+
+== Trim both in short non empty string
+=Reset
+=NewZeroPtString    Str1     "  a  "
+=TrimString         Str1  6  "a"  
+=VerifyString       Str1  1 .true
+
+== Trim both in long non empty string
+=Reset
+=NewZeroPtString    Str1    " \t abcd \t"
+=TrimString         Str1  6 "abcd"  
+=VerifyString       Str1  1 .true
+
+== Trim both in strange string
+=Reset
+=NewZeroPtString    Str1    " \t       \t\t abcd \t"
+=TrimString         Str1  6 "abcd"  
+=VerifyString       Str1  1 .true
+
+== Trim using trim function
+=FuncTrimString     " \t \x01 \t \n"  6 "\x01"  
+
+== Trim both in strange string
+=FuncTrimString     " \t       \t\t ab \t cd \t \n \r \x1A   "  6 "ab \t cd"  
+
+== Compare string exactly equal
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "a·‡„‚"
+=AssignZeroString   Str2  "a·‡„‚"
+=CompareValString   Str1  Str2 .true   Equal
+=CompareValString   Str1  Str2 .false  Equal
+
+== Compare string equal but for one diacritic
+=AssignZeroString   Str2  "a·‡„a"
+=CompareValString   Str1  Str2 .true   Equal
+=CompareValString   Str1  Str2 .false  Greater
+
+== Compare string equal but for base longer
+=AssignZeroString   Str2  "a·‡„"
+=CompareValString   Str1  Str2 .true   Greater
+=CompareValString   Str1  Str2 .false  Greater
+
+== Compare string equal but for base longer
+=AssignZeroString   Str2  "a·‡„‚x"
+=CompareValString   Str1  Str2 .true   Less
+=CompareValString   Str1  Str2 .false  Less
+
+== Compare string exactly all lower case portuguese diacritics
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "a·‡„‚cÁeÈÍiÌoÛÙıu˙¸"  
+=CompareCharString  Str1  "a·‡„‚cÁeÈÍiÌoÛÙıu˙¸"  .true  Equal  
+=CompareCharString  Str1  "a·‡„‚cÁeÈÍiÌoÛÙıu˙¸"  .false Equal  
+=CompareCharString  Str1  "aaaaacceeeiioooouuu"  .true  Equal  
+=CompareCharString  Str1  "aaaaacceeeiioooouuu"  .false Greater
+=CompareCharString  Str1  "AAAAACCEEEIIOOOOUUU"  .true  Equal  
+=CompareCharString  Str1  "AAAAACCEEEIIOOOOUUU"  .false Greater
+
+== Compare diferences in equal size strings
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "ccccccccccccccccccccccccccccccccccccc" 
+=CompareCharString  Str1  "ccccccccccccccccccccccccccccccccccccc"  .false Equal   
+=CompareCharString  Str1  "bdddddddddddddddddddddddddddddddddddd"  .false Greater  
+=CompareCharString  Str1  "dbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"  .false Less  
+=CompareCharString  Str1  "ccccccccbdddddddddddddddddddddddddddd"  .false Greater   
+=CompareCharString  Str1  "ccccccccdbbbbbbbbbbbbbbbbbbbbbbbbbbbb"  .false Less   
+=CompareCharString  Str1  "ccccccccccccccccccccccccccccccccccccb"  .false Greater   
+=CompareCharString  Str1  "ccccccccccccccccccccccccccccccccccccd"  .false Less   
+
+== Compare diferences in different size strings
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "ccccccccccc" 
+=CompareCharString  Str1  "ccccccccccc"   .false Equal   
+=CompareCharString  Str1  "cccccccccc"    .false Greater   
+=CompareCharString  Str1  "bddddddddd"    .false Greater  
+=CompareCharString  Str1  "bddddddddddd"  .false Greater  
+=CompareCharString  Str1  "cccccccccb"    .false Greater  
+=CompareCharString  Str1  "ccccccccccbb"  .false Greater  
+=CompareCharString  Str1  "cccccccccccc"  .false Less   
+=CompareCharString  Str1  "dbbbbbbbbb"    .false Less  
+=CompareCharString  Str1  "dbbbbbbbbbbb"  .false Less  
+=CompareCharString  Str1  "cccccccccd"    .false Less  
+=CompareCharString  Str1  "ccccccccccdd"  .false Less  
+
+== Compare with null string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "" 
+=CompareCharString  Str1  ""   .false Equal   
+=CompareCharString  Str1  ""   .true  Equal   
+=CompareCharString  Str1  "\0" .false Less   
+=CompareCharString  Str1  "\0" .true  Less   
+=CompareCharString  Str1  " "  .false Less   
+=CompareCharString  Str1  " "  .true  Equal   
+=CompareCharString  Str1  "\x01" .false Less   
+=CompareCharString  Str1  "\x01" .true  Less   
+
+== Compare odd strings
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "\x01" 
+=CompareCharString  Str1  "\0"   .false Greater   
+=CompareCharString  Str1  "\x01" .false Equal   
+=CompareCharString  Str1  "\x02" .false Less   
+
+== Compare indifferent sequences of blank characters
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "  a b  c   d    e  " 
+=CompareCharString  Str1  "  a b  c   d    e  " .false Equal
+=CompareCharString  Str1  "  a b  c   d    e  " .true  Equal
+=CompareCharString  Str1  "a b c d e"           .true  Equal
+=CompareCharString  Str1  " a   b  c d e      " .true  Equal
+=CompareCharString  Str1  " a   b  c d e   f  " .true  Less
+=CompareCharString  Str1  "a bc d e"            .true  Less
+=CompareCharString  Str1  "       a         bc         d       e    "            .true  Less
+=CompareCharString  Str1  "a\nb\tc\x0Ad e"           .true  Equal
+
+== Compare control characters
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  " a b c d e " 
+=CompareCharString  Str1  " a b c d e "    .false Equal
+=CompareCharString  Str1  " a\nb c d e "   .false Greater
+=CompareCharString  Str1  " a b\tc d e "   .false Greater
+=CompareCharString  Str1  " a b c\x0Ad e " .false Greater
+=CompareCharString  Str1  " a\nb c d e "   .true  Equal
+=CompareCharString  Str1  " a b\tc d e "   .true  Equal
+=CompareCharString  Str1  " a b c\x0Ad e " .true  Equal
+=CompareCharString  Str1  " a b c d\x0D\x0Ae " .true  Equal
+=CompareCharString  Str1  "\x0Aa\x09b\x0Dc\x09d\x0Ae\x0D" .true  Equal
+
+== Extract substring tail after first
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  1 1000
+=GetString          Str1  pt "bcdefghijklmnopqrstuvwxyz" 
+
+== Extract substring tail after 10 th
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  10 1000
+=GetString          Str1  pt "klmnopqrstuvwxyz" 
+
+== Extract substring tail last char
+=Reset
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  25 1000
+=GetString          Str1  pt "z" 
+
+== Extract substring tail after the last char
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  26 1000
+=GetString          Str1  pt "" 
+
+== Extract substring before first char
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  -1 0
+=GetString          Str1  pt "" 
+
+== Extract substring first char
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  0 1
+=GetString          Str1  pt "a" 
+
+== Extract substring first 10 chars
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  0 10
+=GetString          Str1  pt "abcdefghij" 
+
+== Extract substring 10 starting on b
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  1 10
+=GetString          Str1  pt "bcdefghijk" 
+
+== Extract the whole string
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  0  26
+=GetString          Str1  pt "abcdefghijklmnopqrstuvwxyz" 
+
+== Extract the whole string again
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  -1  27
+=GetString          Str1  pt "abcdefghijklmnopqrstuvwxyz" 
+
+== Extract central part
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghijklmnopqrstuvwxyz" 
+=SubstringExtract   Str1  9  9
+=GetString          Str1  pt "jklmnopqr" 
+
+== Replace the first character
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  0  1  Str2  
+=GetString          Str1  pt "0bcdefghi" 
+
+== "Replace" the null string before the first character
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  0  0  Str2  
+=GetString          Str1  pt "0abcdefghi" 
+
+== "Replace" the null string after the first character
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  1  0  Str2  
+=GetString          Str1  pt "a0bcdefghi" 
+
+== "Replace" the null string before the last character
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  8  0  Str2  
+=GetString          Str1  pt "abcdefgh0i" 
+
+== "Replace" the null string after the last character
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  9  0  Str2  
+=GetString          Str1  pt "abcdefghi0" 
+
+== Replace the whole string 
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  0  9  Str2  
+=GetString          Str1  pt "0" 
+
+== Replace the whole string again
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "0" 
+=SubstringReplace   Str1  -1  10  Str2  
+=GetString          Str1  pt "0" 
+
+== Replace part at the beginning by a null string 
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "" 
+=SubstringReplace   Str1  0  2  Str2  
+=GetString          Str1  pt "cdefghi" 
+
+== Replace part after the first char at the beginning by a null string 
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "" 
+=SubstringReplace   Str1  1  2  Str2  
+=GetString          Str1  pt "adefghi" 
+
+== Replace part before the last char by a null string 
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "" 
+=SubstringReplace   Str1  6  2  Str2  
+=GetString          Str1  pt "abcdefi" 
+
+== Replace part at the last char by a null string 
+=Reset
+=AllocCompareBytes 1
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "" 
+=SubstringReplace   Str1  7  2  Str2  
+=GetString          Str1  pt "abcdefg" 
+
+== Replace the whole string by a null string
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "" 
+=SubstringReplace   Str1  0  9  Str2  
+=GetString          Str1  pt "" 
+
+== Replace part at the beginning by a longer string 
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "01234" 
+=SubstringReplace   Str1  0  2  Str2  
+=GetString          Str1  pt "01234cdefghi" 
+
+== Replace part after the first char at the beginning by a longer string 
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "01234" 
+=SubstringReplace   Str1  1  2  Str2  
+=GetString          Str1  pt "a01234defghi" 
+
+== Replace part before the last char by a longer string 
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "01234" 
+=SubstringReplace   Str1  6  2  Str2  
+=GetString          Str1  pt "abcdef01234i" 
+
+== Replace part at the last char by a longer string 
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "01234" 
+=SubstringReplace   Str1  7  2  Str2  
+=GetString          Str1  pt "abcdefg01234" 
+
+== Replace the whole string by a longer string
+=Reset
+=NewZeroPtString    Str1  "abcdefghi" 
+=NewZeroPtString    Str2  "01234" 
+=SubstringReplace   Str1  0  9  Str2  
+=GetString          Str1  pt "01234" 
+
+== Get string reference corresponding to an id
+=Reset
+=GetIdString        181  "Message id %19 not found"
+
+== Get string another reference corresponding to an id
+=Reset
+=GetIdString        181  "Message id %19 not found"
+=GetIdString          1  "String id %1 not found."
+=GetIdString          2  ""
+
+== Get string for an ilegal id id
+=GetIdString          0  "???"
+=Recover
+
+== Get string for an ilegal id id
+=GetIdString         10  "."
+
+== Compare global string
+=CompareGlobal      "abcDEF" "abcdef" .false Less
+=CompareGlobal      "abcDEF" "abcdef" .true  Equal
+
+== Stop counting
+=CounterStop
+=CounterVerifyZero   0
+
+== verify memory leak
+=Reset
+=AllocCompareBytes 1
+=AllocCompareNum   3

@@ -1,0 +1,16 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test basic functionality
+
+// Test script file with commands and no test case header, 4 errors
+
+// Start
+
+=StartTracing
+=Breakpoint
+=StopTracing
+
+//
+// ==========>>> Must display 4 errors
+//

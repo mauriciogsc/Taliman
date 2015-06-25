@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////
+//
+// Table of variable system configuration parameters   
+//
+// File:    Talisman.config
+//
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+//    Controller:             avs
+//    List of all authors
+//       avs - Arndt von Staa
+//
+////////////////////////////////////////////////////////////////////////////
+
+[Platform]
+   NumFrames            = 100
+   TemporarySegment     = temporary.tmp
+   EventLog             = talisman.log
+
+[FileExtensions]
+   Segment              = segment
+   Text                 =  xxxxxxxxxxxxxxxxxx new text  
+   EventLog             = tal.log
+
+// EOF : Table of variable system configuration parameters

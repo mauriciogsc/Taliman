@@ -1,0 +1,81 @@
+# Project:              Talisman
+# Owning organization:  LES/DI/PUC-Rio
+# Build: Static Talisman Test Library
+
+[Diretorios]
+
+Nome        =  TalismanTestLib
+
+PathDefault =  ..\sources
+err         =  ..\sources
+obj         =  ..\Obj
+ferram      =  ..\..\tools\programs
+cpp         =  ..\sources
+hpp         =  ..\sources
+inc         =  ..\tables;..\..\Global\Consts
+str         =  ..\tables
+table       =  ..\tables
+makeup      =  ..\tables
+
+[Modulos]
+str_bcd.str     g
+str_cfg.str     g
+str_cnt.str     g
+str_dis.str     g
+str_dsp.str     g
+str_env.str     g
+str_exc.str     g
+str_glb.str     g
+str_global.str  g
+str_log.str     g
+str_msg.str     g
+str_sio.str     g
+str_sls.str     g
+str_smt.str     g
+str_str.str     g
+str_tim.str     g
+str_tst.str     g
+str_ver.str     g
+
+string.makeup   g
+
+BCDArit
+Buffer
+ConfigFl
+Counters
+Disaster
+Dynspac
+Environ
+Exceptn
+Global
+GnrcTest
+Int_Cnt         
+Int_DSP
+Logger
+Message
+MsgBCD
+Msgbin
+Msgstr
+MsgTime
+RandGen
+ReadTest
+Simplist
+Sioctrl
+Sls_Elem
+SymbTab
+Time
+Tracer
+Verifier
+
+[Link]
+    del    ..\obj\talismantestlib.lib
+    del    ..\..\global\lib\talismantestlib.lib
+    cd $(Fobj)
+    LIB $(L) @$(NOME).build >> $(Ferr)\$(NOME).err
+    copy   ..\obj\TalismanTestLib.lib  ..\..\global\lib
+
+[BuildInicio]
+/OUT:TalismanTestLib.lib
+/MACHINE:IX86
+
+[Fim]

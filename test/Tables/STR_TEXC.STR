@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      TEXC Test module of: EXC  Talisman exception handling
+// 
+// Generated file:         TST_EXC.str
+// Identification letters: TEXC 
+// Identification number:  30140
+// 
+// Repository name:      Exception handling
+// Repository file name: Z:\TALISMAN\TEST\BSW\EXCEPTN.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  30140
+
+// Blocos programa: Test: EXC  Display exception
+
+  TEXC_TestHeader          1     m "**** Test header %0 *** follower ***"
+
+// Blocos programa: Test: EXC Usage exception constructor
+
+  TEXC_MessageTemplate     2     m  "+++ %0 +++"
+
+// Blocos programa: Test: EXCB Enforce exception constructor
+
+  TEXC_ExpressionTemplate  3     m "is: >%0<"
+
+// Blocos programa: Test: EXC  Log errors
+
+  EXC_LogMessage           4     m "Logging detail "
+
+// Blocos programa: Test: EXC  Throwing exceptions
+
+  TEXC_idExceptionTest     5     m "idType: %1  idGroup: %2  idHelp: %3"
+  TEXC_idMessage           6     m "--- Exception caught: %0"
+
+// Blocos programa: Test: throwing exception
+
+  TEXC_ThrownMessage       7     m "Thrown while testing"
+
+//** End of string file, module: TEXC Test module of: EXC  Talisman exception handling

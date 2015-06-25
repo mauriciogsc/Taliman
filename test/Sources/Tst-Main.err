@@ -1,0 +1,171 @@
+
+
+#################### Compilacao do construto: Tst-Main
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_bcd.str
+      Tabela de ids:      ..\tables\str_bcd.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_cnt.str
+      Tabela de ids:      ..\tables\str_cnt.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_dis.str
+      Tabela de ids:      ..\tables\str_dis.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_dsp.str
+      Tabela de ids:      ..\tables\str_dsp.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_env.str
+      Tabela de ids:      ..\tables\str_env.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_exc.str
+      Tabela de ids:      ..\tables\str_exc.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_glb.str
+      Tabela de ids:      ..\tables\str_glb.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_global.str
+      Tabela de ids:      ..\tables\str_global.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_log.str
+      Tabela de ids:      ..\tables\str_log.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_msg.str
+      Tabela de ids:      ..\tables\str_msg.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_sio.str
+      Tabela de ids:      ..\tables\str_sio.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_sls.str
+      Tabela de ids:      ..\tables\str_sls.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_smt.str
+      Tabela de ids:      ..\tables\str_smt.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_str.str
+      Tabela de ids:      ..\tables\str_str.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_tim.str
+      Tabela de ids:      ..\tables\str_tim.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_tst.str
+      Tabela de ids:      ..\tables\str_tst.inc
+
+
+TALISMAN tool: GeraDefS - Generate access key table for the memory resident string table
+     LES/DI/PUC-Rio, version 2.01, 11/dez/2014
+      Arquivo de strings: ..\tables\str_ver.str
+      Tabela de ids:      ..\tables\str_ver.inc
+
+
+TALISMAN tool: GeraTab - Generate memory resident string table
+     LES/DI/PUC-Rio, version 2.00, 20/11/2005
+
+  Arquivo string:  ..\tables\STR_GLOBAL.STR
+  Arquivo makeup inicial:  ..\tables\..\tables\string.makeup
+  Arquivo string:  ..\tables\STR_BCD.str
+  Arquivo string:  ..\tables\STR_CFG.str
+  Arquivo string:  ..\tables\STR_CNT.str
+  Arquivo string:  ..\tables\STR_DIS.str
+  Arquivo string:  ..\tables\STR_DSP.str
+  Arquivo string:  ..\tables\STR_ENV.str
+  Arquivo string:  ..\tables\STR_EXC.str
+  Arquivo string:  ..\tables\STR_GLB.str
+  Arquivo string:  ..\tables\STR_LOG.str
+  Arquivo string:  ..\tables\STR_MSG.str
+  Arquivo string:  ..\tables\STR_SIO.str
+  Arquivo string:  ..\tables\STR_SLS.str
+  Arquivo string:  ..\tables\STR_SMT.str
+  Arquivo string:  ..\tables\STR_STR.str
+  Arquivo string:  ..\tables\STR_TEXC.str
+  Arquivo string:  ..\tables\STR_TIM.str
+  Arquivo string:  ..\tables\STR_TMSG.str
+  Arquivo string:  ..\tables\STR_TST.str
+  Arquivo string:  ..\tables\STR_VER.str
+
+main.cpp
+gnrctest.cpp
+tst_tst.cpp
+bcdarit.cpp
+breakpnt.cpp
+counters.cpp
+disaster.cpp
+dynspac.cpp
+environ.cpp
+exceptn.cpp
+global.cpp
+int_cnt.cpp
+int_dsp.cpp
+logger.cpp
+message.cpp
+msgbin.cpp
+msgstr.cpp
+msgtime.cpp
+readtest.cpp
+simplist.cpp
+sioctrl.cpp
+sls_elem.cpp
+string.cpp
+symbtab.cpp
+time.cpp
+tracer.cpp
+verifier.cpp
+Microsoft (R) Incremental Linker Version 12.00.21005.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:Tst-Main.EXE 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+main.obj gnrctest.obj tst_tst.obj bcdarit.obj breakpnt.obj 
+counters.obj disaster.obj dynspac.obj environ.obj exceptn.obj 
+global.obj int_cnt.obj int_dsp.obj logger.obj message.obj 
+msgbin.obj msgstr.obj msgtime.obj readtest.obj simplist.obj 
+sioctrl.obj sls_elem.obj string.obj symbtab.obj time.obj 
+tracer.obj verifier.obj 

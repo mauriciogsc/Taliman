@@ -1,0 +1,59 @@
+// Script:    Tst-dsp-03.script
+// Author:    Arndt von Staa
+// Date:      07/set/2007
+// Purpose:   Test dynamic space control module
+
+== Preserve the number of allocated spaces
+=AllocSaveNum       1
+=AllocGetNum    0 
+
+== Preserve the number of allocated bytes
+=AllocSaveBytes     5
+=AllocGetBytes  0 
+
+== Create a space with
+=New     1   "abcdefgh"
+
+== Display number of spaces and allocated size
+=AllocGetNum     0
+=AllocGetBytes   0
+=AllocCompareNum     1  1
+=AllocCompareBytes   5  9
+
+== Delete the allocated space
+=Delete     1  
+
+== Verify if everything returned to the initial state
+=AllocCompareNum     1  
+=AllocCompareBytes   5  
+
+== Set a limit 
+=AllocSetBytesLimit  5 243
+=AllocGetNum     0
+=AllocGetBytes   0
+
+== Allocate 81 bites (0 string terminator counts!)
+=New     0  "01234567890123456789012345678901234567890123456789012345678901234567890123456789"
+=AllocGetNum     0
+=AllocGetBytes   0
+=AllocCompareNum     1   1
+=AllocCompareBytes   5  81
+
+== Allocate another 81 bytes total 162
+=New     1  "01234567890123456789012345678901234567890123456789012345678901234567890123456789"
+=AllocGetNum     0
+=AllocGetBytes   0
+=AllocCompareNum     1   2
+=AllocCompareBytes   5 162
+
+== Allocate one byte too much
+=New     2  "01234567890123456789012345678901234567890123456789012345678901234567890123456789x"
+// Should end in disaster and never get here. 
+// When logging, exact size does not work since strings are allocated by the logger
+=AllocGetNum     0
+=AllocGetBytes   0
+=AllocCompareNum     1   3
+=AllocCompareBytes   5 244
+
+// Should end in disaster and never reach this point
+

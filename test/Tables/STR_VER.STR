@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      VER Global verifier
+// 
+// Generated file:         VERIFIER.str
+// Identification letters: VER
+// Identification number:  0620
+// 
+// Repository name:      Global verifier
+// Repository file name: Z:\TALISMAN\TEST\BSW\VERIFIER.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  620
+
+// Blocos programa: Root of VER  !Display error string
+
+  VER_MessageError         1     m  ">>> ERROR:   %0"
+  VER_MessageFailure       2     m  ">>> FAILURE: %0"
+  VER_MessageWarning       3     m  "*** WARNING: %0"
+  VER_MessageInfo          4     m  "!!! INFO:    %0"
+  VER_MessageVerif         5     m  "--- VERIFY:  %0"
+  VER_MessageIllegal       6     m  ">>> ILLEGAL TYPE: %1 - %0"
+  VER_ShowHelp             7     m  "       See help %0 for details"
+
+// Blocos programa: Root of VER  !Verification start message
+
+  VER_MsgVerifBegin        8     m  "At %0 verification started. %1"
+
+// Blocos programa: Root of VER  !Verification section start
+
+  VER_MsgVerifSection      9     m  "Verify: %0."
+
+// Blocos programa: Root of VER  !Verification end message
+
+  VER_MsgVerifEnd          10    m  "At %0 verification ended. %1."
+  VER_MsgNoErrors          11    m  "No errors were found"
+  VER_MsgSomeErrors        12    m  "Errors were found"
+  VER_MsgNumErrors         13    m  "%2 errors found"
+
+//** End of string file, module: VER Global verifier

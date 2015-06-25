@@ -1,0 +1,77 @@
+// Script:    Tst-sls-02.script
+// Author:    Arndt von Staa
+// Date:      01/fev/2007
+// Purpose:   Test simple list
+
+== Reset all spaces
+=reset
+=AllocSaveNum    1
+=AllocSaveBytes  2
+
+== Build list with 8 elements using insert after
+=newlist       2
+=insertafter   2  "1"
+=insertafter   2  "22"
+=insertafter   2  "333"
+=insertafter   2  "4444"
+=insertafter   2  "55555"
+=insertafter   2  "666666"
+=insertafter   2  "7777777"
+=insertafter   2  "88888888"
+
+== Verify contents of the list
+=getelem       2  "88888888"
+=moveelem      2  -1  1
+=getelem       2  "7777777"
+=moveelem      2  -1  1
+=getelem       2  "666666"
+=moveelem      2  -1  1
+=getelem       2  "55555"
+=moveelem      2  -1  1
+=getelem       2  "4444"
+=moveelem      2  -1  1
+=getelem       2  "333"
+=moveelem      2  -1  1
+=getelem       2  "22"
+=moveelem      2  -1  1
+=getelem       2  "1"
+=moveelem      2  -1  0
+
+== Verify list structure
+=verify        2  1
+
+== Corrupt number of elements
+=corruptlist   2  1  3
+=verify        2  0
+
+== Corrupt last element pointer to NULL
+=corruptlist   2  3  0
+=verify        2  0
+
+== Corrupt last element pointer to sandbox
+=corruptlist   2  3  1
+=verify        2  0
+
+== Destroy the corrupted list 
+=destroylist   2  0
+
+== Build list with 6 elements using insert after
+=newlist       2
+=insertafter   2  "1"
+=insertafter   2  "22"
+=insertafter   2  "333"
+=insertafter   2  "4444"
+=insertafter   2  "55555"
+=insertafter   2  "666666"
+=AllocSetTerse    .t
+=AllocListSpaces  -1
+=verify        2  1
+
+== Corrupt last predecessor pointer
+=corruptlist   2  5  0
+=verify        2  0
+=destroylist   2  0
+
+== Verify leakage
+=AllocCompareNum    1
+=AllocCompareBytes  2

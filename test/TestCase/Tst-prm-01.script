@@ -1,0 +1,21 @@
+// Script:    Tst-prm-01.script
+// Author:    Arndt von Staa
+// Date:      18/dec/2007
+// Purpose:   Test parameter list file
+
+== Reset all spaces
+=Reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum     1
+
+== Test create a new parameter list
+=NewParamList     1
+
+== Test destroy an existing parameter list
+=DeleteParamList  1
+
+== Verify leakage
+=Reset
+=AllocCompareNum  1
+  

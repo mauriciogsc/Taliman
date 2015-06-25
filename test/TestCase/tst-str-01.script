@@ -1,0 +1,330 @@
+// Script:    Tst-str-01.script
+// Author:    Arndt von Staa
+// Date:      28/ago/2007
+// Purpose:   Test string, converison to printable
+
+== Declare constants
+=DeclareParameter  Str1  int  1
+=DeclareParameter  Str2  int  2
+=DeclareParameter  Str3  int  3
+=DeclareParameter  Str4  int  4
+=DeclareParameter  Str9  int  9
+
+=DeclareParameter  pt    int  1     // pointed to string
+=DeclareParameter  val   int  2     // value string
+
+=DeclareParameter  Less    int  0
+=DeclareParameter  Equal   int  1
+=DeclareParameter  Greater int  2
+
+=DeclareParameter  ErrorExc          int 3
+=DeclareParameter  FailureExc        int 4
+=DeclareParameter  AssertionExc      int 1
+=DeclareParameter  AssertionExcId    int 144
+
+== save the number of allocated data spaces
+=Reset
+=AllocSaveNum   3
+=AllocSaveBytes 1
+
+== Construct empty pointed string
+=NewEmptyPtString   Str1
+=GetLength          Str1  pt  0
+=GetString          Str1  pt  ""
+=VerifyString       Str1  pt .true
+
+== Convert to printable a normal string
+=DestroyString      Str1
+=ConvertPrintable   Str2      "abcde"  10 .true
+=GetString          Str2  pt  "abcde"  
+
+== Convert to printable a normal string truncating to 4 chars total size (including zero)
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcde"  4  .true
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a normal string
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"  11  .true
+=GetString          Str2  pt  "abcdefghi"  
+
+== Convert to printable a normal string exact size - terminating zero counts!
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"  10  .true
+=GetString          Str2  pt  "abcdefghi"  
+
+== Convert to printable a normal string one too short
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"   9  .true
+=GetString          Str2  pt  "abcde..."  
+
+== Convert to printable a string containing control characters 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde"  10  .true
+=GetString          Str2  pt  "a\\x01cde"  
+
+== Convert to printable a string containing control characters exact size
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde"  9  .true
+=GetString          Str2  pt  "a\\x01cde"  
+
+== Convert to printable a string containing 2 control characters  
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  20  .true
+=GetString          Str2  pt  "a\\x01cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, exact size  
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  13  .true
+=GetString          Str2  pt  "a\\x01cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate last by one
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  12  .true
+=GetString          Str2  pt  "a\\x01cde..."  
+
+== Convert to printable a string containing 2 control characters, truncate exactly last 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  9  .true
+=GetString          Str2  pt  "a\\x01..."  
+
+== Convert to printable a string containing 2 control characters, truncate last and previous
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  8  .true
+=GetString          Str2  pt  "a..."  
+
+== Convert a string to overall size 0
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcde"  0  .true
+=ExceptionProgram      AssertionExc  AssertionExcId  'c'
+
+== Convert a string to overall size 3
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcde"  3  .true
+=ExceptionProgram      AssertionExc  AssertionExcId  'c'
+
+== Convert an empty string to overall size 5
+=DestroyString      Str2
+=ConvertPrintable   Str2      ""  5  .true
+=GetString          Str2  pt  ""  
+
+== Convert an empty string to overall size 4
+=DestroyString      Str2
+=ConvertPrintable   Str2      ""  4  .true
+=GetString          Str2  pt  ""  
+
+== Convert an empty string to overall size 3
+=DestroyString      Str2
+=ConvertPrintable   Str2      ""  3  .true
+=ExceptionProgram      AssertionExc  AssertionExcId  'c'
+
+== Convert a nonprintable string to overall size 4
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\xbd"  4  .true
+=GetString          Str2  pt  "..."  
+
+== Convert a nonprintable string to overall size 5
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\xbd"  5  .true
+=GetString          Str2  pt  "\\xBD"  
+
+== Convert a mixed string 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\xbda\xbbb\xb9c\xb7d\XB0e"  40   .true
+=GetString          Str2  pt  "\\xBDa\\xBBb\\xB9c\\xB7d\\xB0e"  
+
+== Convert a mixed string 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "123\x42\xbda\xbbb\xb9c\xb7d\XB0e"  40  .true
+=GetString          Str2  pt  "123B\\xBDa\\xBBb\\xB9c\\xB7d\\xB0e"  
+
+== Convert a string of encoded printable chars
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\x419\x428\x437\x44\x455"  40  .true
+=GetString          Str2  pt  "A9B8C7DE5"  
+
+== Convert to printable a normal string
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcde"  10 .false
+=GetString          Str2  pt  "abcde"  
+
+== Convert to printable a normal string truncating to 4 chars total size (including zero)
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcde"  4  .false
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a normal string, buffer too large
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"  11  .false
+=GetString          Str2  pt  "abcdefghi"  
+
+== Convert to printable a normal string exact size - terminating zero counts!
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"  10  .false
+=GetString          Str2  pt  "abcdefghi"  
+
+== Convert to printable a normal string, buffer one too short
+=DestroyString      Str2
+=ConvertPrintable   Str2      "abcdefghi"   9  .false
+=GetString          Str2  pt  "...efghi"  
+
+== Convert to printable a string containing control characters one too long
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde"  10  .false
+=GetString          Str2  pt  "a\\x01cde"  
+
+== Convert to printable a string containing control characters exact size
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde"  9  .false
+=GetString          Str2  pt  "a\\x01cde"  
+
+== Convert to printable a string containing control characters one too short
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde"  8  .false
+=GetString          Str2  pt  "...cde"  
+
+== Convert to printable a string containing 2 control characters  
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  20  .false
+=GetString          Str2  pt  "a\\x01cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, exact size  
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  13  .false
+=GetString          Str2  pt  "a\\x01cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate first by one
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  12  .false
+=GetString          Str2  pt  "...cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate first 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  11  .false
+=GetString          Str2  pt  "...cde\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate exactly first 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  10  .false
+=GetString          Str2  pt  "...de\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate more than first 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"   9  .false
+=GetString          Str2  pt  "...e\\x81"  
+
+== Convert to printable a string containing 2 control characters, leave axatly last
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  8  .false
+=GetString          Str2  pt  "...\\x81"  
+
+== Convert to printable a string containing 2 control characters, truncate both
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  7  .false
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a string containing 2 control characters, truncate both
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  7  .false
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a string containing 2 control characters, truncate both
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  6  .false
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a string containing 2 control characters, truncate both
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  5  .false
+=GetString          Str2  pt  "..."  
+
+== Convert to printable a string containing 2 control characters, truncate both
+=DestroyString      Str2
+=ConvertPrintable   Str2      "a\x01cde\x81"  4  .false
+=GetString          Str2  pt  "..."  
+
+== Convert a nonprintable string to overall size 5
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\xbd"  5  .false
+=GetString          Str2  pt  "\\xBD"  
+
+== Convert a mixed string 
+=DestroyString      Str2
+=ConvertPrintable   Str2      "123\x42\xbda\xbbb\xb9c\xb7d\XB0e"  40  .false
+=GetString          Str2  pt  "123B\\xBDa\\xBBb\\xB9c\\xB7d\\xB0e"  
+
+== Convert a string of encoded printable chars
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\x419\x428\x437\x44\x455"  40  .false
+=GetString          Str2  pt  "A9B8C7DE5"  
+
+== Convert illegal encoded string
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\x4g\xh\X00"  40  .false //incorrect hexadecimal fills with starting 0
+=GetString          Str2  pt  "\\x04g\\x00h\\x00"  
+
+== Convert a string of encoded printable chars verify incorrectly
+=DestroyString      Str2
+=ConvertPrintable   Str2      "\x419\x428\x437\x44\x455"  40  .false
+=GetString          Str2  pt  "a9B8C7DE5"  
+=Recover
+
+== Verify if printable
+=VerifyPrintable    "abcdefghijklmnopqrstuvxyz·‡‚„‰Á«¿¡¬√"   .true
+=VerifyPrintable    "   a   "  .true
+=VerifyPrintable    "  \x00 "  .false
+=VerifyPrintable    "  \x0A "  .false
+=VerifyPrintable    "   \x0F"  .false
+=VerifyPrintable    "\x80 \xD1 \xFF"  .true
+=VerifyPrintable    "\x81"  .false
+=VerifyPrintable    "\x81"  .true
+=Recover
+
+== Convert to hexadecimal
+=ConvertHexa        "ABCJKL"  30 .true "\\x41\\x42\\x43\\x4A\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  14 .true "\\x41\\x42..."
+=ConvertHexa        "ABCJKL"  15 .true "\\x41\\x42..."
+=ConvertHexa        "ABCJKL"  16 .true "\\x41\\x42\\x43..."
+
+== Test truncate left ASCII
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   8 .false 
+=GetString          Str2  pt  "ABCJKL"  
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   7 .false 
+=GetString          Str2  pt  "ABCJKL"  
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   6 .false "...KL"
+=GetString          Str2  pt  "...KL"  
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   5 .false "...L"
+=GetString          Str2  pt  "...L"  
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   4 .false "..."
+=GetString          Str2  pt  "..."  
+=DestroyString      Str2
+=ConvertPrintable   Str2    "ABCJKL"   3 .false ".."
+=ExceptionProgram   AssertionExc 144 'c'
+
+== Test truncate left Hexadecimal
+=ConvertHexa        "ABCJKL"  17 .false "...\\x4A\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  16 .false "...\\x4A\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  15 .false "...\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  14 .false "...\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  13 .false "...\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  12 .false "...\\x4B\\x4C"
+=ConvertHexa        "ABCJKL"  11 .false "...\\x4C"
+=ConvertHexa        "ABCJKL"  10 .false "...\\x4C"
+=ConvertHexa        "ABCJKL"   9 .false "...\\x4C"
+=ConvertHexa        "ABCJKL"   8 .false "...\\x4C"
+=ConvertHexa        "ABCJKL"   7 .false "..."
+=ConvertHexa        "ABCJKL"   5 .false "..."
+=ConvertHexa        "ABCJKL"   4 .false "..."
+=ConvertHexa        "ABCJKL"   3 .false ".."
+=ExceptionProgram   AssertionExc 144 'c'
+
+== verify memory leak
+=DestroyString      Str2
+=Reset
+=AllocCompareBytes 1
+=AllocCompareNum   3

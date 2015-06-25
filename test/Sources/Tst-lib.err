@@ -1,0 +1,13 @@
+
+
+#################### Compilacao do construto: Tst-lib
+
+main.cpp
+Microsoft (R) Incremental Linker Version 12.00.21005.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:Tst-lib.EXE 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+main.obj breakpnt.obj string.obj tst_str.obj 
+..\..\Global\Lib\talismantestlib.lib 

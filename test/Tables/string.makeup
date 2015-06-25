@@ -1,0 +1,24 @@
+// List of message definition files used by the virtual machine
+// Project:              Talisman
+// Owning organization:  LES/DI/PUC-Rio
+// Last update 2011/dec/03
+
+#include  "STR_BCD.str"
+#include  "STR_CFG.str"
+#include  "STR_CNT.str"
+#include  "STR_DIS.str"
+#include  "STR_DSP.str"
+#include  "STR_ENV.str"
+#include  "STR_EXC.str"
+#include  "STR_GLB.str"
+#include  "STR_LOG.str"
+#include  "STR_MSG.str"
+#include  "STR_SIO.str"
+#include  "STR_SLS.str"
+#include  "STR_SMT.str"
+#include  "STR_STR.str"
+#include  "STR_TEXC.str"
+#include  "STR_TIM.str"
+#include  "STR_TMSG.str"
+#include  "STR_TST.str"
+#include  "STR_VER.str"

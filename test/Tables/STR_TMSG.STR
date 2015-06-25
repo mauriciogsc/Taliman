@@ -1,0 +1,35 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      TESTMSG - specific message tester
+// 
+// Generated file:         TESTMSG.str
+// Identification letters: TSTMSG
+// Identification number:  120
+// 
+// Repository name:      Message access, formatting and handling
+// Repository file name: C:\TALISMAN\VIRTMACH\BSW\MESSAGE.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  30180
+
+// Blocos programa: Handle create message object
+
+  TSTMSG_1_0Fields         1     m "Test 0 fields"
+  TSTMSG_2_1FieldBeg       2     m "%0Test 1 field beginning"
+  TSTMSG_3_1FieldMid       3     m "Test 1 field%0middle"
+  TSTMSG_4_1FieldEnd       4     m "Test 1 field end%0"
+  TSTMSG_5_2FieldsBeg      5     m "%0%13 Test 2 field beginning"
+  TSTMSG_6_2FieldsMid      6     m "Test 2 %0%13 field %0 middle"
+  TSTMSG_7_2FieldsEnd      7     m "Test 2 field end %0%13"
+  TSTMSG_8_3Fields         8     m "%0.Test 3 %13.4 field %1.."
+  TSTMSG_9_1Field          9     m "%0"
+  TSTMSG_Message          10     m "A string"
+
+//** End of string file, module: TESTMSG - specific message tester

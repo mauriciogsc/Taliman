@@ -1,0 +1,28 @@
+// Script:    Tst-sls-01.script
+// Author:    Arndt von Staa
+// Date:      29/mai/2014
+// Purpose:   Random symbol table test
+
+== Reset all spaces
+=reset
+
+== Preserve the number of allocated spaces
+=AllocSaveNum     1
+=AllocSaveBytes   1
+
+== Generate and test 
+=GenerateTest    .true
++Control         32  50   4  0
++Generate         5   1
++ActionDistrib   30  40  30 
++SizeDistrib     25   7 
++SizeDistrib     25  17
++SizeDistrib     25  21
++SizeDistrib     25  31
++ParameterListEnd
+
+== Verify leakage
+=reset
+=AllocCompareNum   1
+=AllocCompareBytes 1
+

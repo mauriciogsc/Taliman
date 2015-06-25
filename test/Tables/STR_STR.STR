@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      STR  String
+// 
+// Generated file:         String.str
+// Identification letters: STR
+// Identification number:  0240
+// 
+// Repository name:      String handler
+// Repository file name: Z:\TALISMAN\TEST\BSW\STRING.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  240
+
+// Blocos programa: Root of STR  !Construct an string object from a string contained in a table
+
+  STR_NoParameterBase      1     m "Parameter base does not exist"
+
+// Blocos programa: Retrieve string from parameter base
+
+  STR_DomainNotImplemented 2     m "Parameter base strings not implemented yet."
+
+// Blocos programa: Domain not found
+
+  STR_ErrorTableDomain     3     m "Unknown string table domain: %X"
+
+//** End of string file, module: STR  String

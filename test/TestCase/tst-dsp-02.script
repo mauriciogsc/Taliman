@@ -1,0 +1,95 @@
+// Script:    Tst-dsp-02.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test dynamic space control module
+
+== Preserve the number of allocated spaces
+=AllocSaveNum      1
+=AllocSaveBytes    3
+=AllocGetNum       0
+=AllocGetBytes     0
+
+== Set test tracing
+=AllocSetTrace     .t
+=AllocSetTerse     .f
+
+== Create a space with trace on
+=New               1   "abcdefgh"
+
+== Verify data content
+=VerifyData        1  "abcdefgh"
+
+== Verify incorrect data content
+=VerifyData        1  "abcdefghijk"
+=Recover
+
+== List this data space verbose mode (!terse)
+=DisplaySpace      1
+
+== Get number of spaces
+=AllocGetNum       -1
+
+== List all data spaces in verbose mode
+=AllocSetTrace     .f
+=AllocSetTerse     .f
+=AllocListSpaces   -1
+
+== Display a dataspace of a given id that exists Global
+=AllocListSpaces     43
+
+== Display a dataspace of a given id that does not exist 
+=AllocListSpaces     300
+
+== List only controled data spaces in terse mode
+=AllocSetTerse     .t
+=AllocListSpaces   -1
+
+== Verify pointer to space 1
+=VerifyPointer     1  1  .t
+
+== Destroy space 1
+=Delete            1
+
+== Allocate without tracing
+=AllocSetTrace     .f
+=AllocGetBytes     0
+=AllocSaveBytes    1
+=New               2   "xyz"
+=AllocCompareBytes 1  4
+
+== Verify all allocated spaces, the list is correct
+=AllocVerify       1     .t
+
+== Destroy the space
+=AllocSetTrace     .t
+=AllocSetTerse     .f
+=Delete            2
+=AllocCompareBytes 1 
+
+== Get spaces including log spaces
+=AllocSetTrace     .f
+=AllocSetTerse     .t
+=AllocGetNum       -1
+
+== Allocate space
+=AllocSetTrace     .t
+=New               1   "defgh"
+=New               2   "xyz"
+=New               3   "qwerty" 
+=AllocSetTrace     .f
+
+== Verify if some memory leaked - it did 
+=AllocCompareNum   1
+=Recover
+
+== Verify no leakage
+=Delete            2
+=Delete            1
+=Delete            3
+=AllocCompareNum   1
+=AllocCompareBytes 3
+
+== Reduce tracing
+=AllocSetTrace     .f
+=AllocSetTerse     .t
+

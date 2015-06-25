@@ -1,0 +1,65 @@
+// Script:    Tst-dsp-04.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test dynamic space control module
+
+== Preserve the number of allocated spaces
+=AllocSaveNum      1
+=AllocSaveBytes    3
+=AllocGetNum       0
+=AllocGetBytes     0
+
+== Set test tracing
+=AllocSetTrace     .t
+=AllocSetTerse     .f
+
+== Verify number of bytes
+=AllocGetNum       0
+=AllocGetBytes     0
+
+== Allocate space
+=AllocSetTrace     .t
+=New               1   "defgh"
+=New               2   "xyz"
+=New               3   "qwerty" 
+=New               4   ""
+=New               5   "1234567890"
+=New               6   "asdfgh"
+=New               7   "a"
+=New               8   "bcdef"
+=New               9   "ghi"
+=New              10   "jklmnop"
+=New              11   "qrst"
+=New              12   "uvwxyz"
+=New              13   "1234567890abcdefg"
+=AllocSetTrace     .f
+
+== Verify number of bytes
+=AllocGetNum       30                     // 17 base spaces + 13 allocated ones
+=AllocGetBytes     9602                   
+
+== Verify if some memory leaked - it did - 13 spaces leaked
+=AllocCompareNum   1
+=Recover
+
+== Verify leakage, 9 spaces remain leaking
+=Delete            2
+=Delete            5
+=Delete           11
+=Delete            7
+=AllocCompareNum   1
+=Recover
+
+== Verify remaining number of bytes
+=AllocGetNum       26                    // 17 base spaces + 9 remaining allocated spaces
+=AllocGetBytes     9580 
+
+
+== Force 9 leaking spaces at exit
+=AllocCompareNum   1
+=Recover
+=NoCleanDestruct   .true
+
+//
+// should fail with 1 error and a listing of the remaining data space
+// error is detected in  procedure main, after deleting the test and logger objects

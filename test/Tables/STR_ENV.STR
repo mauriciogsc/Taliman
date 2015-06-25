@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      ENV  Environment variable handler
+// 
+// Generated file:         Environ.str
+// Identification letters: ENV
+// Identification number:  392
+// 
+// Repository name:      Test framework support modules
+// Repository file name: Z:\TALISMAN\TEST\BSW\UTILIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  392
+
+// Blocos programa: Verify if the object is empty
+
+  ENV_ErrorNotEmpty        1     m  "Environment variable in use: %0"
+
+// Blocos programa: Internalize the environment variable name
+
+  ENV_ErrorTooBig          2     m "Environment variable is too big: %0"
+
+// Blocos programa: Internalize the environment variable string
+
+  ENV_ErrorNoVariable      3     m "Environment variable \"%0\" has not been set."
+
+//** End of string file, module: ENV  Environment variable handler

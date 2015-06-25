@@ -1,0 +1,297 @@
+// Test support framework test suite
+// Author: Arndt von Staa
+// Date:   14/ago/2007
+
+<Program>
+   ProgramName = tst-main
+   <TestScript>
+      TestScriptName = tst-main-01
+      ExpectedErrors = 1
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-02
+      ExpectedErrors = 4
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-03
+      ExpectedErrors = 1
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-04
+      ExpectedErrors = 2
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-05
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-06
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-07
+      ExpectedErrors = 4
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-08
+      ExpectedErrors = 4
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-09
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-10
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-main-12
+      ExpectedErrors = 1
+      ExpectedReturn = 4
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-exc 
+   <TestScript>
+      TestScriptName = tst-exc-01
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-02
+      ExpectedErrors = 4
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-03
+      ExpectedErrors = 5
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-04
+      ExpectedErrors = 5
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-05
+      ExpectedErrors = 5
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-06
+      ExpectedErrors = 6
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-07
+      ExpectedErrors = 5
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-exc-08
+      ExpectedErrors = 4
+      ExpectedReturn = 6
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-dis 
+   <TestScript>
+      TestScriptName = tst-dis-01
+      ExpectedErrors = 1
+      ExpectedReturn = 4
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-rdt 
+   <TestScript>
+      TestScriptName = tst-rdt-01
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-tim 
+   <TestScript>
+      TestScriptName = tst-tim-01
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-str 
+   <TestScript>
+      TestScriptName = tst-str-01
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-str-02
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-str-03
+   </TestScript>
+</Program>
+
+<Program>
+      ProgramName = tst-bcd 
+   <TestScript>
+      TestScriptName = tst-bcd-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-dsp
+// TST-DSP-01 can only be tested in _DEBUG mode
+   <TestScript>
+      TestScriptName = tst-dsp-01
+      ExpectedReturn = 6
+      NotWhenProduction
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-dsp-02 
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-dsp-03 
+      ExpectedReturn = 6
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-dsp-04 
+      ExpectedErrors = 4
+      ExpectedReturn = 4
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-sls
+   <TestScript>
+      TestScriptName = tst-sls-01 
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-sls-02
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-smt
+   <TestScript>
+      TestScriptName = tst-smt-01
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-smt-02
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-tsmt
+   <TestScript>
+      TestScriptName = tst-tsmt-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-rnd
+   <TestScript>
+      TestScriptName = tst-rnd-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-cnt
+   <TestScript>
+      TestScriptName = tst-cnt-01
+      ExpectedErrors = 6
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-cnt-01
+      Count
+      LogFile        = tst-cnt-01a
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-cnt-02
+      Count
+      ExpectedErrors = 11
+      ExpectedReturn = 4
+   </TestScript>
+   <TestScript>
+      TestScriptName = tst-cnt-02
+      LogFile        = tst-cnt-02a
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-sio
+   <TestScript>
+      TestScriptName = tst-sio-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-log
+   <TestScript>
+      TestScriptName = tst-log-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-msg
+   <TestScript>
+      TestScriptName = tst-msg-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-cfg
+   <TestScript>
+      TestScriptName = tst-cfg-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-env
+   <TestScript>
+      TestScriptName = tst-env-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-buf
+   <TestScript>
+      TestScriptName = tst-buf-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-ver
+   <TestScript>
+      TestScriptName = tst-ver-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = TalismanTestLib
+   <TestScript>
+      NotToBeTested
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-lib
+   <TestScript>
+      TestScriptName = tst-lib-01
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = TalismanTestDll
+   <TestScript>
+      NotToBeTested
+   </TestScript>
+</Program>
+
+<Program>
+   ProgramName = tst-dll
+   <TestScript>
+      TestScriptName = tst-dll-01
+   </TestScript>
+</Program>
+

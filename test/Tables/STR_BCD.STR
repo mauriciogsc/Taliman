@@ -1,0 +1,38 @@
+////////////////////////////////////////////////////////////////////////////
+// 
+// Strings of module:      BCD  Decimal arithmetic
+// 
+// Generated file:         BCDArit.str
+// Identification letters: BCD
+// Identification number:  0360
+// 
+// Repository name:      Decimal integer arithmetic
+// Repository file name: D:\TALISMAN\TEST\BSW\BCDARIT.BSW
+// 
+// Ownership
+//    Owning organization:    LES/DI/PUC-Rio
+//    Project:                Talisman
+// 
+////////////////////////////////////////////////////////////////////////////
+
+// !!!!! Generated file. Do not edit. !!!!!
+
+   <Offset>  360
+
+// Blocos programa: Root of BCD  &Convert int to BCD
+
+  BCD_ErrorOverflow        1     m "Overflow in BCD conversion"
+
+// Blocos programa: Decode the ASCII string
+
+  BCD_ErrorASCII           2     m "Attempt to convert an illegal ASCII number"
+
+// Blocos programa: Handle A size < B size
+
+  BCD_ErrorLossOfData      3     m "Loss of data while assigning a BCD number."
+
+// Blocos programa: Post process addition
+
+  BCD_ErrorAddOverflow     4     m "BCD overflow while adding"
+
+//** End of string file, module: BCD  Decimal arithmetic

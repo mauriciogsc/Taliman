@@ -1,0 +1,291 @@
+// Script:    Tst-rdt-01.script
+// Author:    Arndt von Staa
+// Date:      20/feb/2007
+// Purpose:   Test: test script file reader
+//
+
+== Declare all parameters
+=DeclareParameter  t bool .true
+=DeclareParameter  f bool .false
+=DeclareParameter  OK    int  0
+=DeclareParameter  Error int  1
+
+== Preserve the number of allocated spaces
+=reset
+=createsymboltable
+=AllocSaveNum   1
+
+== Test construct and destruct a reader with no test script file
+=newreader      0
+=newreader      1
+=destroyreader  1
+
+== Test opening inexistent file
+=openscriptfile  0 "tst-rdt-02.nofile"   Error
+
+== Test opening test script file
+=openscriptfile  0 "tst-rdt-02.tscript"  OK
+
+== Test get file name
+=getfilename 0 "tst-rdt-02.x"
+=Recover
+=getfilename 0 "tst-rdt-02.tscript"
+
+== Read the file
+=getnumlinesread  0   0
+
+== Read line >// Test file
+=readscriptline   0  12
+=getnumlinesread  0   1
+
+== Read line >               
+=readscriptline   0   0
+=getnumlinesread  0   2
+
+== Read line >== aaa               
+=readscriptline   0   6
+=getnumlinesread  0   3
+
+== Read line >=abc               
+=readscriptline   0   4
+=skipcommand      0   t
+=getnumlinesread  0   4
+
+== Read line >               
+=readscriptline   0   0
+=skipcommand      0   f
+=getnumlinesread  0   5
+
+== Read line >   =aa                   
+=readscriptline   0   5
+=skipcommand      0   t
+=getnumlinesread  0   6
+
+== Read line >//               
+=readscriptline   0   2
+=skipcommand      0   f
+=getnumlinesread  0   7
+
+== Read line > end of file
+=readscriptline   0  -1
+=getnumlinesread  0   7
+
+== Read line > end of file again
+=readscriptline   0  -1
+=getnumlinesread  0   7
+
+== Destroy reader in use with open file
+=destroyreader  0
+
+== Open test parameter file
+=newreader       0
+=openscriptfile  0 "tst-rdt-03.tscript"   OK
+
+== Read line >// Parameter test file
+=readscriptline   0  22
+=getnumlinesread  0   1
+
+== Read line >=cmd  name1 _name _               
+=readscriptline   0  19
+=getnumlinesread  0   2
+=skipcommand      0   t
+=readname         0   "name1"  10  t
+=readname         0   "_name"  10  t
+=readname         0   "_"       2  t
+
+== Read line >=cmd  'a' '\065' '\X41' '\o101'
+=readscriptline   0  31
+=getnumlinesread  0   3
+=skipcommand      0   t
+=readchar         0   'A'   t     'A'
+=readchar         0   'A'   t     '\065'
+=readchar         0   'A'   t     '\x41'
+=readchar         0   'A'   t     '\o101'
+
+== Read line >=xx yyy 'z'
+=readscriptline   0  11
+=getnumlinesread  0   4
+=skipcommand      0   t
+=readname         0   "yyy"  10  t
+=readchar         0   'z'   t    'z'
+
+== Read line >'
+=readscriptline   0   1
+=getnumlinesread  0   5
+=readchar         0   'z'   f 
+=Recover
+=FailureReset     1
+
+== Read line >'a b
+=readscriptline   0   4
+=getnumlinesread  0   6
+=readchar         0   'z'   f 
+=Recover
+=FailureReset     1
+
+== Read line >'\
+=readscriptline   0   2
+=getnumlinesread  0   7
+=readchar         0   'z'   f 
+=Recover
+=FailureReset     1
+
+== Read line >'\x
+=readscriptline   0   3
+=getnumlinesread  0   8
+=readchar         0   'z'   f 
+=Recover
+=FailureReset     2
+
+== Read line >'\41
+=readscriptline   0   4
+=getnumlinesread  0   9
+=readchar         0   'z'   f 
+=Recover
+=FailureReset     1
+
+== Read line >1  -0  -1234567890
+=readscriptline   0  18
+=getnumlinesread  0  10
+=readint          0   1   t
+=readint          0   0   t
+=readint          0   -1234567890   t
+
+== Read line >21.0  -31.0  41.0 51. 61 .1
+=readscriptline   0  27
+=getnumlinesread  0  11
+=readdouble       0   21.0           0.0001     t
+=readdouble       0   -30.9999999    0.000001   t
+=readdouble       0   41.001999      0.002      t
+=readdouble       0   51.0000000999  0.0000001  t
+=readdouble       0   61.00019       0.00018    t
+=Recover
+=readdouble       0   0.1            0.0        t
+
+== Read line >100  50  10
+=readscriptline   0  11
+=getnumlinesread  0  12
+=readreldouble       0   99.999      0.0001        t
+=readreldouble       0   50.001      0.002         t
+=readreldouble       0   10.0010001  0.0000999999  t
+=Recover
+
+== Read line >.true .t .false .f x
+=readscriptline   0  20
+=getnumlinesread  0  13
+=readbool         0   .true   t
+=readbool         0   .t      t
+=readbool         0   .false  t
+=readbool         0   .f      t
+
+== Read line >"a"  "a\65\""  ""  "abcdefghijklmnopqrstuvwxyz"
+=readscriptline   0  47
+=getnumlinesread  0  14
+=readstring       0   "a"     2   t
+=readstring       0   "aA\""  4   t
+=readstring       0   "."    10   t
+=readstring       0   "abcdefghijklmnopqrstuvwxyz" 30  t
+
+== Read line >=declareparm    astring  string  "a\65\""
+=readscriptline   0  41
+=getnumlinesread  0  15
+=declareparm      0   t
+
+== Read line >astring
+=readscriptline   0   7
+=getnumlinesread  0  16
+=readstring       0   "aA\""  4  t
+
+== Read line >=declareparm    aint     int   13
+=readscriptline   0  33
+=getnumlinesread  0  17
+=declareparm      0   t
+
+== Read line >aint
+=readscriptline   0   4
+=getnumlinesread  0  18
+=readint          0  13  t
+
+== Read line >=declareparm    adouble  double  13.25
+=readscriptline   0  38
+=getnumlinesread  0  19
+=declareparm      0   t
+
+== Read line >adouble
+=readscriptline   0   7
+=getnumlinesread  0  20
+=readdouble       0  13.25 0.0  t
+
+== Read line >=declareparm    abool    bool    .true
+=readscriptline   0  38
+=getnumlinesread  0  21
+=declareparm      0   t
+
+== Read line >abool
+=readscriptline   0   5
+=getnumlinesread  0  22
+=readbool         0   .t   t
+
+== Read line >=declareparm    achar    char    'x'
+=readscriptline   0  36
+=getnumlinesread  0  23
+=declareparm      0   t
+
+== Read line >achar
+=readscriptline   0   5
+=getnumlinesread  0  24
+=readchar         0  'x'    t
+
+== Read line >"abc  \0 cde"
+=readscriptline   0  13
+=getnumlinesread  0  25
+=readstring       0  "abc  \0 cde"  30  t
+
+== Read line >"abcdefghijklmnopqrstuvwxyz"
+=readscriptline   0  31
+=getnumlinesread  0  26
+=readstring       0  "abcdef"  7  f
+=Recover
+=FailureReset     1
+
+== Read line >   aint "abc" astring  achar abool adouble
+=readscriptline   0  42
+=getnumlinesread  0  27
+=readint          0  13  t
+=readstring       0  "abc"   4   t
+=readstring       0  "aA\""  4   t
+=readchar         0  'x'    t
+=readbool         0  .t     t
+=readdouble       0  13.25 0.0  t
+
+== Read line >=acmd    aint "abc" astring achar abool adouble
+=readscriptline   0  47
+=getnumlinesread  0  28
+=readcmdline      0
+
+== Read empty line 
+=readscriptline   0   0
+=getnumlinesread  0  29
+
+== Read line >=acmd    aint "abc" // comment
+=readscriptline   0  28
+=getnumlinesread  0  30
+=readargumentcomment 0
+
+== Read line >//
+=readscriptline   0   2
+=getnumlinesread  0  31
+
+== Destroy reader in use with open file
+=destroyreader  0
+
+
+== Alocate reader to test delete all at end
+=newreader       3
+=openscriptfile  3 "tst-rdt-03.tscript"  OK
+=newreader       4
+=openscriptfile  4 "tst-rdt-02.tscript"  OK
+
+== Destroy everything
+=reset
+// end

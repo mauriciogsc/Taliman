@@ -1,0 +1,1108 @@
+// Script:    Tst-bcd-01.script
+// Author:    Arndt von Staa
+// Date:      15/set/2007
+// Purpose:   Test bcd arithmetic
+
+== Define constants
+=DeclareParameter   less    int  0
+=DeclareParameter   equal   int  1
+=DeclareParameter   greater int  2
+
+=DeclareParameter  UsageExc          int 3
+=DeclareParameter  ProgramExc        int 5
+=DeclareParameter  AssertionExc      int 1
+=DeclareParameter  AssertionExcId    int 144
+
+== Save status of the dynamic memory
+=Reset
+=AllocSaveNum          0
+=AllocSaveBytes        0
+
+== Make number of 7 bytes length
+=ConvertIntToBCD         0  3  -49246
+=GetBCDNumber            0  "B49246"
+=BuildZero               4  6
+=Assign                  4  0 
+=GetBCDNumber            4  "E00000049246"
+
+== Test to string conversion
+=ToString                0  30 "BCD 3:-49246" 
+=ToString                4  30 "BCD 6:-49246" 
+=ToString                0  12 "BCD 3:-4***" 
+=ToString                0  13 "BCD 3:-49246" 
+=DisplayBCD              0 "abc"
+
+== Make number of 1 byte length
+=ConvertIntToBCD         1  1      -3
+=GetBCDNumber            1  "93"
+=BuildZero               5  1
+=Assign                  5  1 
+=GetBCDNumber            5  "93"
+
+== Add numbers of different size A >> B
+=Add                     4  5
+=GetBCDNumber            4  "E00000049249"
+
+== Add numbers of different size A > B
+=BuildZero               6  3
+=Assign                  6  0 
+=GetBCDNumber            6  "B49246"
+=GetBCDNumber            1  "93"
+=Add                     6  1
+=GetBCDNumber            6  "B49249"
+
+== Add numbers of different size A < B
+=Add                     0  1
+=GetBCDNumber            0  "B49249"
+
+== Add numbers of different size using build number
+=ConvertIntToBCD         0  3  -49246
+=BuildNumber             4  6  0
+=GetBCDNumber            4  "E00000049246"
+=ConvertIntToBCD         1  1      -3
+=BuildNumber             5  1  1
+=GetBCDNumber            5  "93"
+=Add                     0  1
+=GetBCDNumber            0  "B49249"
+
+== Add two numbers of length 6
+=ConvertASCIIToBCD       0  6  "-8072334"
+=ConvertASCIIToBCD       1  6  "1293834"
+=Add                     0  1
+=GetBCDNumber            0    "E00006778500"
+
+== Add two numbers of length 6
+=ConvertASCIIToBCD       0  6  "-8072377"
+=ConvertASCIIToBCD       1  6  "1293877"
+=Add                     0  1
+=GetBCDNumber            0    "E00006778500"
+
+== Add two numbers of length 6
+=ConvertASCIIToBCD       0  6  "-8071234"
+=ConvertASCIIToBCD       1  6   "1291234"
+=Add                     0  1
+=GetBCDNumber            0 "E00006780000"
+
+== Add numbers of different size
+=ConvertIntToBCD         0  4  -3785328
+=ConvertIntToBCD         1  5 108303031
+=Add                     0  1
+=ExceptionProgram        ProgramExc  363  'c'
+
+== Add numbers of different size
+=ConvertIntToBCD         0  4  -6428292
+=ConvertIntToBCD         1  6 -100420966
+=Add                     0  1
+=ExceptionProgram        ProgramExc  363  'c'
+
+
+==Create a zero number of size 1
+=BuildZero             3  1
+=GetBCDNumber          3  "103F"
+=GetNumberSize         3  1
+=VerifyNumber          3  .t
+
+==Create a zero number of size 2
+=BuildZero             3  2
+=GetBCDNumber          3  "20003F"
+=GetNumberSize         3  2
+=VerifyNumber          3  .t
+
+==Create a zero number of size 6
+=BuildZero             3  6
+=GetBCDNumber          3  "60000000000000"
+=GetNumberSize         3  6
+=VerifyNumber          3  .t
+
+== Convert 1 siz 1 to BCD, characters '?' (\x93) follow after the BCD number 
+=ConvertIntToBCD       0  1  1
+=GetBCDNumber          0  "113F3F"
+=GetNumberSize         0  1
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  1
+=ConvertBCDToASCII     0  "1"
+
+== Convert  0 siz 1 to BCD
+=ConvertIntToBCD       0  1  0
+=GetBCDNumber          0  "103f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  0
+=ConvertBCDToASCII     0  "0"
+
+== Convert -0 siz 1 to BCD
+=ConvertIntToBCD       0  1  -0
+=GetBCDNumber          0  "103f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  0
+=ConvertBCDToASCII     0  "0"
+
+== Convert 9 siz 1 to BCD
+=ConvertIntToBCD       0  1  9
+=GetBCDNumber          0  "193F3F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  9
+=ConvertBCDToASCII     0  "9"
+
+== Convert 10 siz 1 to BCD, should generate error exception
+=ConvertIntToBCD       0  1  10
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert -1 siz 1 to BCD
+=ConvertIntToBCD       0  1  -1
+=GetBCDNumber          0  "913f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -1
+=ConvertBCDToASCII     0  "-1"
+
+== Convert -7 siz 1 to BCD
+=ConvertIntToBCD       0  1  -9
+=GetBCDNumber          0  "993F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -9
+=ConvertBCDToASCII     0  "-9"
+
+== Convert  1 siz 2 to BCD
+=ConvertIntToBCD       0  2  1
+=GetBCDNumber          0  "20013F"
+=GetNumberSize         0  2
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  1
+=ConvertBCDToASCII     0  "1"
+
+== Convert -1 siz 2 to BCD
+=ConvertIntToBCD       0  2  -1
+=GetBCDNumber          0  "A0013F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -1
+=ConvertBCDToASCII     0  "-1"
+
+== Convert  999 siz 2 to BCD
+=ConvertIntToBCD       0  2  999
+=GetBCDNumber          0  "29993F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  999
+=ConvertBCDToASCII     0  "999"
+
+== Convert -999 siz 2 to BCD
+=ConvertIntToBCD       0  2  -999
+=GetBCDNumber          0  "A9993F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -999
+=ConvertBCDToASCII     0  "-999"
+
+== Convert  1 siz 2 to BCD
+=ConvertIntToBCD       0  2   1
+=GetBCDNumber          0  "20013f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  1
+=ConvertBCDToASCII     0  "1"
+
+== Convert -1 siz 2 to BCD
+=ConvertIntToBCD       0  2  -1
+=GetBCDNumber          0  "A0013f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -1
+=ConvertBCDToASCII     0  "-1"
+
+== Convert  99999 siz 3 to BCD
+=ConvertIntToBCD       0  3  99999
+=GetBCDNumber          0  "3999993F"
+=GetNumberSize         0  3
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  99999
+=ConvertBCDToASCII     0  "99999"
+
+== Convert -99999 siz 3 to BCD
+=ConvertIntToBCD       0  3  -99999
+=GetBCDNumber          0  "B999993F"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -99999
+=ConvertBCDToASCII     0  "-99999"
+
+== Convert  1 siz 3 to BCD
+=ConvertIntToBCD       0  3   1
+=GetBCDNumber          0  "3000013f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  1
+=ConvertBCDToASCII     0  "1"
+
+== Convert  0 siz 3 to BCD
+=ConvertIntToBCD       0  3   0
+=GetBCDNumber          0  "3000003f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  0
+=ConvertBCDToASCII     0  "0"
+
+== Convert -1 siz 3 to BCD
+=ConvertIntToBCD       0  3  -1
+=GetBCDNumber          0  "B000013f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -1
+=ConvertBCDToASCII     0  "-1"
+
+== Convert  0 siz 3 to BCD
+=ConvertIntToBCD       0  3  0
+=GetBCDNumber          0  "3000003f"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  0
+=ConvertBCDToASCII     0  "0"
+
+== Convert  max int siz 6 to BCD, test function places a zero at the end
+=ConvertIntToBCD       0  6  2140000000
+=GetBCDNumber          0  "60214748364700"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  2147483647
+=ConvertBCDToASCII     0  "2147483647"
+
+== Convert  min int siz 6 to BCD, test function places a zero at the end
+=ConvertIntToBCD       0  6  -2140000000
+=GetBCDNumber          0  "E0214748364700"
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  -2147483647
+=ConvertBCDToASCII     0  "-2147483647"
+
+== Convert  0 siz 6 to BCD
+=ConvertIntToBCD       0  6  0
+=GetBCDNumber          0  "60000000000000"
+=GetNumberSize         0  6
+=VerifyNumber          0  .t
+=ConvertBCDToInt       0  0
+=ConvertBCDToASCII     0  "0"
+
+== Convert  max int siz 5 to BCD, test function places a zero at the end
+=ConvertIntToBCD       1  5  2140000000
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 0 to BCD size 1
+=ConvertASCIIToBCD     1  1  "0"
+=GetBCDNumber          1  "103f"
+=VerifyNumber          1  .t
+
+== Convert ascii number -0 to BCD size 1
+=ConvertASCIIToBCD     1  1  "-0"
+=GetBCDNumber          1  "103f"
+=VerifyNumber          1  .t
+
+== Convert ascii number 1 to BCD size 1
+=ConvertASCIIToBCD     1  1  "1"
+=GetBCDNumber          1  "113f"
+=VerifyNumber          1  .t
+
+== Convert ascii number 9 to BCD size 1
+=ConvertASCIIToBCD     1  1  "9"
+=GetBCDNumber          1  "193f"
+=VerifyNumber          1  .t
+
+== Convert ascii number 09 to BCD size 1
+=ConvertASCIIToBCD     1  1  "09"
+=GetBCDNumber          1  "193f"
+=VerifyNumber          1  .t
+
+== Convert ascii number 009 to BCD size 1
+=ConvertASCIIToBCD     1  1  "009"
+=GetBCDNumber          1  "193f"
+=VerifyNumber          1  .t
+
+== Convert ascii number +009 to BCD size 1
+=ConvertASCIIToBCD     1  1  "+009"
+=GetBCDNumber          1  "193f"
+=VerifyNumber          1  .t
+
+
+== Convert ascii number 0110 to BCD size 1
+=ConvertASCIIToBCD     1  1  "0110"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 010 to BCD size 1
+=ConvertASCIIToBCD     1  1  "010"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 10 to BCD size 1
+=ConvertASCIIToBCD     1  1  "10"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 10 to BCD size 1
+=ConvertASCIIToBCD     1  1  "10"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 9 to BCD size 1
+=ConvertASCIIToBCD     1  1  " -+-+9"
+=GetBCDNumber          1  "193f"
+=VerifyNumber          1  .t
+
+== Convert ascii number -9 to BCD size 1
+=ConvertASCIIToBCD     1  1  " ---+9"
+=GetBCDNumber          1  "993f"
+=VerifyNumber          1  .t
+
+== Convert ascii number 99999999999 to BCD size 6
+=ConvertASCIIToBCD     1  6  "99999999999"
+=GetBCDNumber          1     "69999999999900"
+=VerifyNumber          1  .t
+=ConvertBCDToASCII     1  "99999999999"
+=ConvertBCDToInt       1  0
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Verify conversion overflow 
+=ConvertBCDToASCII     1  "9999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+=ConvertBCDToASCII     1  "999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number -99999999999 to BCD size 6
+=ConvertASCIIToBCD     1  6  "  -99999999999"
+=GetBCDNumber          1     "E9999999999900"
+=VerifyNumber          1  .t
+=ConvertBCDToASCII     1  "-99999999999"
+=ConvertBCDToInt       1  0
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Verify conversion overflow 
+=ConvertBCDToASCII     1  "-9999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+=ConvertBCDToASCII     1  "-999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number 99999999999 to BCD size 5 - overflow exception
+=ConvertASCIIToBCD     1  5  "9999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert ascii number -19999999999 to BCD size 5 - overflow exception
+=ConvertASCIIToBCD     1  5  "  -1999999999"
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Convert incorrect ascii number to BCD size 6
+=ConvertASCIIToBCD     1  6  "  7999999 "
+=ExceptionProgram      ProgramExc  362  'c'
+
+== Convert incorrect ascii number to BCD size 6
+=ConvertASCIIToBCD     1  6  "  7999 999"
+=ExceptionProgram      ProgramExc  362  'c'
+
+== Convert incorrect ascii number to BCD size 6
+=ConvertASCIIToBCD     1  6  "  7+999999"
+=ExceptionProgram      ProgramExc  362  'c'
+
+== Convert incorrect ascii number to BCD size 6
+=ConvertASCIIToBCD     1  6  "  &999999"
+=ExceptionProgram      ProgramExc  362  'c'
+
+== Convert ascii number 999999999 to BCD size 5 blanks between signal
+=ConvertASCIIToBCD     1  5  "+ 999999999"
+=GetBCDNumber          1     "59999999993f"
+=VerifyNumber          1  .t
+
+== Convert ascii number -999999999 to BCD size 5 blanks between signal
+=ConvertASCIIToBCD     1  5  "- -  - 999999999"
+=GetBCDNumber          1     "D9999999993f"
+=VerifyNumber          1  .t
+
+== Set 6 byte number to zero
+=ConvertASCIIToBCD     1  6  "  -99999999999"
+=GetBCDNumber          1     "E9999999999900"
+=SetZero               1     "60000000000000"
+=ConvertASCIIToBCD     1  6  "   99999999999"
+=GetBCDNumber          1     "69999999999900"
+=SetZero               1     "60000000000000"
+
+== Set 2 byte number to zero
+=ConvertASCIIToBCD     1  2  "  -123"
+=GetBCDNumber          1     "A1233f"
+=SetZero               1     "20003f"
+=ConvertASCIIToBCD     1  2  "   123"
+=GetBCDNumber          1     "21233f"
+=SetZero               1     "20003f"
+
+== Set 1 byte number to zero
+=ConvertASCIIToBCD     1  1  "  -9"
+=GetBCDNumber          1     "993f"
+=SetZero               1     "103f"
+=ConvertASCIIToBCD     1  1  "   9"
+=GetBCDNumber          1     "193f"
+=SetZero               1     "103f"
+
+== Assign 1 byte number to another
+=ConvertIntToBCD       0  1  1
+=GetBCDNumber          0  "113F"
+=ConvertIntToBCD       2  1  5
+=GetBCDNumber          2  "153F"
+=Assign                0  2
+=GetBCDNumber          0  "153F"
+
+== Assign 2 byte number to another
+=ConvertIntToBCD       0  2  111
+=GetBCDNumber          0  "21113F"
+=ConvertIntToBCD       2  2  -555
+=GetBCDNumber          2  "A5553F"
+=Assign                0  2
+=GetBCDNumber          2  "A5553F"
+
+== Assign 6 byte number to another
+=ConvertIntToBCD       0  6  11111111
+=GetBCDNumber          0  "60001111111100"
+=ConvertIntToBCD       2  6  55555555
+=GetBCDNumber          2  "60005555555500"
+=Assign                0  2
+=GetBCDNumber          2  "60005555555500"
+
+== Assign a 1 byte number to a 2 byte one
+=ConvertIntToBCD       0  2  111
+=GetBCDNumber          0  "21113F"
+=ConvertIntToBCD       2  1  5
+=GetBCDNumber          2  "153F"
+=Assign                0  2
+=GetBCDNumber          0  "20053F"
+
+== Assign a 1 byte number to a 6 byte one
+=ConvertIntToBCD       0  6  55555555
+=GetBCDNumber          0  "60005555555500"
+=ConvertIntToBCD       2  1  -7
+=GetBCDNumber          2  "973F"
+=Assign                0  2
+=GetBCDNumber          0  "E0000000000700"
+
+== Assign a 2 byte number to a 3 byte one
+=ConvertIntToBCD       0  3  11111
+=GetBCDNumber          0  "3111113F"
+=ConvertIntToBCD       2  2  555
+=GetBCDNumber          2  "25553F"
+=Assign                0  2
+=GetBCDNumber          0  "3005553F"
+
+== Assign a 2 byte number to a 5 byte one
+=ConvertIntToBCD       0  5  55555555
+=GetBCDNumber          0  "50555555553F"
+=ConvertIntToBCD       2  2  -555
+=GetBCDNumber          2  "A5553F"
+=Assign                0  2
+=GetBCDNumber          0  "D0000005553F"
+
+== Assign a 6 byte number to a 2 byte one without loss
+=ConvertIntToBCD       0  6  -123
+=GetBCDNumber          0  "E0000000012300"
+=ConvertIntToBCD       2  2  0
+=GetBCDNumber          2  "20003F"
+=Assign                2  0  
+=GetBCDNumber          2  "A1233F"
+
+== Assign a 6 byte number to a 2 byte one legal
+=ConvertIntToBCD       0  6  -999
+=GetBCDNumber          0  "E0000000099900"
+=ConvertIntToBCD       2  2  0
+=GetBCDNumber          2  "20003F"
+=Assign                2  0  
+=GetBCDNumber          2  "A9993F"
+
+== Assign a 6 byte number to a 2 byte one with loss
+=ConvertIntToBCD       0  6  -1000
+=GetBCDNumber          0  "E0000000100000"
+=ConvertIntToBCD       2  2  0
+=GetBCDNumber          2  "20003F"
+=Assign                2  0  
+=ExceptionProgram      ProgramExc  363  'c'
+
+== Assign a 6 byte number to a 2 byte one with loss
+=ConvertASCIIToBCD     0  6  "  -1999"
+=GetBCDNumber          0  "E0000000199900"
+=ConvertIntToBCD       2  2  0
+=GetBCDNumber          2  "20003F"
+=Assign                2  0  
+=ExceptionProgram      ProgramExc  363  'c'
+
+== Assign a 6 byte number to a 2 byte one with loss
+=ConvertASCIIToBCD     0  6  "10000000009"
+=GetBCDNumber          0  "61000000000900"
+=ConvertIntToBCD       2  2  0
+=GetBCDNumber          2  "20003F"
+=Assign                2  0  
+=ExceptionProgram      ProgramExc  363  'c'
+
+== Assign an integer to a 1 byte BCD number
+=ConvertIntToBCD       0  1  1
+=GetBCDNumber          0  "113F"
+=AssignInt             0  7
+=GetBCDNumber          0  "173F"
+
+== Assign the largest int number to a 1 byte BCD number
+=AssignInt             0  9
+=GetBCDNumber          0  "193F"
+
+== Assign zero int number to a 1 byte BCD number
+=AssignInt             0  0
+=GetBCDNumber          0  "103F"
+
+== Assign minus zero int number to a 1 byte BCD number
+=AssignInt             0  -0
+=GetBCDNumber          0  "103F"
+
+== Assign the largest negative int number to a 1 byte BCD number
+=AssignInt             0  -9
+=GetBCDNumber          0  "993F"
+
+== Assign a larger int number to a 1 byte number
+=AssignInt             0  10
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Assign the largest negative int number to a 2 byte BCD number
+=ConvertIntToBCD       0  2  111
+=GetBCDNumber          0  "21113F"
+=AssignInt             0  -999
+=GetBCDNumber          0  "A9993F"
+
+== Assign a too large negative int number to a 2 byte BCD number
+=AssignInt             0  -1000
+=ExceptionProgram      ProgramExc  361  'c'
+
+== Assign an int number to a 6 byte BCD number
+=ConvertIntToBCD       0  6   11111111
+=GetBCDNumber          0  "60001111111100"
+=AssignInt             0  0
+=GetBCDNumber          0  "60000000000000"
+
+== Assign an int number to a 6 byte BCD number
+=AssignInt             0  -0
+=GetBCDNumber          0  "60000000000000"
+
+== Assign an int number to a 6 byte BCD number
+=AssignInt             0  1
+=GetBCDNumber          0  "60000000000100"
+
+== Assign an int number to a 6 byte BCD number
+=AssignInt             0  -1
+=GetBCDNumber          0  "E0000000000100"
+
+== Assign an int number to a 6 byte BCD number
+=AssignInt             0  1234567890
+=GetBCDNumber          0  "60123456789000"
+
+== Assign an int number to a 6 byte BCD number
+=AssignInt             0  -1234567890
+=GetBCDNumber          0  "E0123456789000"
+
+== Compare numbers 1 byte long equal
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  1  1
+=Compare               0  1  equal 
+
+== Compare numbers 1 byte long less
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  1  2
+=Compare               0  1  less 
+
+== Compare numbers 1 byte long greater
+=ConvertIntToBCD       0  1  2
+=ConvertIntToBCD       1  1  1
+=Compare               0  1  greater 
+
+== Compare numbers 2 bytes long equal
+=ConvertIntToBCD       0  2  1
+=ConvertIntToBCD       1  2  1
+=Compare               0  1  equal 
+
+== Compare numbers 2 bytes long equal
+=ConvertIntToBCD       0  2  12
+=ConvertIntToBCD       1  2  12
+=Compare               0  1  equal 
+
+== Compare numbers 2 bytes long equal
+=ConvertIntToBCD       0  2  123
+=ConvertIntToBCD       1  2  123
+=Compare               0  1  equal 
+
+== Compare numbers 2 bytes long less
+=ConvertIntToBCD       0  2  1
+=ConvertIntToBCD       1  2  2
+=Compare               0  1  less 
+
+== Compare numbers 2 bytes long less
+=ConvertIntToBCD       0  2  12
+=ConvertIntToBCD       1  2  13
+=Compare               0  1  less 
+
+== Compare numbers 2 bytes long less
+=ConvertIntToBCD       0  2  123
+=ConvertIntToBCD       1  2  124
+=Compare               0  1  less 
+
+== Compare numbers 2 bytes long less
+=ConvertIntToBCD       0  2  123
+=ConvertIntToBCD       1  2  133
+=Compare               0  1  less 
+
+== Compare numbers 2 bytes long less
+=ConvertIntToBCD       0  2  123
+=ConvertIntToBCD       1  2  223
+=Compare               0  1  less 
+
+== Compare numbers 2 bytes long greater
+=ConvertIntToBCD       0  2  2
+=ConvertIntToBCD       1  2  1
+=Compare               0  1  greater 
+
+== Compare numbers 2 bytes long greater
+=ConvertIntToBCD       0  2  22
+=ConvertIntToBCD       1  2  12
+=Compare               0  1  greater 
+
+== Compare numbers 2 bytes long greater
+=ConvertIntToBCD       0  2  133
+=ConvertIntToBCD       1  2  123
+=Compare               0  1  greater 
+
+== Compare numbers 2 bytes long greater
+=ConvertIntToBCD       0  2  223
+=ConvertIntToBCD       1  2  123
+=Compare               0  1  greater 
+
+== Compare numbers 6 bytes long equal
+=ConvertASCIIToBCD     0  6  "71234567890"
+=ConvertASCIIToBCD     1  6  "71234567890"
+=Compare               0  1  equal 
+
+== Compare numbers 6 bytes long equal
+=ConvertASCIIToBCD     0  6  "-71234567890"
+=ConvertASCIIToBCD     1  6  "-71234567890"
+=Compare               0  1  equal 
+
+== Compare numbers 6 bytes long less
+=ConvertASCIIToBCD     0  6  "71234567890"
+=ConvertASCIIToBCD     1  6  "71234567891"
+=Compare               0  1  less 
+
+== Compare numbers 6 bytes long greater negative body
+=ConvertASCIIToBCD     0  6  "-71234567890"
+=ConvertASCIIToBCD     1  6  "-71234567990"
+=Compare               0  1  greater 
+
+== Compare numbers 6 bytes long less
+=ConvertASCIIToBCD     0  6  "71234567890"
+=ConvertASCIIToBCD     1  6  "72234567890"
+=Compare               0  1  less 
+ 
+== Compare numbers 6 bytes long greater negative first
+=ConvertASCIIToBCD     0  6  "-61234567890"
+=ConvertASCIIToBCD     1  6  "-71234567890"
+=Compare               0  1  greater 
+
+== Compare numbers  1 and 2 bytes long equal
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  1
+=Compare               0  1  equal 
+
+== Compare numbers  1 and 2 bytes long equal
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  1
+=Compare               0  1  equal 
+
+== Compare numbers  1 and 2 bytes long less by digit
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  2
+=Compare               0  1  less 
+
+== Compare numbers  1 and 2 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  10
+=Compare               0  1  less 
+
+== Compare numbers  1 and 2 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  100
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by digit
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  2
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000000000
+=Compare               0  1  less 
+== Compare numbers  1 and 2 bytes long less by digit
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  2
+=Compare               0  1  less 
+
+== Compare numbers  1 and 2 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  10
+=Compare               0  1  less 
+
+== Compare numbers  1 and 2 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  2  100
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by digit
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  2
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000000000
+=Compare               1  0  greater 
+
+== Compare numbers  1 and 6 bytes long less by digit
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  2
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  100000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  1000000
+=Compare               0  1  less 
+
+== Compare numbers  1 and 6 bytes long less by size
+=ConvertIntToBCD       0  1  1
+=ConvertIntToBCD       1  6  10000000000
+=Compare               0  1  less 
+
+== Compare numbers  2 and 3 bytes long less by digit
+=ConvertIntToBCD       0  2  1
+=ConvertIntToBCD       1  3  2
+=Compare               0  1  less 
+
+== Compare numbers  2 and 3 bytes long less by size
+=ConvertIntToBCD       0  2  1
+=ConvertIntToBCD       1  3  10
+=Compare               0  1  less 
+
+== Compare numbers  2 and 3 bytes long less by digit
+=ConvertIntToBCD       0  2  100
+=ConvertIntToBCD       1  3  101
+=Compare               0  1  less 
+
+== Compare numbers  3 and 6 bytes long equal
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  1
+=Compare               1  0  equal 
+
+== Compare numbers  3 and 6 bytes long less by digit
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  2
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  10
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  100
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  1000
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  10000
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  10000
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  100000
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  1000000
+=Compare               1  0  greater 
+
+== Compare numbers  3 and 6 bytes long less by size
+=ConvertIntToBCD       0  3  1
+=ConvertIntToBCD       1  6  10000000000
+=Compare               1  0  greater 
+
+== Add two numbers of length 1   5 + 4 => 9
+=ConvertIntToBCD       0  1  5
+=ConvertIntToBCD       1  1  4
+=Add                   0  1
+=GetBCDNumber          0  "193F"
+
+== Add two numbers of length 1  -3 + 4 => 1
+=ConvertIntToBCD       0  1 -3
+=ConvertIntToBCD       1  1  4
+=Add                   0  1
+=GetBCDNumber          0  "113F"
+
+== Add two numbers of length 1   3 + -4 => -1
+=ConvertIntToBCD       0  1  3
+=ConvertIntToBCD       1  1 -4
+=Add                   0  1
+=GetBCDNumber          0  "913F"
+
+== Add two numbers of length 1  -5 + -4 => -9
+=ConvertIntToBCD       0  1 -5
+=ConvertIntToBCD       1  1 -4
+=Add                   0  1
+=GetBCDNumber          0  "993F"
+
+== Add two numbers of length 2   056 043  -> 099
+=ConvertIntToBCD       0  2  56
+=ConvertIntToBCD       1  2  43
+=Add                   0  1
+=GetBCDNumber          0  "20993F"
+
+== Add two numbers of length 2  -033 044  -> 011
+=ConvertIntToBCD       0  2 -33
+=ConvertIntToBCD       1  2  44
+=Add                   0  1
+=GetBCDNumber          0  "20113F"
+
+== Add two numbers of length 2   033 -044  -> -011
+=ConvertIntToBCD       0  2  33
+=ConvertIntToBCD       1  2 -44
+=Add                   0  1
+=GetBCDNumber          0  "A0113F"
+
+== Add two numbers of length 2   -033 -044  -> -077
+=ConvertIntToBCD       0  2 -33
+=ConvertIntToBCD       1  2 -44
+=Add                   0  1
+=GetBCDNumber          0  "A0773F"
+
+== Add two numbers of length 2   066 044  -> 110
+=ConvertIntToBCD       0  2  66
+=ConvertIntToBCD       1  2  44
+=Add                   0  1
+=GetBCDNumber          0  "21103F"
+
+== Add two numbers of length 2   -066 044  -> -22
+=ConvertIntToBCD       0  2  -66
+=ConvertIntToBCD       1  2  44
+=Add                   0  1
+=GetBCDNumber          0  "A0223F"
+
+== Add two numbers of length 2   066 -044  -> 22
+=ConvertIntToBCD       0  2  66
+=ConvertIntToBCD       1  2  -44
+=Add                   0  1
+=GetBCDNumber          0  "20223F"
+
+
+== Add two numbers of length 2   -066 -044  -> -110
+=ConvertIntToBCD       0  2  -66
+=ConvertIntToBCD       1  2  -44
+=Add                   0  1
+=GetBCDNumber          0  "A1103F"
+
+== Add two numbers of length 6 carry in all
+=ConvertIntToBCD       0  6  2000000000
+=ConvertIntToBCD       1  6  -1
+=Add                   0  1
+=GetBCDNumber          0  "60199999999900"
+
+== Add two numbers of length 6
+=ConvertASCIIToBCD       0  6  "1333333335"
+=GetBCDNumber          0  "60133333333500"
+=ConvertASCIIToBCD       1  6  "1666666665"
+=GetBCDNumber          1  "60166666666500"
+=Add                   0  1
+=GetBCDNumber          0  "60300000000000"
+
+== Add two numbers of length 6, larger than long
+=ConvertASCIIToBCD       0  6  "43793618476"
+=ConvertASCIIToBCD       1  6  "56206381523"
+=Add                   0  1
+=GetBCDNumber          0     "69999999999900"
+
+== Generate overflow while adding long number
+=Increment             0 
+=ExceptionProgram      ProgramExc  364  'c'
+
+== Generate overflow while adding short number
+=ConvertASCIIToBCD       0  5  "666666666"
+=GetBCDNumber            0    "56666666663F"
+=ConvertASCIIToBCD       1  5  "333333334"
+=GetBCDNumber            1    "53333333343f"
+=Add                     0  1
+=ExceptionProgram        ProgramExc  363  'c'
+
+== Generate overflow while adding a number of size 1
+=ConvertASCIIToBCD       0  1  "6"
+=GetBCDNumber            0    "163F"
+=ConvertASCIIToBCD       1  1  "4"
+=GetBCDNumber            1    "143f"
+=Add                     0  1
+=ExceptionProgram        ProgramExc  363  'c'
+
+== Subtract numbers of different sizes
+=ConvertASCIIToBCD       0  2   "-499"
+=GetBCDNumber            0      "A4993f"
+=ConvertASCIIToBCD       1  3  "01233"
+=GetBCDNumber            1    "3012333F"
+=Add                     0  1
+=GetBCDNumber            0     "27343f"
+
+== Subtract numbers of different sizes generating overflow
+=ConvertASCIIToBCD       0  2   "-399"
+=GetBCDNumber            0      "A3993f"
+=ConvertASCIIToBCD       1  3  "01400"
+=GetBCDNumber            1    "3014003F"
+=Add                     0  1
+=ExceptionProgram        ProgramExc  363  'c'
+
+== Subtract numbers with subtract operation
+=ConvertASCIIToBCD       0  2   "-499"
+=GetBCDNumber            0      "A4993f"
+=ConvertASCIIToBCD       1  3  "-01233"
+=GetBCDNumber            1    "B012333F"
+=Subtract                0  1
+=GetBCDNumber            0     "27343f"
+
+
+== Compare with zero a negative number
+=ConvertIntToBCD         0  1  -1
+=ZeroCompare             0  0
+=ConvertIntToBCD         0  2  -1
+=ZeroCompare             0  0
+=ConvertIntToBCD         0  6  -1
+=ZeroCompare             0  0
+
+
+== Compare with zero a zero number
+=ConvertIntToBCD         0  1  0
+=ZeroCompare             0  1
+=ConvertIntToBCD         0  2  0
+=ZeroCompare             0  1
+=ConvertIntToBCD         0  6  0
+=ZeroCompare             0  1
+
+== Compare with zero a positive number
+=ConvertIntToBCD         0  1  1
+=ZeroCompare             0  2
+=ConvertIntToBCD         0  2  1
+=ZeroCompare             0  2
+=ConvertIntToBCD         0  6  1
+=ZeroCompare             0  2
+
+== Add two numbers of length 6
+=ConvertASCIIToBCD       0  6  "-8072334"
+=ConvertASCIIToBCD       1  6  "1293834"test
+=Add                     0  1
+=GetBCDNumber            0    "E0000677850000"
+
+== Conversion
+=ConvertIntToBCD         0  6      10769266
+=GetBCDNumber            0    "600010769266"
+
+== Generate and add random numbers
+=SetExceptionVerbose     .false
+=RandAdd                 100000
++Distribution            10 15 15 25 35
+
+== Verify if the dynamic memory has been reset.
+=Reset
+=AllocCompareNum       0
+=AllocCompareBytes     0
+

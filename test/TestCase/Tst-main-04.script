@@ -1,0 +1,20 @@
+// Script:    Tst-main-02.script
+// Author:    Arndt von Staa
+// Date:      08/dez/2006
+// Purpose:   Test basic functionality
+
+// Test script file with test case containing only control commands and execution cancel command
+
+//
+// ==========>>> Must display 2 errors  17 lines read, cancel
+//
+// Start
+
+== Test control commands
+=StartVerbose
+=Breakpoint      // instead of optional argument a comment 
+=Breakpoint 123
+=Cancel
+// Line must not be read
+=StopVerbose
+// Line must not be read

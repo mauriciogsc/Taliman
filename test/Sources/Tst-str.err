@@ -1,0 +1,19 @@
+
+
+#################### Compilacao do construto: Tst-str
+
+tst_str.cpp
+main.cpp
+time.cpp
+Microsoft (R) Incremental Linker Version 12.00.21005.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:Tst-str.EXE 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+string.obj tst_str.obj bcdarit.obj breakpnt.obj counters.obj 
+disaster.obj dynspac.obj environ.obj exceptn.obj global.obj 
+gnrctest.obj int_cnt.obj int_dsp.obj logger.obj main.obj 
+message.obj msgbcd.obj msgbin.obj msgstr.obj msgtime.obj 
+readtest.obj simplist.obj sioctrl.obj sls_elem.obj symbtab.obj 
+time.obj tracer.obj verifier.obj 

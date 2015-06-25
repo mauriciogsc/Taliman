@@ -1,0 +1,7 @@
+// Arquivo de definição de string default
+// Mensagens geradas pelo módulo TABSTR
+
+<Offset> 0
+
+STR_NaoEncontrouString   1  m  "String id %1 not found."
+STR_NullString           2  m  ""

@@ -1,0 +1,84 @@
+// Script:    Tst-str-01.script
+// Author:    Arndt von Staa
+// Date:      17/jan/2011
+// Purpose:   Test buffer
+
+== Declare constants
+=DeclareParameter  Buffer0   int  0
+=DeclareParameter  Buffer1   int  1
+=DeclareParameter  Buffer2   int  2
+=DeclareParameter  Buffer3   int  3
+
+=DeclareParameter  String0   string  ""
+=DeclareParameter  String3   string  "abc"
+=DeclareParameter  String10  string  "1234567890"
+
+=DeclareParameter  Less    int  0
+=DeclareParameter  Equal   int  1
+=DeclareParameter  Greater int  2
+
+=DeclareParameter  ErrorExc          int 3
+=DeclareParameter  FailureExc        int 4
+=DeclareParameter  AssertionExc      int 1
+=DeclareParameter  AssertionExcId    int 144
+
+== save the number of allocated data spaces
+=Reset
+=AllocSaveNum   3
+=AllocSaveBytes 1
+
+== Create a buffer
+=HeapBuffer            Buffer0  20
+
+== Get buffer space size
+=GetHeapSizeSpace      Buffer0  20
+
+== Retrieve zeroes
+=GetBufferData         Buffer0  20     3   "\0\0\0"
+=GetBufferData         Buffer0  20    17   "\0\0\0"
+
+== Retrieve space boundary control
+=GetBufferData         Buffer0  20    19   "\0\0\x9F\x81"
+
+== Insert a string at the beginning 
+=SetHeapBufferData     Buffer0   0   String10
+
+== Retrieve the string
+=GetBufferData         Buffer0  20    0   String10
+
+== Retrieve parts of the string
+=GetBufferData         Buffer0  20    3   "45678"
+=GetBufferData         Buffer0  20    0   "12"
+
+== Insert an empty string in the midlle
+=SetHeapBufferData     Buffer0   5   String0
+
+== Retrieve the string
+=GetBufferData         Buffer0  20    0   String10
+
+== Insert a short string in the middle the midlle
+=SetHeapBufferData     Buffer0   5   String3
+
+== Retrieve the string
+=GetBufferData         Buffer0  20    0   "12345abc90"
+
+== Insert a string at the end
+=SetHeapBufferData     Buffer0  17    String3
+
+== Retrieve the string
+=GetBufferData         Buffer0  20   17   String3
+=GetBufferData         Buffer0  20   19   "c\0\x9F\x81"
+
+== Delete the buffer
+=DeleteBuffer          Buffer0
+
+== Create a local buffer
+=SpaceBuffer           Buffer1   1   30
+
+== Create a buffer on the stack
+=StackBuffer 
+
+== verify memory leak
+=Reset
+=AllocCompareBytes 1
+=AllocCompareNum   3
